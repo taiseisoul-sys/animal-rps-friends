@@ -258,8 +258,72 @@
  .battle-slot.tornado-boost-v23::before{display:none}
 }
 
+
+/* Beetle Hit Reaction v2.4 — beetle defender only; presentation layer. */
+.battle-slot.hurt.beetle-hit-v24{
+  --beetle-hit-scale-v24:1;
+  --beetle-hit-duration-v24:.76s;
+  z-index:6;
+  animation:beetle-stagger-v24 var(--beetle-hit-duration-v24) steps(18,end) both;
+}
+.battle-slot.hurt.beetle-hit-v24.beetle-hit-light-v24{--beetle-hit-scale-v24:.62;--beetle-hit-duration-v24:.65s}
+.battle-slot.hurt.beetle-hit-v24.beetle-hit-medium-v24{--beetle-hit-scale-v24:1;--beetle-hit-duration-v24:.78s}
+.battle-slot.hurt.beetle-hit-v24.beetle-hit-heavy-v24{--beetle-hit-scale-v24:1.38;--beetle-hit-duration-v24:.92s}
+@keyframes beetle-stagger-v24{
+  0%  {translate:0 0;rotate:0deg;scale:1}
+  9%  {translate:calc(-7px * var(--attack-dir) * var(--beetle-hit-scale-v24)) -2px;rotate:calc(-5deg * var(--attack-dir));scale:1.05 .95}
+  20% {translate:calc(-25px * var(--attack-dir) * var(--beetle-hit-scale-v24)) 1px;rotate:calc(-15deg * var(--attack-dir));scale:1.08 .92}
+  32% {translate:calc(-33px * var(--attack-dir) * var(--beetle-hit-scale-v24)) 0px;rotate:calc(-18deg * var(--attack-dir));scale:1.06 .94}
+  45% {translate:calc(-22px * var(--attack-dir) * var(--beetle-hit-scale-v24)) 5px;rotate:calc(9deg * var(--attack-dir));scale:.96 1.04}
+  56% {translate:calc(-16px * var(--attack-dir) * var(--beetle-hit-scale-v24)) 2px;rotate:calc(-7deg * var(--attack-dir));scale:1.02 .98}
+  70% {translate:calc(-8px * var(--attack-dir) * var(--beetle-hit-scale-v24)) 3px;rotate:calc(4deg * var(--attack-dir));scale:.98 1.02}
+  86% {translate:calc(-3px * var(--attack-dir)) 0;rotate:calc(-2deg * var(--attack-dir));scale:1}
+  100%{translate:0 0;rotate:0deg;scale:1}
+}
+/* The shell blinks on impact, then stabilises without adding image files. */
+.battle-slot.hurt.beetle-hit-v24 .beetle-idle{
+  animation:beetle-shell-flash-v24 var(--beetle-hit-duration-v24) steps(12,end) both;
+}
+@keyframes beetle-shell-flash-v24{
+  0%,100%{filter:drop-shadow(2px 5px 1px #0008) brightness(1)}
+  8%,18%{filter:drop-shadow(0 0 4px #ffd480) brightness(2.15) saturate(.7)}
+  23%,42%{filter:drop-shadow(2px 5px 1px #0008) brightness(1)}
+  46%,56%{filter:drop-shadow(0 0 3px #ffbe6b) brightness(1.65)}
+  65%{filter:drop-shadow(2px 5px 1px #0008) brightness(1)}
+}
+/* Pixel dust kicks up under the legs when the beetle slides backward. */
+.battle-slot.hurt.beetle-hit-v24::before{
+  content:'';position:absolute;left:48%;bottom:7px;width:7px;height:7px;
+  background:#ead49b;z-index:7;pointer-events:none;
+  box-shadow:-14px 4px #bba471,17px -2px #e8d5a7,-28px 7px #8a8268,28px 5px #ac9868;
+  animation:beetle-hit-dust-v24 var(--beetle-hit-duration-v24) steps(7,end) both;
+}
+@keyframes beetle-hit-dust-v24{
+  0%,8%{opacity:0;scale:.45;translate:0 9px}
+  22%{opacity:.9;scale:1;translate:calc(-5px * var(--attack-dir)) 0}
+  47%{opacity:.7;scale:1.3;translate:calc(-16px * var(--attack-dir)) -5px}
+  80%,100%{opacity:0;scale:1.65;translate:calc(-26px * var(--attack-dir)) -9px}
+}
+/* Headbutt already has a collision star; don't draw a second one over it. */
+.battle-slot.hurt.beetle-hit-v24:not(.headbutt-impact):not(.swipe-impact-v22)::after{
+  content:'✦';position:absolute;z-index:8;left:46%;top:28px;
+  color:#fff4c9;font-size:32px;line-height:1;font-weight:900;pointer-events:none;
+  text-shadow:2px 0 #ff9f55,-2px 0 #ff9f55,0 2px #ff9f55,0 -2px #ff9f55;
+  animation:beetle-impact-star-v24 .40s steps(4,end) both;
+}
+@keyframes beetle-impact-star-v24{
+  0%{opacity:0;scale:.3;rotate:0deg}
+  25%{opacity:1;scale:1.15;rotate:24deg}
+  62%{opacity:.9;scale:1.3;rotate:55deg}
+  100%{opacity:0;scale:1.5;rotate:90deg}
+}
+@media(prefers-reduced-motion:reduce){
+  .battle-slot.hurt.beetle-hit-v24 .beetle-idle{animation:none}
+  .battle-slot.hurt.beetle-hit-v24::before,.battle-slot.hurt.beetle-hit-v24::after{display:none}
+}
+
 @media(prefers-reduced-motion:reduce){.battle-sprite,.battle-emoji,.battle-slot{animation:none!important}}
-</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BEETLE TORNADO 2.3</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシの特殊効果を先行実装中。</p></div><script>
+</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BEETLE HIT 2.4</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシの特殊効果を先行実装中。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
@@ -293,11 +357,20 @@ function animateArena(id,side,handIndex,hit){
  const host=document.getElementById(id);if(!host)return;
  const slot=host.querySelector('.battle-slot.'+side);if(!slot)return;
  const cls=['attack-rock','attack-scissors','attack-paper'][handIndex];
- slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory','swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23');
+ slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory','swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23','beetle-hit-v24','beetle-hit-light-v24','beetle-hit-medium-v24','beetle-hit-heavy-v24');
  void slot.offsetWidth;
  slot.classList.add(hit?'hurt':cls);
  const k=id+side;clearTimeout(beetleAnimationTimers.get(k));
- beetleAnimationTimers.set(k,setTimeout(()=>slot.classList.remove(cls,'hurt'),hit?650:handIndex===2?1500:1050));
+ beetleAnimationTimers.set(k,setTimeout(()=>slot.classList.remove(cls,'hurt','beetle-hit-v24','beetle-hit-light-v24','beetle-hit-medium-v24','beetle-hit-heavy-v24'),hit?980:handIndex===2?1500:1050));
+}
+function playBeetleHitV24(id,side,damage){
+ const host=document.getElementById(id);
+ const slot=host?.querySelector('.battle-slot.'+side);
+ if(!slot||!slot.querySelector('.beetle-idle')||!(damage>0))return;
+ const tier=damage>=100?'heavy':damage>=50?'medium':'light';
+ slot.classList.remove('beetle-hit-v24','beetle-hit-light-v24','beetle-hit-medium-v24','beetle-hit-heavy-v24');
+ void slot.offsetWidth;
+ slot.classList.add('beetle-hit-v24','beetle-hit-'+tier+'-v24');
 }
 function showHpFloat(host,side,delta){
  if(!delta)return;
@@ -314,7 +387,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
  host.querySelectorAll('.damage-float,.tornado-vortex-v23,.tornado-groundburst-v23').forEach(el=>el.remove());
- host.querySelectorAll('.swipe-launch-v22,.swipe-impact-v22,.headbutt-impact,.tornado-thrown-v23,.tornado-boost-v23').forEach(el=>el.classList.remove('swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23'));
+ host.querySelectorAll('.swipe-launch-v22,.swipe-impact-v22,.headbutt-impact,.tornado-thrown-v23,.tornado-boost-v23').forEach(el=>el.classList.remove('swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23','beetle-hit-v24','beetle-hit-light-v24','beetle-hit-medium-v24','beetle-hit-heavy-v24'));
  const name=host.querySelector('.battle-move-name');
  if(who===0||who===1){
   const attackerCard=who===0?lcard:rcard;
@@ -351,6 +424,9 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
    setTimeout(()=>{
     if(arenaVisualVersions.get(id)!==visualVersion)return;
     animateArena(id,defendingSide,0,true);
+    // The defender alone reacts. Neither healing nor a zero-damage skill looks like a hit.
+    const inflicted=hpDelta?.[who===0?1:0]||0;
+    if(!(attackerCard===0&&moveIndex===1))playBeetleHitV24(id,defendingSide,inflicted);
     if(attackerCard===0&&moveIndex===0){
       const slot=host.querySelector('.battle-slot.'+defendingSide);
       if(slot){slot.classList.remove('headbutt-impact');void slot.offsetWidth;slot.classList.add('headbutt-impact');
@@ -365,7 +441,19 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
     }
    },attackerCard===0?(moveIndex===0?300:380):100);
   }
- }else name.textContent='🤝 あいこ！';
+ }else{
+  name.textContent='🤝 あいこ！';
+  if(hpDelta){
+   for(let i=0;i<2;i++)if((i===0?lcard:rcard)===0&&hpDelta[i]>0){
+    const side=i===0?'left':'right';
+    setTimeout(()=>{
+     if(arenaVisualVersions.get(id)!==visualVersion)return;
+     animateArena(id,side,0,true);
+     playBeetleHitV24(id,side,hpDelta[i]);
+    },120);
+   }
+  }
+ }
  if(hpDelta){
   for(let i=0;i<2;i++)if(hpDelta[i]){
    const side=i===0?'left':'right';
