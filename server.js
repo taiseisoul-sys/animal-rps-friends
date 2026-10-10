@@ -36,7 +36,17 @@ function resolve(r){const [a,b]=r.players,ra=a.move,rb=b.move,result=win(ra,rb),
  if(attacker.card===9&&attacker.move===1){d+=attacker.howl;attacker.howl=0;}
  if(attacker.card===1&&attacker.move===1){defender.poison+=3;notes.push(defender.name+'に毒3ターン追加（毒針）');}
  if(attacker.card===2){if(attacker.move===0){attacker.attackBonus+=10;notes.push(attacker.name+'：次の攻撃＋10');}if(attacker.move===1){attacker.attackBonus+=20;notes.push(attacker.name+'：次の攻撃＋20');}if(attacker.move===2){attacker.counter=true;notes.push(attacker.name+'：🛡️ アントガード カウンター待機');}}
- const actualDamage=Math.min(Math.max(0,defender.hp),Math.max(0,d));defender.hp=Math.max(0,defender.hp-d);if(predatorActive&&attacker.move!==1){const heal=Math.min(HP[3]-attacker.hp,Math.floor(actualDamage*.3));if(heal>0){attacker.hp+=heal;notes.push(attacker.name+'：💚 捕食者 '+heal+'HP回復');}}notes.push(attacker.name+'の'+MOVES[attacker.card][attacker.move]+'：'+(attacker.card===3&&attacker.move===1?d+'HP減少（特殊効果）':d+'ダメージ'));if(defender.card===2&&defender.counter&&d>0){const reflected=Math.floor(d/2)+defender.steel+defender.attackBonus;attacker.hp=Math.max(0,attacker.hp-reflected);notes.push(defender.name+'：🛡️ アントガード反射 '+reflected+'ダメージ（技強化'+defender.attackBonus+'消費）');defender.attackBonus=0;defender.counter=false;}attacker.streak++;defender.streak=0;
+ const multi=attacker.card===3&&attacker.move===2,specialEffect=attacker.card===3&&attacker.move===1;
+const hits=multi?[d/3,d/3,d/3]:[d];let dealt=0;
+for(let hit=0;hit<hits.length;hit++){
+ if(defender.hp<=0||attacker.hp<=0)break;
+ const actualDamage=Math.min(Math.max(0,defender.hp),Math.max(0,hits[hit]));
+ defender.hp-=actualDamage;dealt+=actualDamage;
+ if(multi)notes.push(attacker.name+'：'+(hit+1)+'発目 '+actualDamage+'ダメージ');
+ if(predatorActive&&!specialEffect){const heal=Math.min(HP[3]-attacker.hp,Math.floor(actualDamage*.3));if(heal>0){attacker.hp+=heal;notes.push(attacker.name+'：💚 捕食者 '+heal+'HP回復'+(multi?'（'+(hit+1)+'発目）':''));}}
+ if(!specialEffect&&defender.card===2&&defender.counter&&actualDamage>0){const reflected=Math.floor(actualDamage/2)+defender.steel+defender.attackBonus;attacker.hp=Math.max(0,attacker.hp-reflected);notes.push(defender.name+'：🛡️ アントガード反射 '+reflected+'ダメージ（技強化'+defender.attackBonus+'消費）');defender.attackBonus=0;defender.counter=false;}
+}
+d=dealt;notes.push(attacker.name+'の'+MOVES[attacker.card][attacker.move]+'：'+(specialEffect?d+'HP減少（特殊効果）':d+'ダメージ'));attacker.streak++;defender.streak=0;
  }
  for(let i=0;i<2;i++){const p=r.players[i];p.lastHand=p.move;if(before[i]>0)p.seal=Math.max(0,p.seal-1);if(p.poison>0&&p.hp>0){p.hp=Math.max(0,p.hp-20);p.poison--;notes.push(p.name+'に毒20ダメージ（残り'+p.poison+'ターン）');}if(p.card===4&&p.hp>0)p.hp=Math.min(HP[4],p.hp+20);}
  r.history.push({round:r.round,hands:[ra,rb],result,notes,hp:[a.hp,b.hp]});a.move=b.move=null;
