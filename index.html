@@ -42,15 +42,20 @@ function setupCardsSelection(){
   [...panel.querySelectorAll('p')].forEach(p=>{
     const raw=p.textContent;
     for(let i=0;i<3;i++){
-      const prefix=hand[i]+' '+moves[chosen][i]+'：';
+      // 必殺技には「★ 必殺技」が技名と説明の間に入る場合がある。
+      // その表記も含めて技を認識し、全技をカードに変換する。
+      const prefix=hand[i]+' '+moves[chosen][i];
       if(!raw.startsWith(prefix))continue;
+      const rest=raw.slice(prefix.length);
+      const match=rest.match(/^(?:\s*★\s*必殺技)?\s*：/);
+      if(!match)continue;
       const isSpecial=i===special[chosen];
       const tile=document.createElement('div');
       tile.className='intro-move hand-'+handLabels[i]+(isSpecial?' is-special':'');
       const heading=document.createElement('div');heading.className='intro-move-title';
       const label=document.createElement('strong');label.textContent=hand[i]+' '+moves[chosen][i];heading.append(label);
       if(isSpecial){const tag=document.createElement('span');tag.className='intro-special-tag';tag.textContent='★ 必殺技';heading.append(tag);}
-      const detail=document.createElement('div');detail.className='intro-move-detail';detail.textContent=raw.slice(prefix.length);
+      const detail=document.createElement('div');detail.className='intro-move-detail';detail.textContent=rest.slice(match[0].length);
       tile.append(heading,detail);p.replaceWith(tile);break;
     }
   });
