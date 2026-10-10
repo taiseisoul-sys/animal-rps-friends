@@ -46,7 +46,7 @@
  50%,74.99%{background-position:66.666667% center}
  75%,100%{background-position:100% center}
 }
-.battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory) .beetle-idle{animation-play-state:paused}
+.battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.tornado-thrown-v23) .beetle-idle{animation-play-state:paused}
 
 .battle-slot.right .battle-emoji{transform:scaleX(-1)}
 .battle-floor{position:absolute;bottom:10px;width:34%;height:9px;border-radius:50%;background:#101a1888}.battle-floor.left{left:8%}.battle-floor.right{right:8%}
@@ -153,8 +153,113 @@
 }
 
 
+
+/* Beetle Tornado Throw v2.3: all effects are presentation, not game logic. */
+.battle-slot.attack-paper{animation:beetle-tornado-lift-v23 1.54s cubic-bezier(.23,.69,.3,1) both}
+@keyframes beetle-tornado-lift-v23{
+  0%{translate:0 0;rotate:0deg;scale:1}
+  11%{translate:calc(-11px * var(--attack-dir)) 3px;rotate:calc(-5deg * var(--attack-dir));scale:1.03 .96}
+  23%{translate:calc(-19px * var(--attack-dir)) 8px;rotate:calc(-12deg * var(--attack-dir));scale:1.08 .91}
+  33%{translate:calc(10px * var(--attack-dir)) 1px;rotate:calc(7deg * var(--attack-dir));scale:1.06 1.02}
+  44%{translate:calc(58px * var(--attack-dir)) -16px;rotate:calc(24deg * var(--attack-dir));scale:1.12 1.07}
+  57%{translate:calc(49px * var(--attack-dir)) -12px;rotate:calc(19deg * var(--attack-dir));scale:1.1 1.03}
+  70%{translate:calc(26px * var(--attack-dir)) -5px;rotate:calc(4deg * var(--attack-dir));scale:1.04 1.02}
+  85%{translate:calc(-4px * var(--attack-dir)) 0px;rotate:calc(-3deg * var(--attack-dir));scale:1}
+  100%{translate:0 0;rotate:0deg;scale:1}
+}
+.battle-slot.attack-paper::after{
+  content:'✧';z-index:6;position:absolute;right:4%;top:-11px;
+  color:#c7ffff;font-size:34px;line-height:1;font-weight:900;pointer-events:none;
+  text-shadow:3px 0 #68cfff,-3px 0 #68cfff,0 3px #68cfff,0 -3px #68cfff;
+  animation:beetle-tornado-horn-v23 1.54s steps(4,end) both;
+}
+.battle-slot.right.attack-paper::after{right:auto;left:4%}
+@keyframes beetle-tornado-horn-v23{
+  0%,24%{opacity:0;scale:.4;translate:0 15px;rotate:0deg}
+  33%{opacity:.65;scale:.9;translate:calc(12px * var(--attack-dir)) 0;rotate:35deg}
+  43%,58%{opacity:1;scale:1.5;translate:calc(24px * var(--attack-dir)) -24px;rotate:130deg}
+  72%{opacity:.6;scale:1.8;translate:calc(35px * var(--attack-dir)) -33px;rotate:270deg}
+  88%,100%{opacity:0;scale:2;translate:calc(40px * var(--attack-dir)) -38px;rotate:360deg}
+}
+/* Wind rings are simple CSS shapes: no additional image downloads. */
+.tornado-vortex-v23{position:absolute;z-index:7;left:25%;bottom:33px;
+  width:116px;height:115px;pointer-events:none;
+  translate:-50% 0;isolation:isolate;
+  animation:tornado-vortex-arrive-v23 1.08s steps(8,end) both;
+}
+.tornado-vortex-v23.right{left:75%}
+.tornado-vortex-v23::before,.tornado-vortex-v23::after,.tornado-vortex-v23 .wind-core{
+  content:'';position:absolute;left:9%;top:24%;height:63%;width:83%;border-radius:50%;
+  box-sizing:border-box;border:7px solid transparent;border-top-color:#dbffff;
+  border-left-color:#64d6ff;border-right-color:#42baf0;
+  filter:drop-shadow(2px 2px 0 #1b648e);
+  animation:tornado-ring-spin-v23 .28s steps(6,end) infinite;
+}
+.tornado-vortex-v23::after{left:20%;top:4%;width:61%;height:51%;
+  border-width:6px;border-top-color:#fff8d5;border-right-color:#b4f8ff;
+  animation-duration:.22s;animation-direction:reverse;
+}
+.tornado-vortex-v23 .wind-core{left:18%;top:54%;height:45%;width:66%;border-width:5px;
+  border-top-color:#a1efff;border-left-color:#dcffff;border-right-color:#e6ffff;
+  animation-duration:.34s;
+}
+@keyframes tornado-ring-spin-v23{from{rotate:0deg}to{rotate:360deg}}
+@keyframes tornado-vortex-arrive-v23{
+  0%{opacity:0;scale:.35 .5}
+  12%{opacity:.7;scale:.65 .7}
+  32%,62%{opacity:1;scale:1.08 1.12}
+  78%{opacity:.9;scale:1 .97}
+  100%{opacity:0;scale:1.35 .32}
+}
+/* The defender rises, spins in the vortex, and slams down. */
+.battle-slot.tornado-thrown-v23{z-index:9;animation:beetle-tornado-thrown-v23 1.08s steps(18,end) both}
+.battle-slot.tornado-thrown-v23 .beetle-idle{animation-play-state:paused}
+@keyframes beetle-tornado-thrown-v23{
+  0%{opacity:1;translate:0 0;rotate:0deg;scale:1}
+  13%{opacity:1;translate:calc(10px * var(--attack-dir)) -14px;rotate:calc(20deg * var(--attack-dir));scale:1}
+  27%{opacity:.92;translate:calc(-7px * var(--attack-dir)) -44px;rotate:calc(94deg * var(--attack-dir));scale:.9}
+  43%{opacity:1;translate:calc(20px * var(--attack-dir)) -54px;rotate:calc(173deg * var(--attack-dir));scale:.89}
+  57%{opacity:1;translate:calc(-12px * var(--attack-dir)) -44px;rotate:calc(262deg * var(--attack-dir));scale:.92}
+  72%{opacity:1;translate:calc(20px * var(--attack-dir)) -18px;rotate:calc(333deg * var(--attack-dir));scale:.98}
+  82%{opacity:1;translate:calc(30px * var(--attack-dir)) 7px;rotate:calc(360deg * var(--attack-dir));scale:1.11 .8}
+  89%{opacity:.78;translate:calc(22px * var(--attack-dir)) 1px;rotate:calc(365deg * var(--attack-dir));scale:1 .94}
+  96%{opacity:1;translate:calc(5px * var(--attack-dir)) -5px;rotate:calc(360deg * var(--attack-dir));scale:1}
+  100%{opacity:1;translate:0 0;rotate:calc(360deg * var(--attack-dir));scale:1}
+}
+.tornado-groundburst-v23{position:absolute;z-index:11;pointer-events:none;left:25%;bottom:25px;
+  width:110px;height:55px;translate:-50% 0;animation:tornado-dust-v23 .48s steps(6,end) both;
+}
+.tornado-groundburst-v23.right{left:75%}
+.tornado-groundburst-v23::before{content:'✹';display:block;text-align:center;font-size:72px;line-height:1;color:#e9e0b3;
+  text-shadow:3px 0 #af9c65,-3px 0 #af9c65,0 3px #af9c65,0 -3px #af9c65}
+@keyframes tornado-dust-v23{
+  0%{opacity:0;scale:.25 .3}
+  17%{opacity:1;scale:1.15 .7}
+  52%{opacity:.8;scale:1.6 .65}
+  100%{opacity:0;scale:2.1 .85}
+}
+.battle-slot.tornado-boost-v23::before{
+  content:'✦ ×1.5';position:absolute;z-index:13;top:-26px;left:50%;translate:-50% 0;
+  white-space:nowrap;pointer-events:none;color:#ffe884;font-weight:900;font-size:17px;
+  text-shadow:2px 2px 0 #754826,-2px -2px 0 #754826,0 0 12px #ffe080;
+  animation:tornado-boost-title-v23 1.05s ease-out both;
+}
+.battle-slot.tornado-boost-v23 .beetle-idle{
+  filter:brightness(1.25) drop-shadow(0 0 8px #ffd66b);
+}
+@keyframes tornado-boost-title-v23{
+  0%{opacity:0;scale:.55;translate:-50% 10px}
+  20%{opacity:1;scale:1.25;translate:-50% -8px}
+  60%{opacity:1;scale:1;translate:-50% -17px}
+  100%{opacity:0;scale:1;translate:-50% -28px}
+}
+@media(prefers-reduced-motion:reduce){
+ .battle-slot.attack-paper::after,.tornado-vortex-v23,.tornado-groundburst-v23,
+ .battle-slot.tornado-boost-v23::before{display:none}
+}
+
 @media(prefers-reduced-motion:reduce){.battle-sprite,.battle-emoji,.battle-slot{animation:none!important}}
-</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BEETLE SWIPE 2.2</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシの特殊効果を先行実装中。</p></div><script>
+</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BEETLE TORNADO 2.3</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシの特殊効果を先行実装中。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
@@ -172,7 +277,8 @@ function resetArenaVisual(id){
  arenaVisualVersions.set(id,(arenaVisualVersions.get(id)||0)+1);
  const host=document.getElementById(id);if(!host)return;
  host.dataset.pair='';host.dataset.round='';
- host.querySelectorAll('.damage-float').forEach(el=>el.remove());
+ host.querySelectorAll('.damage-float,.tornado-vortex-v23,.tornado-groundburst-v23').forEach(el=>el.remove());
+ host.querySelectorAll('.tornado-thrown-v23,.tornado-boost-v23').forEach(el=>el.classList.remove('tornado-thrown-v23','tornado-boost-v23'));
 }
 
 function buildArena(containerId,leftCard,rightCard){
@@ -187,7 +293,7 @@ function animateArena(id,side,handIndex,hit){
  const host=document.getElementById(id);if(!host)return;
  const slot=host.querySelector('.battle-slot.'+side);if(!slot)return;
  const cls=['attack-rock','attack-scissors','attack-paper'][handIndex];
- slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory','swipe-launch-v22','swipe-impact-v22','headbutt-impact');
+ slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory','swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23');
  void slot.offsetWidth;
  slot.classList.add(hit?'hurt':cls);
  const k=id+side;clearTimeout(beetleAnimationTimers.get(k));
@@ -207,8 +313,8 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
  arenaVisualVersions.set(id,visualVersion);
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
- host.querySelectorAll('.damage-float').forEach(el=>el.remove());
- host.querySelectorAll('.swipe-launch-v22,.swipe-impact-v22,.headbutt-impact').forEach(el=>el.classList.remove('swipe-launch-v22','swipe-impact-v22','headbutt-impact'));
+ host.querySelectorAll('.damage-float,.tornado-vortex-v23,.tornado-groundburst-v23').forEach(el=>el.remove());
+ host.querySelectorAll('.swipe-launch-v22,.swipe-impact-v22,.headbutt-impact,.tornado-thrown-v23,.tornado-boost-v23').forEach(el=>el.classList.remove('swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23'));
  const name=host.querySelector('.battle-move-name');
  if(who===0||who===1){
   const attackerCard=who===0?lcard:rcard;
@@ -216,7 +322,32 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
   name.textContent=hand[moveIndex]+' '+moves[attackerCard][moveIndex]+'！';
   const attackingSide=who===0?'left':'right',defendingSide=who===0?'right':'left';
   if(attackerCard===0)animateArena(id,attackingSide,moveIndex,false);
-  if((who===0?rcard:lcard)===0){
+  if(attackerCard===0&&moveIndex===2){
+   const targetSlot=host.querySelector('.battle-slot.'+defendingSide);
+   const attackerSlot=host.querySelector('.battle-slot.'+attackingSide);
+   setTimeout(()=>{
+    if(arenaVisualVersions.get(id)!==visualVersion||!targetSlot)return;
+    targetSlot.classList.remove('tornado-thrown-v23');void targetSlot.offsetWidth;
+    targetSlot.classList.add('tornado-thrown-v23');
+    const vortex=document.createElement('div');
+    vortex.className='tornado-vortex-v23 '+defendingSide;
+    const core=document.createElement('span');core.className='wind-core';vortex.append(core);
+    host.append(vortex);
+    setTimeout(()=>vortex.remove(),1140);
+   },380);
+   setTimeout(()=>{
+    if(arenaVisualVersions.get(id)!==visualVersion)return;
+    const impact=document.createElement('div');impact.className='tornado-groundburst-v23 '+defendingSide;
+    host.append(impact);setTimeout(()=>impact.remove(),520);
+   },1265);
+   setTimeout(()=>{
+    if(arenaVisualVersions.get(id)!==visualVersion||!attackerSlot)return;
+    attackerSlot.classList.add('tornado-boost-v23');
+    setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)attackerSlot.classList.remove('tornado-boost-v23');},1110);
+   },1420);
+   setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)targetSlot?.classList.remove('tornado-thrown-v23');},1570);
+  }
+  if((who===0?rcard:lcard)===0 && !(attackerCard===0&&moveIndex===2)){
    setTimeout(()=>{
     if(arenaVisualVersions.get(id)!==visualVersion)return;
     animateArena(id,defendingSide,0,true);
@@ -238,7 +369,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
  if(hpDelta){
   for(let i=0;i<2;i++)if(hpDelta[i]){
    const side=i===0?'left':'right';
-   setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)showHpFloat(host,side,hpDelta[i]);},who===-1?120:(((who===0?lcard:rcard)===0&&((who===0?lh:rh)===0))?350:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===1))?420:470));
+   setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)showHpFloat(host,side,hpDelta[i]);},who===-1?120:(((who===0?lcard:rcard)===0&&((who===0?lh:rh)===0))?350:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===1))?420:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===2))?1300:470));
   }
  }
  // In test mode, bring the battle to view so mobile users can actually see the motion.
