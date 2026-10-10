@@ -6,11 +6,11 @@ const DMG=[[40,70,100],[0,20,0],[120,50,0],[50,0,60],[100,80,0],[140,50,30],[200
 const MOVES=[['頭突き','角払い','トルネードスロー'],['ヴェノムエンド','毒針','ポイズンヒール'],['パワーバイト','アゴばさみ','アントガード'],['プレデタークロー','マンティスブレード','ハンティングステップ'],['キャットインパクト','ネコひっかき','甘える'],['プライドクラッシュ','キングスクラッチ','キングズロア'],['ゴライアスパンチ','ジャングルキング','貪る'],['イーグルクロー','ゴッドバード','スカイハント'],['クロコダイルテール','引き裂く爪','デビルバイト'],['遠吠え','ディノ・ラプトル・レイド','ラストダンス']];
 const json=(res,status,data)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(data));};
 const win=(a,b)=>a===b?0:((a===0&&b===1)||(a===1&&b===2)||(a===2&&b===0)?1:-1);
-function player(name,card,token){return {name,card,token,move:null,hp:HP[card],poison:0,streak:0,howl:0,lastHand:null,boost:false,seal:0};}
-function publicRoom(r,token){const me=r.players.findIndex(p=>p.token===token);return {code:r.code,phase:r.phase,players:r.players.map(p=>({name:p.name,card:p.card,ready:p.move!==null,hp:p.hp,poison:p.poison,streak:p.streak,lastHand:p.lastHand,boost:p.boost,seal:p.seal,howl:p.howl})),you:me,round:r.round,history:r.history.slice(-15),winner:r.winner};}
+function player(name,card,token){return {name,card,token,move:null,hp:HP[card],poison:0,streak:0,howl:0,lastHand:null,boost:false,seal:0,steel:0,attackBonus:0,counter:false};}
+function publicRoom(r,token){const me=r.players.findIndex(p=>p.token===token);return {code:r.code,phase:r.phase,players:r.players.map(p=>({name:p.name,card:p.card,ready:p.move!==null,hp:p.hp,poison:p.poison,streak:p.streak,lastHand:p.lastHand,boost:p.boost,seal:p.seal,howl:p.howl,steel:p.steel,attackBonus:p.attackBonus,counter:p.counter})),you:me,round:r.round,history:r.history.slice(-15),winner:r.winner};}
 function resolve(r){const [a,b]=r.players,ra=a.move,rb=b.move,result=win(ra,rb),notes=[];const before=[a.seal,b.seal];
  // A seal lasts through the victim's next selection, including a lost or tied round.
- if(result===0){a.hp=Math.max(0,a.hp-10);b.hp=Math.max(0,b.hp-10);a.streak=b.streak=0;notes.push('あいこ：両者10ダメージ');}
+ if(result===0){for(const [p,op] of [[a,b],[b,a]])if(p.card===2){p.steel+=10;notes.push(p.name+'：🛡️ 黒鋼鎧 永続攻撃力＋10（累計＋'+p.steel+'）');}a.hp=Math.max(0,a.hp-(b.card===2?20:a.card===2?0:10));b.hp=Math.max(0,b.hp-(a.card===2?20:b.card===2?0:10));a.streak=b.streak=0;notes.push('あいこ：黒鋼鎧は被ダメージ0、相手は20ダメージ（通常は両者10）');}
  else{const attacker=result===1?a:b,defender=result===1?b:a;let d=DMG[attacker.card][attacker.move],fixed=false;
  if(attacker.card===0){
    if(attacker.move===1&&attacker.lastHand===1){d=35;fixed=true;notes.push(attacker.name+'：角払い連続使用 → 35ダメージ完全固定');}
@@ -19,6 +19,7 @@ function resolve(r){const [a,b]=r.players,ra=a.move,rb=b.move,result=win(ra,rb),
    if(attacker.move===0&&Math.random()<.1){defender.seal=Math.max(defender.seal,1);notes.push(defender.name+'の必殺技を次の1ターン封印！');}
    if(attacker.move===2){attacker.boost=true;notes.push(attacker.name+'：次の通常技に1.5倍強化を付与！');}
  }
+ if(attacker.card===2&&attacker.move!==2){d+=attacker.steel+attacker.attackBonus;notes.push(attacker.name+'：黒鋼鎧＋'+attacker.steel+'、技強化＋'+attacker.attackBonus);attacker.attackBonus=0;}
  if(attacker.card===9)d+=20*Math.floor((HP[9]-attacker.hp)/40);
  if(attacker.card===8&&attacker.streak===1)d*=2;
  if(attacker.card===8&&attacker.move===2&&attacker.streak===1)d=300;
@@ -34,7 +35,8 @@ function resolve(r){const [a,b]=r.players,ra=a.move,rb=b.move,result=win(ra,rb),
  if(attacker.card===9&&attacker.move===0)attacker.howl+=30;
  if(attacker.card===9&&attacker.move===1){d+=attacker.howl;attacker.howl=0;}
  if(attacker.card===1&&attacker.move===1){defender.poison+=3;notes.push(defender.name+'に毒3ターン追加（毒針）');}
- defender.hp=Math.max(0,defender.hp-d);notes.push(attacker.name+'の'+MOVES[attacker.card][attacker.move]+'：'+d+'ダメージ');attacker.streak++;defender.streak=0;
+ if(attacker.card===2){if(attacker.move===0){attacker.attackBonus+=10;notes.push(attacker.name+'：次の攻撃＋10');}if(attacker.move===1){attacker.attackBonus+=20;notes.push(attacker.name+'：次の攻撃＋20');}if(attacker.move===2){attacker.counter=true;notes.push(attacker.name+'：🛡️ アントガード カウンター待機');}}
+ defender.hp=Math.max(0,defender.hp-d);notes.push(attacker.name+'の'+MOVES[attacker.card][attacker.move]+'：'+d+'ダメージ');if(defender.card===2&&defender.counter&&d>0){const reflected=Math.floor(d/2)+defender.steel+defender.attackBonus;attacker.hp=Math.max(0,attacker.hp-reflected);notes.push(defender.name+'：🛡️ アントガード反射 '+reflected+'ダメージ（技強化'+defender.attackBonus+'消費）');defender.attackBonus=0;defender.counter=false;}attacker.streak++;defender.streak=0;
  }
  for(let i=0;i<2;i++){const p=r.players[i];p.lastHand=p.move;if(before[i]>0)p.seal=Math.max(0,p.seal-1);if(p.poison>0&&p.hp>0){p.hp=Math.max(0,p.hp-20);p.poison--;notes.push(p.name+'に毒20ダメージ（残り'+p.poison+'ターン）');}if(p.card===4&&p.hp>0)p.hp=Math.min(HP[4],p.hp+20);}
  r.history.push({round:r.round,hands:[ra,rb],result,notes,hp:[a.hp,b.hp]});a.move=b.move=null;
