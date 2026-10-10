@@ -92,8 +92,69 @@
 }
 @media(prefers-reduced-motion:reduce){.battle-slot.headbutt-impact::after{animation:none;opacity:0}}
 
+/* Beetle Horn Swipe v2.2: all visual. The engine still owns damage and turns. */
+.battle-slot.attack-scissors{animation:beetle-horn-swipe-v22 .84s cubic-bezier(.18,.72,.24,1) both}
+/* A low wind-up followed by a quick upward horn-swing and a firm landing. */
+@keyframes beetle-horn-swipe-v22{
+  0%   {translate:0 0;rotate:0deg;scale:1}
+  15%  {translate:calc(-10px * var(--attack-dir)) 4px;rotate:calc(-5deg * var(--attack-dir));scale:1.03 .94}
+  29%  {translate:calc(-17px * var(--attack-dir)) 7px;rotate:calc(-13deg * var(--attack-dir));scale:1.08 .9}
+  41%  {translate:calc(15px * var(--attack-dir)) 1px;rotate:calc(10deg * var(--attack-dir));scale:1.07 1.02}
+  51%  {translate:calc(52px * var(--attack-dir)) -15px;rotate:calc(25deg * var(--attack-dir));scale:1.09 1.07}
+  60%  {translate:calc(47px * var(--attack-dir)) -19px;rotate:calc(19deg * var(--attack-dir));scale:1.07 1.04}
+  74%  {translate:calc(18px * var(--attack-dir)) -7px;rotate:calc(-4deg * var(--attack-dir));scale:1.02 1}
+  90%  {translate:calc(-3px * var(--attack-dir)) 1px;rotate:0deg;scale:1}
+  100% {translate:0 0;rotate:0deg;scale:1}
+}
+/* Golden pixel-like swoosh travels in front of the horn at peak swing. */
+.battle-slot.attack-scissors::after{
+  content:'';position:absolute;z-index:6;left:58%;top:9px;width:52px;height:57px;
+  pointer-events:none;box-sizing:border-box;
+  border-top:7px solid #ffeaa5;border-right:6px solid #ffb947;
+  border-radius:85% 100% 25% 0%;
+  filter:drop-shadow(2px 1px 0 #e27a2b);
+  animation:beetle-horn-trail-v22 .84s steps(1,end) both;
+}
+.battle-slot.right.attack-scissors::after{left:auto;right:58%;transform:scaleX(-1)}
+@keyframes beetle-horn-trail-v22{
+  0%,29%{opacity:0;scale:.5;translate:calc(-15px * var(--attack-dir)) 24px}
+  35%{opacity:.55;scale:.76;translate:calc(-3px * var(--attack-dir)) 12px}
+  42%,51%{opacity:1;scale:1.15;translate:calc(12px * var(--attack-dir)) -6px}
+  61%{opacity:.75;scale:1.2;translate:calc(21px * var(--attack-dir)) -18px}
+  72%,100%{opacity:0;scale:1.25;translate:calc(26px * var(--attack-dir)) -27px}
+}
+/* Recipient is launched up, not simply pushed back like a headbutt. */
+.battle-slot.hurt.swipe-launch-v22{animation:beetle-swipe-launch-v22 .60s ease-out both}
+@keyframes beetle-swipe-launch-v22{
+  0%{opacity:1;translate:0 0;rotate:0deg}
+  15%{opacity:.62;translate:calc(8px * var(--attack-dir)) -10px;rotate:calc(6deg * var(--attack-dir))}
+  32%{opacity:1;translate:calc(17px * var(--attack-dir)) -29px;rotate:calc(12deg * var(--attack-dir))}
+  50%{opacity:1;translate:calc(24px * var(--attack-dir)) -33px;rotate:calc(8deg * var(--attack-dir))}
+  73%{opacity:.84;translate:calc(28px * var(--attack-dir)) -12px;rotate:calc(-5deg * var(--attack-dir))}
+  89%{opacity:1;translate:calc(12px * var(--attack-dir)) 2px;rotate:0deg}
+  100%{opacity:1;translate:0 0;rotate:0deg}
+}
+.battle-slot.swipe-impact-v22::before{
+  content:'✦';position:absolute;z-index:7;top:-8px;left:22%;color:#ffeab3;
+  font-size:42px;line-height:1;font-weight:900;pointer-events:none;
+  text-shadow:3px 0 #ff963f,-3px 0 #ff963f,0 3px #ff963f,0 -3px #ff963f;
+  animation:beetle-swipe-spark-v22 .4s steps(3,end) both;
+}
+@keyframes beetle-swipe-spark-v22{
+  0%{opacity:0;scale:.3;rotate:-45deg}
+  18%,48%{opacity:1;scale:1.2;rotate:5deg}
+  75%{opacity:.7;scale:1.45;rotate:45deg}
+  100%{opacity:0;scale:1.7;rotate:80deg}
+}
+.battle-slot.swipe-impact-v22 .battle-sprite,
+.battle-slot.swipe-impact-v22 .battle-emoji{filter:brightness(1.65) drop-shadow(2px 5px 1px #0008)}
+@media(prefers-reduced-motion:reduce){
+  .battle-slot.attack-scissors::after,.battle-slot.swipe-impact-v22::before{display:none}
+}
+
+
 @media(prefers-reduced-motion:reduce){.battle-sprite,.battle-emoji,.battle-slot{animation:none!important}}
-</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BEETLE HEADBUTT 2.1</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシの特殊効果を先行実装中。</p></div><script>
+</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BEETLE SWIPE 2.2</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシの特殊効果を先行実装中。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
@@ -126,7 +187,7 @@ function animateArena(id,side,handIndex,hit){
  const host=document.getElementById(id);if(!host)return;
  const slot=host.querySelector('.battle-slot.'+side);if(!slot)return;
  const cls=['attack-rock','attack-scissors','attack-paper'][handIndex];
- slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory');
+ slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory','swipe-launch-v22','swipe-impact-v22','headbutt-impact');
  void slot.offsetWidth;
  slot.classList.add(hit?'hurt':cls);
  const k=id+side;clearTimeout(beetleAnimationTimers.get(k));
@@ -147,6 +208,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
  host.querySelectorAll('.damage-float').forEach(el=>el.remove());
+ host.querySelectorAll('.swipe-launch-v22,.swipe-impact-v22,.headbutt-impact').forEach(el=>el.classList.remove('swipe-launch-v22','swipe-impact-v22','headbutt-impact'));
  const name=host.querySelector('.battle-move-name');
  if(who===0||who===1){
   const attackerCard=who===0?lcard:rcard;
@@ -162,6 +224,13 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
       const slot=host.querySelector('.battle-slot.'+defendingSide);
       if(slot){slot.classList.remove('headbutt-impact');void slot.offsetWidth;slot.classList.add('headbutt-impact');
         setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)slot.classList.remove('headbutt-impact');},350);}
+    }else if(attackerCard===0&&moveIndex===1){
+      const slot=host.querySelector('.battle-slot.'+defendingSide);
+      if(slot){
+        slot.classList.remove('swipe-launch-v22','swipe-impact-v22');void slot.offsetWidth;
+        slot.classList.add('swipe-launch-v22','swipe-impact-v22');
+        setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)slot.classList.remove('swipe-launch-v22','swipe-impact-v22');},620);
+      }
     }
    },attackerCard===0?(moveIndex===0?300:380):100);
   }
@@ -169,7 +238,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null){
  if(hpDelta){
   for(let i=0;i<2;i++)if(hpDelta[i]){
    const side=i===0?'left':'right';
-   setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)showHpFloat(host,side,hpDelta[i]);},who===-1?120:((who===0?lcard:rcard)===0&&(who===0?lh:rh)===0?350:470));
+   setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)showHpFloat(host,side,hpDelta[i]);},who===-1?120:(((who===0?lcard:rcard)===0&&((who===0?lh:rh)===0))?350:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===1))?420:470));
   }
  }
  // In test mode, bring the battle to view so mobile users can actually see the motion.
