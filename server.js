@@ -24,16 +24,19 @@ function resolve(r){const [a,b]=r.players,ra=a.move,rb=b.move,result=win(ra,rb),
  if(attacker.card===8&&attacker.move===2&&attacker.streak===1)d=300;
  if(attacker.card===9&&attacker.move===1&&Math.random()<.5)d+=50;
  if(attacker.card===3&&attacker.move===1)d=Math.ceil(defender.hp/2);
- if(attacker.card===1&&attacker.move===0&&defender.poison>0)d=defender.hp;
+ if(attacker.card===1){
+   if(attacker.move===0){if(defender.poison>0){d=defender.hp;notes.push(attacker.name+'：☠️ ヴェノムエンド成功！ 毒状態の相手を即気絶');}else notes.push(attacker.name+'：ヴェノムエンド失敗（相手は毒状態ではない）');}
+   if(attacker.move===2){if(defender.poison>0){const beforeHp=attacker.hp;attacker.hp=Math.min(HP[1],attacker.hp+120);notes.push(attacker.name+'：💚 ポイズンヒール '+(attacker.hp-beforeHp)+'HP回復（最大150）');}else{defender.poison+=2;notes.push(defender.name+'に毒2ターン追加（ポイズンヒール）');}}
+ }
  if(attacker.card===5&&attacker.move===0)attacker.hp=Math.max(0,attacker.hp-50);
  if(attacker.card===7&&attacker.move===1)attacker.hp=Math.min(attacker.hp,10);
  if(attacker.card===4&&attacker.move===0)attacker.hp=Math.min(HP[4],attacker.hp+30);
  if(attacker.card===9&&attacker.move===0)attacker.howl+=30;
  if(attacker.card===9&&attacker.move===1){d+=attacker.howl;attacker.howl=0;}
- if(attacker.card===1&&attacker.move===1)defender.poison+=3;
+ if(attacker.card===1&&attacker.move===1){defender.poison+=3;notes.push(defender.name+'に毒3ターン追加（毒針）');}
  defender.hp=Math.max(0,defender.hp-d);notes.push(attacker.name+'の'+MOVES[attacker.card][attacker.move]+'：'+d+'ダメージ');attacker.streak++;defender.streak=0;
  }
- for(let i=0;i<2;i++){const p=r.players[i];p.lastHand=p.move;if(before[i]>0)p.seal=Math.max(0,p.seal-1);if(p.poison>0&&p.hp>0){p.hp=Math.max(0,p.hp-20);p.poison--;notes.push(p.name+'に毒20ダメージ');}if(p.card===4&&p.hp>0)p.hp=Math.min(HP[4],p.hp+20);}
+ for(let i=0;i<2;i++){const p=r.players[i];p.lastHand=p.move;if(before[i]>0)p.seal=Math.max(0,p.seal-1);if(p.poison>0&&p.hp>0){p.hp=Math.max(0,p.hp-20);p.poison--;notes.push(p.name+'に毒20ダメージ（残り'+p.poison+'ターン）');}if(p.card===4&&p.hp>0)p.hp=Math.min(HP[4],p.hp+20);}
  r.history.push({round:r.round,hands:[ra,rb],result,notes,hp:[a.hp,b.hp]});a.move=b.move=null;
  if(a.hp===0||b.hp===0){r.phase='finished';r.winner=a.hp===b.hp?'draw':a.hp>0?0:1;}else r.round++;
 }
