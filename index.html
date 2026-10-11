@@ -1021,7 +1021,67 @@
  .black-ant-guard-shield-v13{opacity:.7}
  .black-ant-guard-reflect-v13{opacity:0}
 }
-</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BLACK ANT GUARD V1.3</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ完成版＋クロオオアリ待機＋パワーバイト＋アゴばさみ＋アントガードv1.3。</p></div><script>
+
+/* BLACK ANT HIT v1.4 — single non-loop recoil; calculated HP loss only. */
+.battle-slot.black-ant-hit-v14{
+ --ant-hit-distance-v14:24px;--ant-hit-lift-v14:-5px;--ant-hit-time-v14:.78s;
+ z-index:8;animation:black-ant-hit-recoil-left-v14 var(--ant-hit-time-v14) cubic-bezier(.21,.78,.31,1) 1 both;
+}
+.battle-slot.right.black-ant-hit-v14{animation-name:black-ant-hit-recoil-right-v14}
+.battle-slot.black-ant-hit-light-v14{--ant-hit-distance-v14:13px;--ant-hit-lift-v14:-2px;--ant-hit-time-v14:.62s}
+.battle-slot.black-ant-hit-medium-v14{--ant-hit-distance-v14:25px;--ant-hit-lift-v14:-5px;--ant-hit-time-v14:.78s}
+.battle-slot.black-ant-hit-heavy-v14{--ant-hit-distance-v14:38px;--ant-hit-lift-v14:-10px;--ant-hit-time-v14:.96s}
+.battle-slot.black-ant-hit-v14 .black-ant-idle{
+ animation-play-state:paused;
+ filter:brightness(1.52) drop-shadow(0 0 6px #d8ecff88) drop-shadow(2px 5px 1px #0008);
+}
+@keyframes black-ant-hit-recoil-left-v14{
+ 0%{translate:0 0;rotate:0deg;scale:1;opacity:1}
+ 12%{translate:calc(-.28 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:-4deg;scale:1.02 .97}
+ 27%{translate:calc(-.85 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:-9deg;scale:1 .93;opacity:.82}
+ 39%{translate:calc(-1 * var(--ant-hit-distance-v14)) 2px;rotate:-11deg;scale:1 .91;opacity:1}
+ 55%{translate:calc(-.7 * var(--ant-hit-distance-v14)) 3px;rotate:5deg;scale:1.03 .94}
+ 73%{translate:calc(-.33 * var(--ant-hit-distance-v14)) 0px;rotate:-3deg;scale:1}
+ 87%{translate:calc(-.1 * var(--ant-hit-distance-v14)) 0px;rotate:1deg;scale:1}
+ 100%{translate:0 0;rotate:0deg;scale:1;opacity:1}
+}
+@keyframes black-ant-hit-recoil-right-v14{
+ 0%{translate:0 0;rotate:0deg;scale:1;opacity:1}
+ 12%{translate:calc(.28 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:4deg;scale:1.02 .97}
+ 27%{translate:calc(.85 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:9deg;scale:1 .93;opacity:.82}
+ 39%{translate:var(--ant-hit-distance-v14) 2px;rotate:11deg;scale:1 .91;opacity:1}
+ 55%{translate:calc(.7 * var(--ant-hit-distance-v14)) 3px;rotate:-5deg;scale:1.03 .94}
+ 73%{translate:calc(.33 * var(--ant-hit-distance-v14)) 0px;rotate:3deg;scale:1}
+ 87%{translate:calc(.1 * var(--ant-hit-distance-v14)) 0px;rotate:-1deg;scale:1}
+ 100%{translate:0 0;rotate:0deg;scale:1;opacity:1}
+}
+/* White-blue metallic shell flash on impact, followed by a short skid dust puff. */
+.battle-slot.black-ant-hit-v14::after{
+ content:'✦';position:absolute;z-index:12;top:20%;right:3%;font-size:30px;line-height:1;
+ color:#e7f7ff;text-shadow:-2px 0 #91c1e2,2px 1px #708299,0 0 7px #fff;
+ pointer-events:none;animation:black-ant-hit-spark-v14 .40s steps(5,end) 1 both;
+}
+.battle-slot.right.black-ant-hit-v14::after{right:auto;left:3%}
+.battle-slot.black-ant-hit-v14::before{
+ content:'';position:absolute;z-index:12;bottom:0;left:23%;width:65px;height:19px;
+ background:radial-gradient(ellipse,#cfbea49c 0 11%,#aa947177 30%,transparent 75%);
+ pointer-events:none;animation:black-ant-hit-dust-v14 .62s steps(7,end) 1 both;
+}
+@keyframes black-ant-hit-spark-v14{
+ 0%{opacity:0;scale:.4;rotate:0deg}
+ 20%,43%{opacity:1;scale:1.16;rotate:18deg}
+ 100%{opacity:0;scale:1.5;rotate:85deg}
+}
+@keyframes black-ant-hit-dust-v14{
+ 0%,22%{opacity:0;scale:.5 .8}
+ 44%{opacity:.9;scale:1 .85}
+ 100%{opacity:0;scale:1.65 .5;translate:0 -5px}
+}
+@media(prefers-reduced-motion:reduce){
+ .battle-slot.black-ant-hit-v14{animation:none!important}
+ .battle-slot.black-ant-hit-v14::before,.battle-slot.black-ant-hit-v14::after{display:none!important}
+}
+</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · BLACK ANT HIT V1.4</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ完成版＋クロオオアリ待機＋パワーバイト＋アゴばさみ＋アントガード＋被弾v1.4。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
@@ -1039,8 +1099,9 @@ function resetArenaVisual(id){
  arenaVisualVersions.set(id,(arenaVisualVersions.get(id)||0)+1);
  const host=document.getElementById(id);if(!host)return;
  host.dataset.pair='';host.dataset.round='';
+ host.querySelectorAll('.battle-slot.black-ant-hit-v14').forEach(slot=>slot.classList.remove('black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'));
  host.querySelectorAll('.black-ant-guard-shield-v13,.black-ant-guard-ready-v13,.black-ant-guard-reflect-v13,.black-ant-guard-reflect-tag-v13,.black-ant-pinch-impact-v12,.black-ant-power-impact-v11,.damage-float,.tornado-vortex-v23,.tornado-groundburst-v23,.beetle-win-halo-v25,.beetle-win-tag-v25,.beetle-ko-tag-v26,.paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12,.paraponera-energy-v13,.paraponera-heal-glow-v13,.paraponera-infect-cloud-v13,.paraponera-heal-label-v13,.paraponera-win-halo-v15,.paraponera-win-tag-v15,.paraponera-ko-tag-v16').forEach(el=>el.remove());
- host.querySelectorAll('.tornado-thrown-v23,.tornado-boost-v23,.beetle-win-v25,.paraponera-venom-v12,.paraponera-heal-v13,.paraponera-infect-v13,.paraponera-hit-v14,.paraponera-win-v15,.paraponera-ko-v16').forEach(el=>el.classList.remove('tornado-thrown-v23','tornado-boost-v23','beetle-win-v25','beetle-ko-v26','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13','paraponera-hit-v14','paraponera-hit-light-v14','paraponera-hit-medium-v14','paraponera-hit-heavy-v14','paraponera-win-v15','paraponera-ko-v16','black-ant-power-v11','black-ant-pinch-v12','black-ant-guard-cast-v13'));
+ host.querySelectorAll('.tornado-thrown-v23,.tornado-boost-v23,.beetle-win-v25,.paraponera-venom-v12,.paraponera-heal-v13,.paraponera-infect-v13,.paraponera-hit-v14,.paraponera-win-v15,.paraponera-ko-v16').forEach(el=>el.classList.remove('tornado-thrown-v23','tornado-boost-v23','beetle-win-v25','beetle-ko-v26','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13','paraponera-hit-v14','paraponera-hit-light-v14','paraponera-hit-medium-v14','paraponera-hit-heavy-v14','paraponera-win-v15','paraponera-ko-v16','black-ant-power-v11','black-ant-pinch-v12','black-ant-guard-cast-v13','black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'));
 }
 
 function buildArena(containerId,leftCard,rightCard){
@@ -1088,6 +1149,24 @@ function playParaponeraHitV14(arenaId,side,damage,roundVersion){
  const tier=damage>=100?'heavy':damage>=50?'medium':'light';
  slot.classList.add('paraponera-hit-v14','paraponera-hit-'+tier+'-v14');
  const duration=tier==='heavy'?990:tier==='medium'?820:700;
+ setTimeout(()=>{
+  if(arenaVisualVersions.get(arenaId)===roundVersion&&slot.isConnected)slot.classList.remove(...cls);
+ },duration);
+}
+
+
+/* BLACK ANT HIT v1.4: recoil only after actual HP loss. No gameplay modifications. */
+function playBlackAntHitV14(arenaId,side,damage,roundVersion){
+ if(!(damage>0)||arenaVisualVersions.get(arenaId)!==roundVersion)return;
+ const host=document.getElementById(arenaId);
+ const slot=host?.querySelector('.battle-slot.'+side);
+ if(!slot||!slot.isConnected||!slot.querySelector('.black-ant-idle'))return;
+ const cls=['black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'];
+ slot.classList.remove(...cls);
+ void slot.offsetWidth;
+ const tier=damage>=100?'heavy':damage>=50?'medium':'light';
+ slot.classList.add('black-ant-hit-v14','black-ant-hit-'+tier+'-v14');
+ const duration=tier==='heavy'?1000:tier==='medium'?820:670;
  setTimeout(()=>{
   if(arenaVisualVersions.get(arenaId)===roundVersion&&slot.isConnected)slot.classList.remove(...cls);
  },duration);
@@ -1326,8 +1405,9 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  arenaVisualVersions.set(id,visualVersion);
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
+ host.querySelectorAll('.battle-slot.black-ant-hit-v14').forEach(slot=>slot.classList.remove('black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'));
  host.querySelectorAll('.black-ant-guard-shield-v13,.black-ant-guard-ready-v13,.black-ant-guard-reflect-v13,.black-ant-guard-reflect-tag-v13,.black-ant-pinch-impact-v12,.black-ant-power-impact-v11,.damage-float,.tornado-vortex-v23,.tornado-groundburst-v23,.beetle-win-halo-v25,.beetle-win-tag-v25,.beetle-ko-tag-v26,.paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12,.paraponera-energy-v13,.paraponera-heal-glow-v13,.paraponera-infect-cloud-v13,.paraponera-heal-label-v13,.paraponera-win-halo-v15,.paraponera-win-tag-v15,.paraponera-ko-tag-v16').forEach(el=>el.remove());
-  host.querySelectorAll('.beetle-win-v25,.beetle-ko-v26,.paraponera-sting-v11,.paraponera-venom-v12,.paraponera-hit-v14,.paraponera-win-v15,.paraponera-ko-v16').forEach(el=>el.classList.remove('beetle-win-v25','beetle-ko-v26','paraponera-sting-v11','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13','paraponera-hit-v14','paraponera-hit-light-v14','paraponera-hit-medium-v14','paraponera-hit-heavy-v14','paraponera-win-v15','paraponera-ko-v16','black-ant-power-v11','black-ant-pinch-v12','black-ant-guard-cast-v13'));
+  host.querySelectorAll('.beetle-win-v25,.beetle-ko-v26,.paraponera-sting-v11,.paraponera-venom-v12,.paraponera-hit-v14,.paraponera-win-v15,.paraponera-ko-v16').forEach(el=>el.classList.remove('beetle-win-v25','beetle-ko-v26','paraponera-sting-v11','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13','paraponera-hit-v14','paraponera-hit-light-v14','paraponera-hit-medium-v14','paraponera-hit-heavy-v14','paraponera-win-v15','paraponera-ko-v16','black-ant-power-v11','black-ant-pinch-v12','black-ant-guard-cast-v13','black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'));
  host.querySelectorAll('.swipe-launch-v22,.swipe-impact-v22,.headbutt-impact,.tornado-thrown-v23,.tornado-boost-v23').forEach(el=>el.classList.remove('swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23','beetle-ko-v26','beetle-hit-v24','beetle-hit-light-v24','beetle-hit-medium-v24','beetle-hit-heavy-v24'));
  const name=host.querySelector('.battle-move-name');
  if(who===0||who===1){
@@ -1428,6 +1508,35 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
     else delay=attackingCard===2?(attackingHand===0?650:attackingHand===1?470:440):440;
    }
    setTimeout(()=>playParaponeraHitV14(id,side,delta,visualVersion),delay);
+  }
+ }
+
+ // Black carpenter ant: physically recoils only if the real engine reduced its HP.
+ // Motion is timed to the opponent's impact (or after its own move for poison / reflection).
+ if(hpDelta){
+  const attackSide=who===0?'left':who===1?'right':null;
+  const attackCard=who===0?lcard:who===1?rcard:null;
+  const attackHand=who===0?lh:who===1?rh:null;
+  for(const [i,card] of [[0,lcard],[1,rcard]]){
+   const side=i===0?'left':'right';
+   const delta=hpDelta[i]||0;
+   if(card!==2||delta<=0)continue;
+   let delay=130;
+   if(attackSide){
+    if(side===attackSide){
+     // Reflection/poison landing on an attacking ant: let the technique finish.
+     delay=attackHand===0?1070:attackHand===1?850:1080;
+    }else if(attackCard===0){
+     delay=attackHand===0?330:attackHand===1?425:1530;
+    }else if(attackCard===1){
+     delay=attackHand===0?715:attackHand===1?505:870;
+    }else if(attackCard===2){
+     delay=attackHand===0?650:attackHand===1?455:450;
+    }else{
+     delay=410;
+    }
+   }
+   setTimeout(()=>playBlackAntHitV14(id,side,delta,visualVersion),delay);
   }
  }
  // The existing battle log supplies the reflected number; render on the actual reflection round.
