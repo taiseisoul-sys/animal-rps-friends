@@ -1698,8 +1698,8 @@
   filter:drop-shadow(2px 5px 1px #0008);
   animation:calico-idle-frames-v10 1.35s steps(1,end) infinite;
 }
-.battle-slot.left .calico-idle{transform:scaleX(1)}
-.battle-slot.right .calico-idle{transform:scaleX(-1)}
+.battle-slot.left .calico-idle{transform:scaleX(.95) scaleY(1.08);transform-origin:50% 100%}
+.battle-slot.right .calico-idle{transform:scaleX(-.95) scaleY(1.08);transform-origin:50% 100%}
 @keyframes calico-idle-frames-v10{
   0%,24.99%{background-position:0% center}
   25%,49.99%{background-position:33.333333% center}
@@ -1839,7 +1839,74 @@
  .battle-slot.calico-scratch-v12 .calico-idle{animation:none!important;background-position:100% center!important}
  .calico-scratch-cut-v12,.calico-scratch-count-v12,.calico-scratch-heal-v12{display:none!important}
 }
-</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · CALICO SCRATCH V1.2</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき実装済み。</p></div><script>
+
+
+/* CALICO APPEAL v1.3 — visual-only motion for 甘える. Uses the existing cat sprite,
+   adds a sweet bounce, hearts, and a target-side restriction callout. */
+.battle-slot.calico-appeal-v13{z-index:10;animation:calico-appeal-beg-v13 1.56s cubic-bezier(.24,.68,.35,1) 1 both!important}
+.battle-slot.calico-appeal-v13 .calico-idle{
+ animation:calico-idle-frames-v10 .9s steps(1,end) infinite;
+ filter:drop-shadow(2px 5px 1px #0008) brightness(1.03) saturate(1.06);
+}
+@keyframes calico-appeal-beg-v13{
+ 0%{translate:0 0;scale:1}
+ 15%{translate:calc(-8px * var(--attack-dir)) 6px;scale:1.02 .95}
+ 33%{translate:calc(15px * var(--attack-dir)) -8px;scale:1.03 1.05}
+ 50%{translate:calc(6px * var(--attack-dir)) -2px;scale:1.01 1.02}
+ 68%{translate:calc(18px * var(--attack-dir)) -6px;scale:1.04 1.03}
+ 82%{translate:calc(7px * var(--attack-dir)) 0;scale:1.02 .99}
+ 100%{translate:0 0;scale:1}
+}
+.calico-appeal-heart-v13,.calico-appeal-bubble-v13,.calico-appeal-lock-v13{position:absolute;pointer-events:none;z-index:17}
+.calico-appeal-heart-v13{font-size:28px;line-height:1;color:#ffb4dc;text-shadow:0 0 8px #fff3,0 0 14px #ff85c8;animation:calico-heart-rise-v13 .88s ease-out 1 both}
+.calico-appeal-heart-v13.left{left:17%;bottom:94px}
+.calico-appeal-heart-v13.right{right:17%;bottom:94px}
+.calico-appeal-heart-v13.h2{translate:18px -8px;animation-delay:.05s}
+.calico-appeal-heart-v13.h3{translate:-10px 4px;animation-delay:.12s}
+@keyframes calico-heart-rise-v13{
+ 0%{opacity:0;translate:0 10px;scale:.45}
+ 25%{opacity:1;scale:1}
+ 75%{opacity:1;translate:0 -20px;scale:1.08}
+ 100%{opacity:0;translate:0 -34px;scale:1.18}
+}
+.calico-appeal-bubble-v13{
+ bottom:102px;padding:6px 11px;border-radius:16px;
+ background:linear-gradient(180deg,#fff6fa,#ffd7ef);border:2px solid #ff9ccf;
+ color:#8b2e63;font:900 14px/1 system-ui,sans-serif;letter-spacing:.02em;
+ box-shadow:0 5px 14px #0005, inset 0 1px 0 #fff8;
+ animation:calico-bubble-pop-v13 .96s cubic-bezier(.19,.76,.33,1) 1 both;
+}
+.calico-appeal-bubble-v13.left{left:11%}
+.calico-appeal-bubble-v13.right{right:11%}
+.calico-appeal-bubble-v13::after{content:'';position:absolute;bottom:-9px;width:14px;height:14px;background:inherit;border-right:2px solid #ff9ccf;border-bottom:2px solid #ff9ccf;transform:rotate(45deg)}
+.calico-appeal-bubble-v13.left::after{left:24px}
+.calico-appeal-bubble-v13.right::after{right:24px}
+@keyframes calico-bubble-pop-v13{
+ 0%{opacity:0;translate:0 8px;scale:.7}
+ 28%{opacity:1;translate:0 -2px;scale:1.04}
+ 75%{opacity:1;translate:0 -7px;scale:1}
+ 100%{opacity:0;translate:0 -12px;scale:.98}
+}
+.calico-appeal-lock-v13{
+ top:84px;padding:6px 12px;border-radius:999px;
+ background:linear-gradient(180deg,#fff1b8,#f1c85d);border:2px solid #ffeb9f;
+ color:#5d3800;font:900 13px/1 system-ui,sans-serif;letter-spacing:.04em;
+ text-shadow:0 1px 0 #fff7;box-shadow:0 4px 12px #0005;
+ animation:calico-lock-call-v13 1.02s cubic-bezier(.16,.74,.32,1) 1 both;
+}
+.calico-appeal-lock-v13.left{left:9%}
+.calico-appeal-lock-v13.right{right:9%}
+@keyframes calico-lock-call-v13{
+ 0%{opacity:0;translate:0 10px;scale:.7}
+ 22%{opacity:1;translate:0 -1px;scale:1.04}
+ 74%{opacity:1;translate:0 -4px;scale:1}
+ 100%{opacity:0;translate:0 -10px;scale:.97}
+}
+@media(prefers-reduced-motion:reduce){
+ .battle-slot.calico-appeal-v13{animation:none!important}
+ .calico-appeal-heart-v13,.calico-appeal-bubble-v13,.calico-appeal-lock-v13{display:none!important}
+}
+</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · CALICO APPEAL V1.3</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
@@ -1859,8 +1926,9 @@ function resetArenaVisual(id){
  host.dataset.pair='';host.dataset.round='';
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
  host.querySelectorAll('.battle-slot.calico-scratch-v12').forEach(slot=>slot.classList.remove('calico-scratch-v12'));
+ host.querySelectorAll('.battle-slot.calico-appeal-v13').forEach(slot=>slot.classList.remove('calico-appeal-v13'));
  host.querySelectorAll('.calico-scratch-cut-v12,.calico-scratch-count-v12,.calico-scratch-heal-v12').forEach(el=>el.remove());
- host.querySelectorAll('.calico-impact-hit-v11,.calico-impact-heal-v11').forEach(el=>el.remove());
+ host.querySelectorAll('.calico-impact-hit-v11,.calico-impact-heal-v11,.calico-appeal-heart-v13,.calico-appeal-bubble-v13,.calico-appeal-lock-v13').forEach(el=>el.remove());
  host.querySelectorAll('.battle-slot.mantis-ko-v16').forEach(slot=>slot.classList.remove('mantis-ko-v16'));
  host.querySelectorAll('.mantis-ko-tag-v16').forEach(el=>el.remove());
  host.querySelectorAll('.battle-slot.mantis-win-v15').forEach(slot=>slot.classList.remove('mantis-win-v15'));
@@ -2348,6 +2416,50 @@ function playCalicoScratchV12(arenaId,side,visualVersion,hitData=[]){
  },1520);
 }
 
+
+/* CALICO APPEAL v1.3: visual-only effect for 甘える.
+   The rules engine already handles the 3-turn same-hand restriction. */
+function playCalicoAppealV13(arenaId,side,visualVersion){
+ if(arenaVisualVersions.get(arenaId)!==visualVersion)return;
+ const host=document.getElementById(arenaId),slot=host?.querySelector('.battle-slot.'+side);
+ if(!slot||!slot.isConnected||!slot.querySelector('.calico-idle'))return;
+ slot.classList.remove('calico-appeal-v13');void slot.offsetWidth;
+ slot.classList.add('calico-appeal-v13');
+ const targetSide=side==='left'?'right':'left';
+ setTimeout(()=>{
+  if(arenaVisualVersions.get(arenaId)!==visualVersion||!slot.isConnected)return;
+  const bubble=document.createElement('div');
+  bubble.className='calico-appeal-bubble-v13 '+side;
+  bubble.textContent='♡ にゃ〜';
+  bubble.setAttribute('aria-hidden','true');
+  host.append(bubble);
+  setTimeout(()=>bubble.remove(),1000);
+ },180);
+ for(const [i,time] of [260,380,540].entries()){
+  setTimeout(()=>{
+   if(arenaVisualVersions.get(arenaId)!==visualVersion||!slot.isConnected)return;
+   const heart=document.createElement('div');
+   heart.className='calico-appeal-heart-v13 '+side+' h'+(i+1);
+   heart.textContent=i===1?'💗':'💖';
+   heart.setAttribute('aria-hidden','true');
+   host.append(heart);
+   setTimeout(()=>heart.remove(),900);
+  },time);
+ }
+ setTimeout(()=>{
+  if(arenaVisualVersions.get(arenaId)!==visualVersion||!slot.isConnected)return;
+  const lock=document.createElement('div');
+  lock.className='calico-appeal-lock-v13 '+targetSide;
+  lock.textContent='🔒 SAME HAND NG';
+  lock.setAttribute('aria-hidden','true');
+  host.append(lock);
+  setTimeout(()=>lock.remove(),1080);
+ },760);
+ setTimeout(()=>{
+  if(arenaVisualVersions.get(arenaId)===visualVersion&&slot.isConnected)slot.classList.remove('calico-appeal-v13');
+ },1600);
+}
+
 function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,healEffect=null,guardInfo=null,guardReady=null,catHealAmount=0,catScratchHits=[]){
  const visualVersion=(arenaVisualVersions.get(id)||0)+1;
  arenaVisualVersions.set(id,visualVersion);
@@ -2355,8 +2467,9 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  const host=document.getElementById(id);if(!host)return;
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
  host.querySelectorAll('.battle-slot.calico-scratch-v12').forEach(slot=>slot.classList.remove('calico-scratch-v12'));
+ host.querySelectorAll('.battle-slot.calico-appeal-v13').forEach(slot=>slot.classList.remove('calico-appeal-v13'));
  host.querySelectorAll('.calico-scratch-cut-v12,.calico-scratch-count-v12,.calico-scratch-heal-v12').forEach(el=>el.remove());
- host.querySelectorAll('.calico-impact-hit-v11,.calico-impact-heal-v11').forEach(el=>el.remove());
+ host.querySelectorAll('.calico-impact-hit-v11,.calico-impact-heal-v11,.calico-appeal-heart-v13,.calico-appeal-bubble-v13,.calico-appeal-lock-v13').forEach(el=>el.remove());
  host.querySelectorAll('.battle-slot.mantis-ko-v16').forEach(slot=>slot.classList.remove('mantis-ko-v16'));
  host.querySelectorAll('.mantis-ko-tag-v16').forEach(el=>el.remove());
  host.querySelectorAll('.battle-slot.mantis-win-v15').forEach(slot=>slot.classList.remove('mantis-win-v15'));
@@ -2382,7 +2495,8 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   const attackingSide=who===0?'left':'right',defendingSide=who===0?'right':'left';
   if(attackerCard===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===4&&moveIndex===0)playCalicoImpactV11(id,attackingSide,visualVersion,catHealAmount);
-   if(attackerCard===4&&moveIndex===1)playCalicoScratchV12(id,attackingSide,visualVersion,catScratchHits);
+  if(attackerCard===4&&moveIndex===1)playCalicoScratchV12(id,attackingSide,visualVersion,catScratchHits);
+  if(attackerCard===4&&moveIndex===2)playCalicoAppealV13(id,attackingSide,visualVersion);
   if(attackerCard===3&&moveIndex===0)playMantisPredatorClawV11(id,attackingSide,visualVersion);
   if(attackerCard===3&&moveIndex===1)playMantisBladeV13(id,attackingSide,visualVersion);
   if(attackerCard===3&&moveIndex===2)playMantisHuntingStepV12(id,attackingSide,visualVersion);
