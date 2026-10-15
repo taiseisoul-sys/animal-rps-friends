@@ -2649,6 +2649,9 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   name.textContent=hand[moveIndex]+' '+moves[attackerCard][moveIndex]+'！';
   const attackingSide=who===0?'left':'right',defendingSide=who===0?'right':'left';
   if(attackerCard===0)animateArena(id,attackingSide,moveIndex,false);
+  // Lion Pride Crash (rock) has its own CSS animation, but the attack class
+  // must be applied explicitly or the visual never starts.
+  if(attackerCard===5&&moveIndex===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===4&&moveIndex===0)playCalicoImpactV11(id,attackingSide,visualVersion,catHealAmount);
   if(attackerCard===4&&moveIndex===1)playCalicoScratchV12(id,attackingSide,visualVersion,catScratchHits);
   if(attackerCard===4&&moveIndex===2)playCalicoAppealV13(id,attackingSide,visualVersion);
