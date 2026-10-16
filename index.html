@@ -2893,6 +2893,15 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
     animateArena(id,defendingSide,0,true);
    },hitDelay);
   }
+  // Eagle hit reaction: start only when the eagle is defending and actually lost HP.
+  const eagleDamage=hpDelta?.[who===0?1:0]||0;
+  if((who===0?rcard:lcard)===7&&eagleDamage>0){
+   const hitDelay=attackerCard===3&&moveIndex===1?1000:attackerCard===2?(moveIndex===0?620:moveIndex===1?430:100):attackerCard===0?(moveIndex===0?300:moveIndex===1?380:1265):100;
+   setTimeout(()=>{
+    if(arenaVisualVersions.get(id)!==visualVersion)return;
+    animateArena(id,defendingSide,0,true);
+   },hitDelay);
+  }
  }else{
   name.textContent='🤝 あいこ！';
   if(hpDelta){
@@ -2905,6 +2914,13 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
     },120);
    }
    for(let i=0;i<2;i++)if((i===0?lcard:rcard)===6&&hpDelta[i]>0){
+    const side=i===0?'left':'right';
+    setTimeout(()=>{
+     if(arenaVisualVersions.get(id)!==visualVersion)return;
+     animateArena(id,side,0,true);
+    },120);
+   }
+   for(let i=0;i<2;i++)if((i===0?lcard:rcard)===7&&hpDelta[i]>0){
     const side=i===0?'left':'right';
     setTimeout(()=>{
      if(arenaVisualVersions.get(id)!==visualVersion)return;
