@@ -30,11 +30,11 @@
 #description .intro-special-tag{display:inline-block;padding:2px 9px;border:1px solid #ffdf85;border-radius:30px;background:#5e411a;color:#ffe49a;font-size:12px;font-weight:800}
 
 /* beetle animation preview: CSS-only transforms, no gameplay changes */
-.battle-arena{position:relative;height:170px;overflow:hidden;margin:12px 0;border:2px solid #60738d;border-radius:12px;background:linear-gradient(#1e4263 0 65%,#406146 65% 73%,#6b6545 73%);image-rendering:pixelated}
+.battle-arena{position:relative;height:170px;overflow:hidden;margin:12px 0;border:2px solid #60738d;border-radius:12px;background:linear-gradient(#1e4263 0 65%,#406146 65% 73%,#6b6545 73%);image-rendering:auto}
 .battle-arena:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 28px,#ffffff08 28px 30px);pointer-events:none}
 .battle-slot{position:absolute;bottom:17px;width:44%;height:110px;display:flex;align-items:end;justify-content:center;transform-origin:bottom center}
 .battle-slot.left{left:3%;--attack-dir:1}.battle-slot.right{right:3%;--attack-dir:-1}
-.battle-sprite{width:min(100%,258px);height:100px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(2px 5px 1px #0008);animation:beetle-idle 1.5s steps(3) infinite}
+.battle-sprite{width:min(100%,258px);height:100px;object-fit:contain;image-rendering:auto;filter:drop-shadow(2px 5px 1px #0008);animation:beetle-idle 1.5s steps(3) infinite}
 .battle-slot.right .battle-sprite{transform:scaleX(-1)}
 .battle-emoji{font-size:70px;line-height:110px;filter:drop-shadow(3px 6px 2px #0006);animation:beetle-idle 1.5s steps(3) infinite}
 /* Beetle idle v2: four real pixel frames. Missing new asset falls back to old PNG. */
@@ -55,7 +55,7 @@
   background-image:url("./assets/sprite-001.png");
   background-size:400% 100%;background-repeat:no-repeat;background-position:0% center;
   animation:paraponera-poison-idle-v2 1.15s steps(1,end) infinite;
-  image-rendering:pixelated;will-change:background-position;filter:drop-shadow(2px 5px 1px #0008)}
+  image-rendering:auto;will-change:background-position;filter:drop-shadow(2px 5px 1px #0008)}
 /* Ant artwork looks right. Only mirror right-hand opponent to face left. */
 .battle-slot.left .paraponera-idle{transform:scaleX(1)}
 .battle-slot.right .paraponera-idle{transform:scaleX(-1)}
@@ -865,7 +865,7 @@
   width:min(100%,225px);height:auto;min-height:0;aspect-ratio:192 / 104;
   background-image:url("./assets/sprite-003.png");
   background-size:400% 100%;background-repeat:no-repeat;background-position:0% center;
-  image-rendering:pixelated;will-change:background-position;
+  image-rendering:auto;will-change:background-position;
   animation:black-ant-idle-v10 1.5s steps(1,end) infinite;
   filter:drop-shadow(2px 5px 1px #0008)
 }
@@ -1248,7 +1248,7 @@
   width:min(100%,225px);height:auto;min-height:0;aspect-ratio:192/104;
   background-image:url("./assets/sprite-006.png");
   background-size:400% 100%;background-repeat:no-repeat;background-position:0% center;
-  image-rendering:pixelated;filter:drop-shadow(2px 5px 1px #0008);
+  image-rendering:auto;filter:drop-shadow(2px 5px 1px #0008);
   animation:mantis-idle-v10 1.65s steps(1,end) infinite;
 }
 .battle-slot.left .mantis-idle{transform:scaleX(1)}
@@ -1692,7 +1692,7 @@
    Sprite embedded so GitHub upload needs index.html only. */
 .battle-slot .calico-idle{
   width:min(100%,225px);height:auto;min-height:0;aspect-ratio:224/132;
-  flex:0 0 auto;image-rendering:pixelated;
+  flex:0 0 auto;image-rendering:auto;
   background-image:url("./assets/sprite-009.png");
   background-repeat:no-repeat;background-size:800% 100%;background-position:0% center;
   filter:drop-shadow(2px 5px 1px #0008);
@@ -1977,7 +1977,7 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 .battle-slot.right.calico-lose-v132 .calico-idle{transform:scaleX(-.95) scaleY(1.08)!important}
 
 /* V1.39: lion idle, 10 isolated transparent frames */
-.battle-slot .lion-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:224/132;flex:0 0 auto;image-rendering:pixelated;background-image:url("./assets/sprite-018.png");background-repeat:no-repeat;background-size:1000% 100%;background-position:0% center;filter:drop-shadow(2px 5px 1px #0008);animation:lion-idle-v138 4.8s steps(1,end) infinite}
+.battle-slot .lion-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:224/132;flex:0 0 auto;image-rendering:auto;background-image:url("./assets/sprite-018.png");background-repeat:no-repeat;background-size:1000% 100%;background-position:0% center;filter:drop-shadow(2px 5px 1px #0008);animation:lion-idle-v138 4.8s steps(1,end) infinite}
 .battle-slot.left .lion-idle{transform:scaleX(.95) scaleY(1.08);transform-origin:50% 100%}
 .battle-slot.right .lion-idle{transform:scaleX(-.95) scaleY(1.08);transform-origin:50% 100%}
 @keyframes lion-idle-v138{0.00%,9.99%{background-position:0.000000% center}10.00%,19.99%{background-position:11.111111% center}20.00%,29.99%{background-position:22.222222% center}30.00%,39.99%{background-position:33.333333% center}40.00%,49.99%{background-position:44.444444% center}50.00%,59.99%{background-position:55.555556% center}60.00%,69.99%{background-position:66.666667% center}70.00%,79.99%{background-position:77.777778% center}80.00%,89.99%{background-position:88.888889% center}90.00%,99.99%{background-position:100.000000% center}100%{background-position:0% center}}
@@ -2020,7 +2020,7 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 </style>
 <style id="lion-v152-rebuild">
 /* V1.53: new six-frame lion, isolated and stable */
-.battle-slot .lion-idle{background-image:url("./assets/sprite-020.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;animation:lion-v152-idle 3.3s steps(1,end) infinite!important;filter:none!important;image-rendering:pixelated!important;}
+.battle-slot .lion-idle{background-image:url("./assets/sprite-020.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;animation:lion-v152-idle 3.3s steps(1,end) infinite!important;filter:none!important;image-rendering:auto!important;}
 .battle-slot.left .lion-idle{transform:scaleX(1.18) scaleY(1.43)!important;transform-origin:50% 100%!important;}
 .battle-slot.right .lion-idle{transform:scaleX(-1.18) scaleY(1.43)!important;transform-origin:50% 100%!important;}
 @keyframes lion-v152-idle{0%,16.65%{background-position:0% center}16.67%,33.32%{background-position:20% center}33.34%,49.99%{background-position:40% center}50%,66.65%{background-position:60% center}66.67%,83.32%{background-position:80% center}83.34%,100%{background-position:100% center}}
@@ -2028,18 +2028,18 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 
 <style id="lion-v153-stable">
 /* V1.53: repair broken six-frame source (only first frame was nonempty). */
-.battle-slot .lion-idle{background-image:url("./assets/sprite-021.png")!important;background-size:600% 100%!important;image-rendering:pixelated!important;animation:lion-idle-v149 3.6s steps(1,end) infinite!important;filter:none!important;}
+.battle-slot .lion-idle{background-image:url("./assets/sprite-021.png")!important;background-size:600% 100%!important;image-rendering:auto!important;animation:lion-idle-v149 3.6s steps(1,end) infinite!important;filter:none!important;}
 .battle-slot.left .lion-idle{transform:scaleX(1.12) scaleY(1.30)!important;transform-origin:50% 100%!important}
 .battle-slot.right .lion-idle{transform:scaleX(-1.12) scaleY(1.30)!important;transform-origin:50% 100%!important}
 </style>
 <style id="lion-v154-pixel-art-grounded">
 /* Lion-only art refresh: static until individual animation frames are drawn. */
-.battle-slot .lion-idle{background-image:url("./assets/sprite-022.png")!important;background-size:contain!important;background-position:center bottom!important;background-repeat:no-repeat!important;animation:none!important;width:min(100%,240px)!important;height:112px!important;aspect-ratio:240/154!important;filter:none!important;image-rendering:pixelated!important;align-self:flex-end!important;}
+.battle-slot .lion-idle{background-image:url("./assets/sprite-022.png")!important;background-size:contain!important;background-position:center bottom!important;background-repeat:no-repeat!important;animation:none!important;width:min(100%,240px)!important;height:112px!important;aspect-ratio:240/154!important;filter:none!important;image-rendering:auto!important;align-self:flex-end!important;}
 .battle-slot.left .lion-idle{transform:scaleX(1.08) scaleY(1.10)!important;transform-origin:50% 100%!important}
 .battle-slot.right .lion-idle{transform:scaleX(-1.08) scaleY(1.10)!important;transform-origin:50% 100%!important}
 </style><style id="lion-v155-idle">
 /* V1.55: six subtle neck/mane poses; paws and body size stay anchored. */
-.battle-slot .lion-idle{background-image:url("./assets/sprite-023.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;animation:lion-v155-six 2.4s steps(1,end) infinite!important;image-rendering:pixelated!important;}
+.battle-slot .lion-idle{background-image:url("./assets/sprite-023.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;animation:lion-v155-six 2.4s steps(1,end) infinite!important;image-rendering:auto!important;}
 @keyframes lion-v155-six{0%,16.65%{background-position:0% center}16.67%,33.32%{background-position:20% center}33.34%,49.99%{background-position:40% center}50%,66.65%{background-position:60% center}66.67%,83.32%{background-position:80% center}83.34%,100%{background-position:100% center}}
 .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory) .lion-idle{animation-play-state:paused!important;}
 </style><style id="lion-v156-frame-fix">
@@ -2161,7 +2161,15 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
  68.1%,100%{background-image:url("assets/gorilla-defeat-v1.78-04.png")}
 }
 @media(prefers-reduced-motion:reduce){.battle-slot.gorilla-lose-v177 .gorilla-idle{animation:none!important;background-image:url("assets/gorilla-defeat-v1.78-04.png")!important}}
-</style></head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V1.67</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
+</style><style id="eagle-flight-idle-v1-81">
+.battle-slot .eagle-idle{width:min(100%,217px);height:145px;min-height:0;flex:0 0 auto;aspect-ratio:3/2;image-rendering:auto;background-image:url("assets/eagle-idle-v1.81-01.png");background-repeat:no-repeat;background-position:center;background-size:100% 100%;transform-origin:center;animation:eagle-flap-v179 980ms steps(1,end) infinite,eagle-hover-v179 980ms ease-in-out infinite;filter:drop-shadow(2px 5px 2px #0007);margin-bottom:-8px}
+.battle-slot.right .eagle-idle{transform:scaleX(-1)}
+.battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory) .eagle-idle{animation-play-state:paused}
+@keyframes eagle-flap-v179{0%,24.9%{background-image:url("assets/eagle-idle-v1.81-01.png")}25%,49.9%{background-image:url("assets/eagle-idle-v1.81-02.png")}50%,74.9%{background-image:url("assets/eagle-idle-v1.81-03.png")}75%,100%{background-image:url("assets/eagle-idle-v1.81-02.png")}}
+@keyframes eagle-hover-v179{0%,100%{translate:0 -5px}50%{translate:0 -11px}}
+@media(prefers-reduced-motion:reduce){.battle-slot .eagle-idle{animation:none!important;background-image:url("assets/eagle-idle-v1.81-02.png")!important;translate:0 -7px}}
+</style>
+</head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V1.67</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
@@ -2216,6 +2224,7 @@ function buildArena(containerId,leftCard,rightCard){
  else if(card===4){sprite.className='battle-sprite calico-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','三毛猫');}
  else if(card===5){sprite.className='battle-sprite lion-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','ライオン（オス）');}
  else if(card===6){sprite.className='battle-sprite gorilla-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','マウンテンゴリラ');}
+ else if(card===7){sprite.className='battle-sprite eagle-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','ワシ');}
  else{sprite.className='battle-emoji';sprite.textContent=icons[card];}
  slot.append(sprite);host.append(slot);}host.append(label);
 }
