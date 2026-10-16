@@ -2762,6 +2762,8 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   if(attackerCard===6&&moveIndex===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===1)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===2)animateArena(id,attackingSide,moveIndex,false);
+  // Eagle Claw: start the dedicated talon attack motion on rock.
+  if(attackerCard===7&&moveIndex===0)animateArena(id,attackingSide,moveIndex,false);
   // Lion Pride Crash (rock) has its own CSS animation, but the attack class
   // must be applied explicitly or the visual never starts.
   if(attackerCard===5&&moveIndex===0)animateArena(id,attackingSide,moveIndex,false);
