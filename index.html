@@ -2365,6 +2365,128 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 @keyframes croc-defeat-frames-v198{0%,27.99%{background-image:url("./assets/croc-defeat-v1.98-01.png")}28%,57.99%{background-image:url("./assets/croc-defeat-v1.98-02.png")}58%,100%{background-image:url("./assets/croc-defeat-v1.98-03.png")}}
 @media(prefers-reduced-motion:reduce){.battle-slot.croc-lose-v198{animation:none!important;translate:0 12px!important}.battle-slot.croc-lose-v198 .croc-idle{animation:none!important;background-image:url("./assets/croc-defeat-v1.98-03.png")!important}}
 </style>
+<style id="unified-motion-sheets-v210">
+/* Unified one-image sprite sheets for the large animals. */
+
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot .lion-idle{background-image:url("./assets/lion-idle-v210-sheet.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:lion-idle-sheet-v210 2.4s steps(1,end) infinite!important;will-change:background-position}
+@keyframes lion-idle-sheet-v210{
+0.00%,16.59%{background-position:0% 50%}
+16.67%,33.25%{background-position:20% 50%}
+33.33%,49.92%{background-position:40% 50%}
+50.00%,66.59%{background-position:60% 50%}
+66.67%,83.25%{background-position:80% 50%}
+83.33%,100.00%{background-position:100% 50%}
+}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.lion-hit-v163,.lion-win-v163,.lion-ko-v163) .lion-idle{animation-play-state:paused!important}
+@keyframes lion-pride-sheet-v210{
+0.00%,9.24%{background-position:0% 50%}
+9.32%,20.68%{background-position:20% 50%}
+20.76%,33.82%{background-position:40% 50%}
+33.90%,47.80%{background-position:60% 50%}
+47.88%,63.90%{background-position:80% 50%}
+63.98%,100.00%{background-position:100% 50%}
+}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.attack-rock .lion-idle{background-image:url("./assets/lion-pride-v210-sheet.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:lion-pride-sheet-v210 1180ms steps(1,end) both!important}
+@keyframes lion-scratch-sheet-v210{
+0.00%,9.24%{background-position:0% 50%}
+9.32%,20.68%{background-position:20% 50%}
+20.76%,33.82%{background-position:40% 50%}
+33.90%,47.80%{background-position:60% 50%}
+47.88%,63.90%{background-position:80% 50%}
+63.98%,100.00%{background-position:100% 50%}
+}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.attack-scissors .lion-idle{background-image:url("./assets/lion-scratch-v210-sheet.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:lion-scratch-sheet-v210 1180ms steps(1,end) both!important}
+@keyframes lion-roar-sheet-v210{
+0.00%,10.32%{background-position:0% 50%}
+10.40%,21.52%{background-position:20% 50%}
+21.60%,33.52%{background-position:40% 50%}
+33.60%,47.12%{background-position:60% 50%}
+47.20%,63.92%{background-position:80% 50%}
+64.00%,100.00%{background-position:100% 50%}
+}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.attack-paper .lion-idle{background-image:url("./assets/lion-roar-v210-sheet.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:lion-roar-sheet-v210 1250ms steps(1,end) both!important}
+@keyframes lion-hit-sheet-v210{
+0.00%,11.46%{background-position:0% 50%}
+11.54%,24.65%{background-position:20% 50%}
+24.73%,39.48%{background-position:40% 50%}
+39.56%,57.06%{background-position:60% 50%}
+57.14%,74.65%{background-position:80% 50%}
+74.73%,100.00%{background-position:100% 50%}
+}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.lion-hit-v163 .lion-idle{background-image:url("./assets/lion-hit-v210-sheet.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:lion-hit-sheet-v210 910ms steps(1,end) both!important}
+@keyframes lion-victory-sheet-v210{
+0.00%,9.16%{background-position:0% 50%}
+9.24%,19.03%{background-position:20% 50%}
+19.11%,29.86%{background-position:40% 50%}
+29.94%,41.32%{background-position:60% 50%}
+41.40%,54.06%{background-position:80% 50%}
+54.14%,100.00%{background-position:100% 50%}
+}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.lion-win-v163 .lion-idle{background-image:url("./assets/lion-victory-v210-sheet.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:lion-victory-sheet-v210 1570ms steps(1,end) both!important}
+@keyframes lion-defeat-sheet-v210{
+0.00%,9.16%{background-position:0% 50%}
+9.24%,19.03%{background-position:20% 50%}
+19.11%,29.86%{background-position:40% 50%}
+29.94%,41.32%{background-position:60% 50%}
+41.40%,54.06%{background-position:80% 50%}
+54.14%,100.00%{background-position:100% 50%}
+}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.lion-ko-v163 .lion-idle{background-image:url("./assets/lion-defeat-v210-sheet.png")!important;background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:lion-defeat-sheet-v210 1570ms steps(1,end) both!important}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot .eagle-idle{background-image:url("./assets/eagle-idle-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:eagle-idle-sheet-v210 980ms steps(1,end) infinite!important;will-change:background-position}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.right .eagle-idle{transform:scaleX(-1)!important;transform-origin:50% 100%!important}
+@keyframes eagle-idle-sheet-v210{0%,24.9%{background-position:0% 50%}25%,49.9%{background-position:50% 50%}50%,74.9%{background-position:100% 50%}75%,100%{background-position:50% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot .eagle-idle{animation:eagle-idle-sheet-v210 980ms steps(1,end) infinite,eagle-hover-v179 980ms ease-in-out infinite!important}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.eagle-attack-v182 .eagle-idle{background-image:url("./assets/eagle-attack-v210-sheet.png")!important;background-size:400% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:eagle-claw-sheet-v210 1050ms steps(1,end) both!important}
+@keyframes eagle-claw-sheet-v210{0%,16%{background-position:0% 50%;translate:0 -4px}17%,39%{background-position:33.333% 50%;translate:0 0}40%,68%{background-position:66.667% 50%;translate:0 -8px}69%,100%{background-position:100% 50%;translate:0 -6px}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.eagle-godbird-v184 .eagle-idle{background-image:url("./assets/eagle-godbird-v210-sheet.png")!important;background-size:400% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:eagle-godbird-sheet-v210 1320ms steps(1,end) both!important}
+@keyframes eagle-godbird-sheet-v210{0%,15%{background-position:0% 50%;translate:0 -7px}16%,43%{background-position:33.333% 50%;translate:0 0}44%,72%{background-position:66.667% 50%;translate:0 -10px}73%,100%{background-position:100% 50%;translate:0 -6px}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.eagle-skyhunt-v185 .eagle-idle{background-image:url("./assets/eagle-skyhunt-v210-sheet.png")!important;background-size:400% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:eagle-skyhunt-sheet-v210 1500ms steps(1,end) both!important}
+@keyframes eagle-skyhunt-sheet-v210{0%,18%{background-position:0% 50%;translate:0 -8px}19%,46%{background-position:33.333% 50%;translate:0 5px}47%,74%{background-position:66.667% 50%;translate:0 -12px}75%,100%{background-position:100% 50%;translate:0 -6px}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.eagle-hit-v186 .eagle-idle{background-image:url("./assets/eagle-hit-v210-sheet.png")!important;background-size:400% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:eagle-hit-sheet-v210 900ms steps(1,end) both!important}
+@keyframes eagle-hit-sheet-v210{0%,14%{background-position:0% 50%;filter:brightness(1.6) drop-shadow(0 0 7px #fff3);translate:0 -5px}15%,38%{background-position:33.333% 50%;filter:drop-shadow(2px 5px 2px #0007);translate:0 -3px}39%,66%{background-position:66.667% 50%;filter:brightness(1.15) drop-shadow(0 0 4px #ffd36a55);translate:0 -5px}67%,100%{background-position:100% 50%;filter:drop-shadow(2px 5px 2px #0007);translate:0 -6px}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.eagle-win-v188 .eagle-idle{background-image:url("./assets/eagle-victory-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:eagle-win-sheet-v210 1850ms steps(1,end) both!important}
+@keyframes eagle-win-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.eagle-lose-v189 .eagle-idle{background-image:url("./assets/eagle-defeat-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:eagle-lose-sheet-v210 1700ms steps(1,end) both!important}
+@keyframes eagle-lose-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot .croc-idle{background-image:url("./assets/croc-idle-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:croc-idle-sheet-v210 1.8s steps(1,end) infinite!important;will-change:background-position}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.right .croc-idle{transform:scaleX(-1)!important;transform-origin:50% 100%!important}
+@keyframes croc-idle-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.croc-tail-v193,.croc-claw-v194,.croc-bite-v195,.croc-hit-v196,.croc-win-v197,.croc-lose-v198) .croc-idle{animation-play-state:paused!important}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.croc-tail-v193 .croc-idle{background-image:url("./assets/croc-tail-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:croc-tail-sheet-v210 1400ms steps(1,end) both!important}
+@keyframes croc-tail-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.croc-claw-v194 .croc-idle{background-image:url("./assets/croc-claw-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:croc-claw-sheet-v210 1450ms steps(1,end) both!important}
+@keyframes croc-claw-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.croc-bite-v195 .croc-idle{background-image:url("./assets/croc-bite-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:croc-bite-sheet-v210 1450ms steps(1,end) both!important}
+@keyframes croc-bite-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.croc-hit-v196 .croc-idle{background-image:url("./assets/croc-hit-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:croc-hit-sheet-v210 1050ms steps(1,end) both!important}
+@keyframes croc-hit-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.croc-win-v197 .croc-idle{background-image:url("./assets/croc-victory-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:croc-win-sheet-v210 1700ms steps(1,end) both!important}
+@keyframes croc-win-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.croc-lose-v198 .croc-idle{background-image:url("./assets/croc-defeat-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:croc-lose-sheet-v210 1800ms steps(1,end) both!important}
+@keyframes croc-lose-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot .cassowary-idle{background-image:url("./assets/cassowary-idle-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-idle-sheet-v210 1.8s steps(1,end) infinite!important;will-change:background-position}
+@keyframes cassowary-idle-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.cassowary-howl-v200,.cassowary-raid-v201,.cassowary-dance-v202,.cassowary-hit-v203,.cassowary-win-v204,.cassowary-lose-v205) .cassowary-idle{animation-play-state:paused!important}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-howl-v200 .cassowary-idle{background-image:url("./assets/cassowary-howl-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-howl-sheet-v210 1320ms steps(1,end) both!important}
+@keyframes cassowary-howl-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-raid-v201 .cassowary-idle{background-image:url("./assets/cassowary-raid-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-raid-sheet-v210 1450ms steps(1,end) both!important}
+@keyframes cassowary-raid-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-dance-v202 .cassowary-idle{background-image:url("./assets/cassowary-last-dance-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-dance-sheet-v210 1450ms steps(1,end) both!important}
+@keyframes cassowary-dance-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-hit-v203 .cassowary-idle{background-image:url("./assets/cassowary-hit-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-hit-sheet-v210 900ms steps(1,end) both!important}
+@keyframes cassowary-hit-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-win-v204 .cassowary-idle{background-image:url("./assets/cassowary-victory-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-win-sheet-v210 1700ms steps(1,end) both!important}
+@keyframes cassowary-win-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-lose-v205 .cassowary-idle{background-image:url("./assets/cassowary-defeat-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-lose-sheet-v210 1650ms steps(1,end) both!important}
+@keyframes cassowary-lose-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){
+#debugArena .battle-slot .lion-idle,#arcadeArena .battle-slot .lion-idle,#onlineArena .battle-slot .lion-idle,
+#debugArena .battle-slot .eagle-idle,#arcadeArena .battle-slot .eagle-idle,#onlineArena .battle-slot .eagle-idle,
+#debugArena .battle-slot .croc-idle,#arcadeArena .battle-slot .croc-idle,#onlineArena .battle-slot .croc-idle,
+#debugArena .battle-slot .cassowary-idle,#arcadeArena .battle-slot .cassowary-idle,#onlineArena .battle-slot .cassowary-idle{animation:none!important}
+}
+</style>
+
 </head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V1.67</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
@@ -3977,12 +4099,6 @@ function debugRender(){if(!arc?.debug)return;const a=arc;buildArena('debugArena'
 function debugPlay(){if(!arc?.debug)return;if(arc.player.hp<=0||arc.enemy.hp<=0){$('debugNotice').textContent='対戦終了です。リセットしてください。';return;}if((arc.player.seal>0&&debugHands[0]===special[arc.player.card])||(arc.enemy.seal>0&&debugHands[1]===special[arc.enemy.card])||(arc.player.catLock>0&&debugHands[0]===arc.player.lastHand)||(arc.enemy.catLock>0&&debugHands[1]===arc.enemy.lastHand)||isBlocked(arc.player,debugHands[0])||isBlocked(arc.enemy,debugHands[1])||(arc.player.palmBlocked&&debugHands[0]===2)||(arc.enemy.palmBlocked&&debugHands[1]===2)||(arc.player.card===5&&debugHands[0]===2&&arc.player.lastHand===2)||(arc.enemy.card===5&&debugHands[1]===2&&arc.enemy.lastHand===2)){$('debugNotice').textContent='封印・甘える・キングズロア連続使用禁止の手は選べません。';return;}arcPlay(debugHands[0],debugHands[1]);}
 
 setupCards();const code=new URLSearchParams(location.search).get('room');if(code&&/^\d{6}$/.test(code)){$('roomInput').value=code;show('online');}
-</script><script id="lion-v156-frame-loop">
-(()=>{
-const frames=["./assets/sprite-022.png", "./assets/sprite-029.png", "./assets/sprite-030.png", "./assets/sprite-029.png", "./assets/sprite-022.png", "./assets/sprite-031.png"];let frame=0;
-function update(){const sprites=document.querySelectorAll('.battle-slot .lion-idle');if(!sprites.length)return;const pause=!!document.querySelector('.battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory) .lion-idle');if(!pause)frame=(frame+1)%frames.length;for(const el of sprites)el.style.setProperty('--lion-current-frame','url("'+frames[frame]+'")');}
-update();setInterval(update,400);
-})();
 </script><script id="lion-v158-pride-frames">
 (()=>{
 const frames=["./assets/sprite-032.png","./assets/sprite-033.png","./assets/sprite-034.png","./assets/sprite-035.png","./assets/sprite-036.png","./assets/sprite-037.png"];
