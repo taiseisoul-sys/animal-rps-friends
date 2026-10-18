@@ -2292,6 +2292,14 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 @media(prefers-reduced-motion:reduce){.battle-slot.cassowary-howl-v200{animation:none!important}.battle-slot.cassowary-howl-v200 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-howl-v2.00-03.png")!important}}
 </style>
 <style>
+/* Cassowary Dino Raptor Raid v2.01: brace, slash with a talon, and recover. */
+.battle-slot.cassowary-raid-v201{animation:cassowary-raid-lunge-v201 1.45s cubic-bezier(.18,.72,.24,1) both!important;z-index:4}
+.battle-slot.cassowary-raid-v201 .cassowary-idle{animation:cassowary-raid-frames-v201 1.45s steps(1,end) both!important;background-repeat:no-repeat!important;background-position:center bottom!important;background-size:100% 100%!important;filter:none!important}
+@keyframes cassowary-raid-frames-v201{0%,25.99%{background-image:url("./assets/cassowary-raid-v2.01-01.png")}26%,61.99%{background-image:url("./assets/cassowary-raid-v2.01-02.png")}62%,100%{background-image:url("./assets/cassowary-raid-v2.01-03.png")}}
+@keyframes cassowary-raid-lunge-v201{0%,23%{translate:0 0;scale:1}38%{translate:calc(25px * var(--attack-dir)) -2px;scale:1.03}54%{translate:calc(32px * var(--attack-dir)) -4px;scale:1.05}68%{translate:calc(14px * var(--attack-dir)) 0;scale:1.02}100%{translate:0 0;scale:1}}
+@media(prefers-reduced-motion:reduce){.battle-slot.cassowary-raid-v201{animation:none!important}.battle-slot.cassowary-raid-v201 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-raid-v2.01-03.png")!important}}
+</style>
+<style>
 /* Crocodile Tail v1.93: wind-up, sweep, and follow-through frames. */
 .battle-slot.croc-tail-v193 .croc-idle{width:min(100%,360px)!important;height:auto!important;flex:0 0 auto;aspect-ratio:720/300!important;background-image:url("./assets/croc-tail-v1.93-01.png");background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center bottom!important;animation:croc-tail-v193 1.4s steps(1,end) forwards!important;filter:none!important;image-rendering:auto!important;align-self:flex-end!important}
 @keyframes croc-tail-v193{0%,15.99%{background-image:url("./assets/croc-tail-v1.93-01.png")}16%,60.99%{background-image:url("./assets/croc-tail-v1.93-02.png")}61%,100%{background-image:url("./assets/croc-tail-v1.93-03.png")}}
@@ -2406,6 +2414,15 @@ function playCassowaryHowlV200(id,side,roundVersion){
  const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
  slot.classList.remove('cassowary-howl-v200');void slot.offsetWidth;slot.classList.add('cassowary-howl-v200');
  beetleAnimationTimers.set(key,setTimeout(()=>{if(slot.isConnected)slot.classList.remove('cassowary-howl-v200');},1320));
+}
+
+function playCassowaryRaidV201(id,side,roundVersion){
+ if(arenaVisualVersions.get(id)!==roundVersion)return;
+ const host=document.getElementById(id),slot=host?.querySelector('.battle-slot.'+side);
+ if(!slot||!slot.querySelector('.cassowary-idle'))return;
+ const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
+ slot.classList.remove('cassowary-raid-v201');void slot.offsetWidth;slot.classList.add('cassowary-raid-v201');
+ beetleAnimationTimers.set(key,setTimeout(()=>{if(slot.isConnected)slot.classList.remove('cassowary-raid-v201');},1450));
 }
 
 function playBeetleHitV24(id,side,damage){
@@ -2929,6 +2946,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
  host.querySelectorAll('.battle-slot.cassowary-howl-v200').forEach(slot=>slot.classList.remove('cassowary-howl-v200'));
+ host.querySelectorAll('.battle-slot.cassowary-raid-v201').forEach(slot=>slot.classList.remove('cassowary-raid-v201'));
  host.querySelectorAll('.battle-slot.croc-tail-v193').forEach(slot=>slot.classList.remove('croc-tail-v193'));
 
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
@@ -2961,6 +2979,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   const attackingSide=who===0?'left':'right',defendingSide=who===0?'right':'left';
   if(attackerCard===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===9&&moveIndex===0)playCassowaryHowlV200(id,attackingSide,visualVersion);
+  if(attackerCard===9&&moveIndex===1)playCassowaryRaidV201(id,attackingSide,visualVersion);
   if(attackerCard===6&&moveIndex===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===1)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===2)animateArena(id,attackingSide,moveIndex,false);
