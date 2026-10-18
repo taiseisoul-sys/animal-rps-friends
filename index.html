@@ -2284,6 +2284,14 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 @media(prefers-reduced-motion:reduce){.battle-slot .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-idle-v1.99-01.png")!important}}
 </style>
 <style>
+/* Cassowary Howl v2.00: draw breath, call out, then settle. */
+.battle-slot.cassowary-howl-v200{animation:cassowary-howl-body-v200 1.32s ease-in-out both!important;z-index:3}
+.battle-slot.cassowary-howl-v200 .cassowary-idle{animation:cassowary-howl-frames-v200 1.32s steps(1,end) both!important;background-repeat:no-repeat!important;background-position:center bottom!important;background-size:100% 100%!important;filter:none!important}
+@keyframes cassowary-howl-frames-v200{0%,25.99%{background-image:url("./assets/cassowary-howl-v2.00-01.png")}26%,69.99%{background-image:url("./assets/cassowary-howl-v2.00-02.png")}70%,100%{background-image:url("./assets/cassowary-howl-v2.00-03.png")}}
+@keyframes cassowary-howl-body-v200{0%,24%{translate:0 0;scale:1}48%{translate:0 -5px;scale:1.03}67%{translate:calc(3px * var(--attack-dir)) -2px;scale:1.02}100%{translate:0 0;scale:1}}
+@media(prefers-reduced-motion:reduce){.battle-slot.cassowary-howl-v200{animation:none!important}.battle-slot.cassowary-howl-v200 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-howl-v2.00-03.png")!important}}
+</style>
+<style>
 /* Crocodile Tail v1.93: wind-up, sweep, and follow-through frames. */
 .battle-slot.croc-tail-v193 .croc-idle{width:min(100%,360px)!important;height:auto!important;flex:0 0 auto;aspect-ratio:720/300!important;background-image:url("./assets/croc-tail-v1.93-01.png");background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center bottom!important;animation:croc-tail-v193 1.4s steps(1,end) forwards!important;filter:none!important;image-rendering:auto!important;align-self:flex-end!important}
 @keyframes croc-tail-v193{0%,15.99%{background-image:url("./assets/croc-tail-v1.93-01.png")}16%,60.99%{background-image:url("./assets/croc-tail-v1.93-02.png")}61%,100%{background-image:url("./assets/croc-tail-v1.93-03.png")}}
@@ -2391,6 +2399,15 @@ function animateArena(id,side,handIndex,hit){
  const animationDuration=eagleHit?900:eagleSkyHunt?1500:eagleGodBird?1320:eagleClaw?1050:!hit&&slot.querySelector('.lion-idle')&&handIndex===2?1250:!hit&&slot.querySelector('.lion-idle')&&(handIndex===0||handIndex===1)?1180:!hit&&slot.querySelector('.gorilla-idle')&&handIndex===1?1350:hit?980:handIndex===2?1500:1050;
  beetleAnimationTimers.set(k,setTimeout(()=>slot.classList.remove(cls,'hurt','eagle-hit-v186','eagle-attack-v182','eagle-godbird-v184','eagle-skyhunt-v185','beetle-hit-v24','beetle-hit-light-v24','beetle-hit-medium-v24','beetle-hit-heavy-v24'),animationDuration));
 }
+function playCassowaryHowlV200(id,side,roundVersion){
+ if(arenaVisualVersions.get(id)!==roundVersion)return;
+ const host=document.getElementById(id),slot=host?.querySelector('.battle-slot.'+side);
+ if(!slot||!slot.querySelector('.cassowary-idle'))return;
+ const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
+ slot.classList.remove('cassowary-howl-v200');void slot.offsetWidth;slot.classList.add('cassowary-howl-v200');
+ beetleAnimationTimers.set(key,setTimeout(()=>{if(slot.isConnected)slot.classList.remove('cassowary-howl-v200');},1320));
+}
+
 function playBeetleHitV24(id,side,damage){
  const host=document.getElementById(id);
  const slot=host?.querySelector('.battle-slot.'+side);
@@ -2911,6 +2928,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  arenaVisualVersions.set(id,visualVersion);
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
+ host.querySelectorAll('.battle-slot.cassowary-howl-v200').forEach(slot=>slot.classList.remove('cassowary-howl-v200'));
  host.querySelectorAll('.battle-slot.croc-tail-v193').forEach(slot=>slot.classList.remove('croc-tail-v193'));
 
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
@@ -2942,6 +2960,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   name.textContent=hand[moveIndex]+' '+moves[attackerCard][moveIndex]+'！';
   const attackingSide=who===0?'left':'right',defendingSide=who===0?'right':'left';
   if(attackerCard===0)animateArena(id,attackingSide,moveIndex,false);
+  if(attackerCard===9&&moveIndex===0)playCassowaryHowlV200(id,attackingSide,visualVersion);
   if(attackerCard===6&&moveIndex===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===1)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===2)animateArena(id,attackingSide,moveIndex,false);
