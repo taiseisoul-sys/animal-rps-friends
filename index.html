@@ -2308,6 +2308,14 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 @media(prefers-reduced-motion:reduce){.battle-slot.cassowary-dance-v202{animation:none!important}.battle-slot.cassowary-dance-v202 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-last-dance-v2.02-03.png")!important}}
 </style>
 <style>
+/* Cassowary Hit v2.03: recoil from impact, then regain balance. */
+.battle-slot.hurt.cassowary-hit-v203{animation:cassowary-hit-recoil-v203 900ms ease-out both!important;z-index:5}
+.battle-slot.hurt.cassowary-hit-v203 .cassowary-idle{animation:cassowary-hit-frames-v203 900ms steps(1,end) both!important;background-repeat:no-repeat!important;background-position:center bottom!important;background-size:100% 100%!important;filter:none!important}
+@keyframes cassowary-hit-frames-v203{0%,14.99%{background-image:url("./assets/cassowary-hit-v2.03-01.png")}15%,57.99%{background-image:url("./assets/cassowary-hit-v2.03-02.png")}58%,100%{background-image:url("./assets/cassowary-hit-v2.03-03.png")}}
+@keyframes cassowary-hit-recoil-v203{0%,12%{translate:0 0;rotate:0}23%{translate:calc(-12px * var(--attack-dir)) -4px;rotate:calc(-3deg * var(--attack-dir))}43%{translate:calc(-8px * var(--attack-dir)) 0;rotate:calc(-1deg * var(--attack-dir))}68%{translate:calc(3px * var(--attack-dir)) 0;rotate:0}100%{translate:0 0;rotate:0}}
+@media(prefers-reduced-motion:reduce){.battle-slot.hurt.cassowary-hit-v203{animation:none!important}.battle-slot.hurt.cassowary-hit-v203 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-hit-v2.03-03.png")!important}}
+</style>
+<style>
 /* Crocodile Tail v1.93: wind-up, sweep, and follow-through frames. */
 .battle-slot.croc-tail-v193 .croc-idle{width:min(100%,360px)!important;height:auto!important;flex:0 0 auto;aspect-ratio:720/300!important;background-image:url("./assets/croc-tail-v1.93-01.png");background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center bottom!important;animation:croc-tail-v193 1.4s steps(1,end) forwards!important;filter:none!important;image-rendering:auto!important;align-self:flex-end!important}
 @keyframes croc-tail-v193{0%,15.99%{background-image:url("./assets/croc-tail-v1.93-01.png")}16%,60.99%{background-image:url("./assets/croc-tail-v1.93-02.png")}61%,100%{background-image:url("./assets/croc-tail-v1.93-03.png")}}
@@ -2957,6 +2965,18 @@ function playCrocHitV196(id,side,damage,roundVersion){
  },1100));
 }
 
+function playCassowaryHitV203(id,side,damage,roundVersion){
+ if(!(damage>0)||arenaVisualVersions.get(id)!==roundVersion)return;
+ const host=document.getElementById(id),slot=host?.querySelector('.battle-slot.'+side);
+ if(!slot||!slot.isConnected||!slot.querySelector('.cassowary-idle'))return;
+ const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
+ slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','cassowary-howl-v200','cassowary-raid-v201','cassowary-dance-v202','cassowary-hit-v203');
+ void slot.offsetWidth;slot.classList.add('hurt','cassowary-hit-v203');
+ beetleAnimationTimers.set(key,setTimeout(()=>{
+  if(arenaVisualVersions.get(id)===roundVersion&&slot.isConnected)slot.classList.remove('hurt','cassowary-hit-v203');
+ },950));
+}
+
 function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,healEffect=null,guardInfo=null,guardReady=null,catHealAmount=0,catScratchHits=[]){
  const visualVersion=(arenaVisualVersions.get(id)||0)+1;
  arenaVisualVersions.set(id,visualVersion);
@@ -2965,6 +2985,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  host.querySelectorAll('.battle-slot.cassowary-howl-v200').forEach(slot=>slot.classList.remove('cassowary-howl-v200'));
  host.querySelectorAll('.battle-slot.cassowary-raid-v201').forEach(slot=>slot.classList.remove('cassowary-raid-v201'));
  host.querySelectorAll('.battle-slot.cassowary-dance-v202').forEach(slot=>slot.classList.remove('cassowary-dance-v202'));
+ host.querySelectorAll('.battle-slot.hurt.cassowary-hit-v203').forEach(slot=>slot.classList.remove('hurt','cassowary-hit-v203'));
  host.querySelectorAll('.battle-slot.croc-tail-v193').forEach(slot=>slot.classList.remove('croc-tail-v193'));
 
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
@@ -3256,6 +3277,29 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
    else if(who!==-1&&attackCard===4)delay=attackHand===0?520:attackHand===1?600:450;
    else if(who!==-1&&attackCard===5)delay=attackHand===0?760:attackHand===1?480:820;
    setTimeout(()=>playCrocHitV196(id,side,damage,visualVersion),delay);
+  }
+ }
+
+ // Cassowary hit animation plays only when its real HP decreases.
+ if(hpDelta){
+  const attackSide=who===0?'left':who===1?'right':null;
+  const attackCard=who===0?lcard:who===1?rcard:null;
+  const attackHand=who===0?lh:who===1?rh:null;
+  for(const [i,card] of [[0,lcard],[1,rcard]]){
+   const damage=hpDelta[i]||0;if(card!==9||damage<=0)continue;
+   const side=i===0?'left':'right';
+   let delay=who===-1?120:430;
+   if(who!==-1&&side===attackSide)delay=attackCard===9?(attackHand===0?1420:1450):1050;
+   else if(who!==-1&&attackCard===0)delay=attackHand===0?340:attackHand===1?445:1510;
+   else if(who!==-1&&attackCard===1)delay=attackHand===0?730:attackHand===1?515:875;
+   else if(who!==-1&&attackCard===2)delay=attackHand===0?660:attackHand===1?465:475;
+   else if(who!==-1&&attackCard===3)delay=attackHand===0?585:attackHand===1?1060:700;
+   else if(who!==-1&&attackCard===4)delay=attackHand===0?520:attackHand===1?600:450;
+   else if(who!==-1&&attackCard===5)delay=attackHand===0?760:attackHand===1?480:820;
+   else if(who!==-1&&attackCard===6)delay=attackHand===0?1150:attackHand===1?1350:1200;
+   else if(who!==-1&&attackCard===7)delay=attackHand===0?1050:attackHand===1?1330:1500;
+   else if(who!==-1&&attackCard===8)delay=attackHand===0?880:attackHand===1?950:720;
+   setTimeout(()=>playCassowaryHitV203(id,side,damage,visualVersion),delay);
   }
  }
 
