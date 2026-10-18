@@ -2286,11 +2286,11 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 </style>
 <style>
 /* Cassowary Howl v2.00: draw breath, call out, then settle. */
-.battle-slot.cassowary-howl-v200{animation:cassowary-howl-body-v200 1.32s ease-in-out both!important;z-index:3}
-.battle-slot.cassowary-howl-v200 .cassowary-idle{animation:cassowary-howl-frames-v200 1.32s steps(1,end) both!important;background-repeat:no-repeat!important;background-position:center bottom;background-size:100% 100%!important;filter:none!important}
-@keyframes cassowary-howl-frames-v200{0%,25.99%{background-image:url("./assets/cassowary-howl-v2.00-01.png")}26%,69.99%{background-image:url("./assets/cassowary-howl-v2.00-02.png")}70%,100%{background-image:url("./assets/cassowary-howl-v2.00-03.png")}}
-@keyframes cassowary-howl-body-v200{0%,24%{translate:0 0;scale:1}48%{translate:0 -5px;scale:1.03}67%{translate:calc(3px * var(--attack-dir)) -2px;scale:1.02}100%{translate:0 0;scale:1}}
-@media(prefers-reduced-motion:reduce){.battle-slot.cassowary-howl-v200{animation:none!important}.battle-slot.cassowary-howl-v200 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-howl-v2.00-03.png")!important}}
+.battle-slot.cassowary-howl-v201{animation:cassowary-howl-body-v201 1.32s ease-in-out both!important;z-index:3}
+.battle-slot.cassowary-howl-v201 .cassowary-idle{animation:cassowary-howl-frames-v201 1.32s steps(1,end) both!important;background-repeat:no-repeat!important;background-position:center bottom;background-size:100% 100%!important;filter:none!important}
+@keyframes cassowary-howl-frames-v201{0%,25.99%{background-image:url("./assets/cassowary-howl-v2.00-01.png")}26%,69.99%{background-image:url("./assets/cassowary-howl-v2.00-02.png")}70%,100%{background-image:url("./assets/cassowary-howl-v2.00-03.png")}}
+@keyframes cassowary-howl-body-v201{0%,24%{translate:0 0;scale:1}48%{translate:0 -5px;scale:1.03}67%{translate:calc(3px * var(--attack-dir)) -2px;scale:1.02}100%{translate:0 0;scale:1}}
+@media(prefers-reduced-motion:reduce){.battle-slot.cassowary-howl-v201{animation:none!important}.battle-slot.cassowary-howl-v201 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-howl-v2.00-03.png")!important}}
 </style>
 <style>
 /* Cassowary Dino Raptor Raid v2.01: brace, slash with a talon, and recover. */
@@ -2467,8 +2467,8 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 @keyframes croc-lose-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
 :is(#debugArena,#arcadeArena,#onlineArena) .battle-slot .cassowary-idle{background-image:url("./assets/cassowary-idle-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-idle-sheet-v210 1.8s steps(1,end) infinite!important;will-change:background-position}
 @keyframes cassowary-idle-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
-:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.cassowary-howl-v200,.cassowary-raid-v201,.cassowary-dance-v202,.cassowary-hit-v203,.cassowary-win-v204,.cassowary-lose-v205) .cassowary-idle{animation-play-state:paused!important}
-:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-howl-v200 .cassowary-idle{background-image:url("./assets/cassowary-howl-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-howl-sheet-v210 1320ms steps(1,end) both!important}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.cassowary-howl-v201,.cassowary-raid-v201,.cassowary-dance-v202,.cassowary-hit-v203,.cassowary-win-v204,.cassowary-lose-v205) .cassowary-idle{animation-play-state:paused!important}
+:is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-howl-v201 .cassowary-idle{background-image:url("./assets/cassowary-howl-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-howl-sheet-v210 1320ms steps(1,end) both!important}
 @keyframes cassowary-howl-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
 :is(#debugArena,#arcadeArena,#onlineArena) .battle-slot.cassowary-raid-v201 .cassowary-idle{background-image:url("./assets/cassowary-raid-v210-sheet.png")!important;background-size:300% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;animation:cassowary-raid-sheet-v210 1450ms steps(1,end) both!important}
 @keyframes cassowary-raid-sheet-v210{0%,33.23%{background-position:0% 50%}33.33%,66.57%{background-position:50% 50%}66.67%,100%{background-position:100% 50%}}
@@ -2556,7 +2556,7 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 }
 .battle-slot.attack-scissors::after{animation:beetle-horn-trail-v22 1.05s steps(1,end) both!important}
 .battle-slot.attack-scissors .beetle-idle{
-  background-image:url('/assets/beetle-swipe-v270-sheet.png?v=swipe-188')!important;background-size:400% 100%!important;
+  background-image:url('/assets/beetle-idle-v270-sheet.png?v=idle-177')!important;background-size:400% 100%!important;
   animation:beetle-sheet-action-v270 1.05s steps(1,end) both!important;
 }
 .battle-slot.attack-paper .beetle-idle{
@@ -2715,7 +2715,7 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 }
 .battle-slot.beetle-win-v25 .beetle-idle.idle-ready{
   width:min(100%,258px)!important;height:auto!important;aspect-ratio:320 / 180!important;
-  background-image:url('/assets/beetle-swipe-v270-sheet.png?v=swipe-188')!important;
+  background-image:url('/assets/beetle-idle-v270-sheet.png?v=idle-177')!important;
   background-size:400% 100%!important;background-repeat:no-repeat!important;
   translate:0 16px!important;
   transform:scaleX(1.7) scaleY(1.9)!important;transform-origin:center bottom!important;
@@ -2745,20 +2745,20 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
   .battle-slot.beetle-win-v25 .beetle-idle.idle-ready{animation:none!important;background-position:66.667% 50%!important}
 }
 </style>
-<style id="beetle-stomp-v200">
+<style id="beetle-stomp-v201">
 /* Beetle victory v2.00: keep the existing beetle art; add a grounded stomp-and-threat rhythm. */
 .battle-slot.beetle-win-v25{
  z-index:19!important;transform-origin:50% 89%!important;
- animation:beetle-stomp-slot-v200 2.16s cubic-bezier(.24,.71,.28,1) 1 both!important;
+ animation:beetle-stomp-slot-v201 2.16s cubic-bezier(.24,.71,.28,1) 1 both!important;
 }
 .battle-slot.beetle-win-v25 .beetle-idle.idle-ready{
- background-image:url('/assets/beetle-swipe-v270-sheet.png?v=swipe-188')!important;
+ background-image:url('/assets/beetle-idle-v270-sheet.png?v=idle-177')!important;
  background-size:400% 100%!important;background-repeat:no-repeat!important;
- animation:beetle-stomp-frames-v200 2.16s steps(1,end) 1 both!important;
+ animation:beetle-stomp-frames-v201 2.16s steps(1,end) 1 both!important;
  filter:brightness(1.08) saturate(1.08) drop-shadow(0 0 5px #ffe080a0) drop-shadow(2px 5px 1px #0009)!important;
 }
 .battle-slot.right.beetle-win-v25 .beetle-idle.idle-ready{transform:scaleX(-1.7) scaleY(1.9)!important}
-@keyframes beetle-stomp-slot-v200{
+@keyframes beetle-stomp-slot-v201{
  0%,14%{translate:0 0;rotate:0deg;scale:1}
  21%{translate:0 3px;rotate:0deg;scale:1 .95}
  31%{translate:0 -2px;rotate:calc(-2deg * var(--attack-dir));scale:1.01 1.02}
@@ -2766,7 +2766,7 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
  57%{translate:0 1px;rotate:calc(2deg * var(--attack-dir));scale:1 .98}
  70%,100%{translate:0 0;rotate:0deg;scale:1}
 }
-@keyframes beetle-stomp-frames-v200{
+@keyframes beetle-stomp-frames-v201{
  0%,14.99%{background-position:0% 50%}
  15%,28.99%{background-position:33.333% 50%}
  29%,42.99%{background-position:66.667% 50%}
@@ -2779,10 +2779,10 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
  content:"";position:absolute;left:61%;bottom:3px;width:28px;height:8px;
  border:2px solid #ffd66a;border-top-color:transparent;border-radius:50%;
  opacity:0;pointer-events:none;filter:drop-shadow(0 0 3px #ffca4f);
- animation:beetle-stomp-ripple-v200 2.16s ease-out 1 both;
+ animation:beetle-stomp-ripple-v201 2.16s ease-out 1 both;
 }
 .battle-slot.right.beetle-win-v25 .beetle-idle.idle-ready::after{left:auto;right:61%}
-@keyframes beetle-stomp-ripple-v200{
+@keyframes beetle-stomp-ripple-v201{
  0%,29%{opacity:0;scale:.45}
  34%{opacity:.9;scale:.8}
  46%{opacity:.45;scale:1.25}
@@ -2794,11 +2794,11 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
  .battle-slot.beetle-win-v25 .beetle-idle.idle-ready::after{display:none!important}
 }
 </style>
-</head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V2.00</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugStickyPanel"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
+</head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V2.01</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugStickyPanel"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
-const beetleMotionSheetsV270=['/assets/beetle-idle-v270-sheet.png?v=idle-177','/assets/beetle-headbutt-v270-sheet.png?v=headbutt-185','/assets/beetle-swipe-v270-sheet.png?v=swipe-188','/assets/beetle-tornado-v188-sheet.png?v=tornado-189','/assets/beetle-hit-v270-sheet.png','/assets/beetle-defeat-v270-sheet.png'];
+const beetleMotionSheetsV270=['/assets/beetle-idle-v270-sheet.png?v=idle-177','/assets/beetle-headbutt-v270-sheet.png?v=headbutt-185','/assets/beetle-idle-v270-sheet.png?v=idle-177','/assets/beetle-tornado-v188-sheet.png?v=tornado-189','/assets/beetle-hit-v270-sheet.png','/assets/beetle-defeat-v270-sheet.png'];
 beetleMotionSheetsV270.forEach(src=>{const image=new Image();image.src=src;});
 function requestBeetleIdle(){
  if(beetleIdleRequested)return;
@@ -2876,8 +2876,8 @@ function playCassowaryHowlV200(id,side,roundVersion){
  const host=document.getElementById(id),slot=host?.querySelector('.battle-slot.'+side);
  if(!slot||!slot.querySelector('.cassowary-idle'))return;
  const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
- slot.classList.remove('cassowary-howl-v200');void slot.offsetWidth;slot.classList.add('cassowary-howl-v200');
- beetleAnimationTimers.set(key,setTimeout(()=>{if(slot.isConnected)slot.classList.remove('cassowary-howl-v200');},1320));
+ slot.classList.remove('cassowary-howl-v201');void slot.offsetWidth;slot.classList.add('cassowary-howl-v201');
+ beetleAnimationTimers.set(key,setTimeout(()=>{if(slot.isConnected)slot.classList.remove('cassowary-howl-v201');},1320));
 }
 
 function playCassowaryRaidV201(id,side,roundVersion){
@@ -3430,7 +3430,7 @@ function playCassowaryHitV203(id,side,damage,roundVersion){
  const host=document.getElementById(id),slot=host?.querySelector('.battle-slot.'+side);
  if(!slot||!slot.isConnected||!slot.querySelector('.cassowary-idle'))return;
  const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
- slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','cassowary-howl-v200','cassowary-raid-v201','cassowary-dance-v202','cassowary-hit-v203');
+ slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','cassowary-howl-v201','cassowary-raid-v201','cassowary-dance-v202','cassowary-hit-v203');
  void slot.offsetWidth;slot.classList.add('hurt','cassowary-hit-v203');
  beetleAnimationTimers.set(key,setTimeout(()=>{
   if(arenaVisualVersions.get(id)===roundVersion&&slot.isConnected)slot.classList.remove('hurt','cassowary-hit-v203');
@@ -3442,7 +3442,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  arenaVisualVersions.set(id,visualVersion);
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
- host.querySelectorAll('.battle-slot.cassowary-howl-v200').forEach(slot=>slot.classList.remove('cassowary-howl-v200'));
+ host.querySelectorAll('.battle-slot.cassowary-howl-v201').forEach(slot=>slot.classList.remove('cassowary-howl-v201'));
  host.querySelectorAll('.battle-slot.cassowary-raid-v201').forEach(slot=>slot.classList.remove('cassowary-raid-v201'));
  host.querySelectorAll('.battle-slot.cassowary-dance-v202').forEach(slot=>slot.classList.remove('cassowary-dance-v202'));
  host.querySelectorAll('.battle-slot.hurt.cassowary-hit-v203').forEach(slot=>slot.classList.remove('hurt','cassowary-hit-v203'));
