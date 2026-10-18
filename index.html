@@ -2277,6 +2277,11 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 .battle-slot.right .croc-idle{transform:scaleX(-1);transform-origin:50% 100%}
 @keyframes croc-idle-v192{0%,32.99%{background-image:url("./assets/croc-idle-v1.92-01.png")}33%,65.99%{background-image:url("./assets/croc-idle-v1.92-02.png")}66%,100%{background-image:url("./assets/croc-idle-v1.92-03.png")}}
 .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory) .croc-idle{animation-play-state:paused}
+/* Cassowary idle v1.99: alert stance, a soft head dip, and settle. */
+.battle-slot .cassowary-idle{width:min(100%,160px);height:150px;flex:0 0 auto;aspect-ratio:320/300;background-image:url("./assets/cassowary-idle-v1.99-01.png");background-size:100% 100%;background-repeat:no-repeat;background-position:center bottom;filter:none!important;image-rendering:auto;animation:cassowary-idle-v199 1.8s steps(1,end) infinite;will-change:background-image}
+@keyframes cassowary-idle-v199{0%,32.99%{background-image:url("./assets/cassowary-idle-v1.99-01.png")}33%,65.99%{background-image:url("./assets/cassowary-idle-v1.99-02.png")}66%,100%{background-image:url("./assets/cassowary-idle-v1.99-03.png")}}
+.battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory) .cassowary-idle{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.battle-slot .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-idle-v1.99-01.png")!important}}
 </style>
 <style>
 /* Crocodile Tail v1.93: wind-up, sweep, and follow-through frames. */
@@ -2369,6 +2374,7 @@ function buildArena(containerId,leftCard,rightCard){
  else if(card===6){sprite.className='battle-sprite gorilla-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','マウンテンゴリラ');}
  else if(card===7){sprite.className='battle-sprite eagle-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','ワシ');}
  else if(card===8){sprite.className='battle-sprite croc-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','イリエワニ');}
+ else if(card===9){sprite.className='battle-sprite cassowary-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','ヒクイドリ');}
  else{sprite.className='battle-emoji';sprite.textContent=icons[card];}
  slot.append(sprite);host.append(slot);}host.append(label);
 }
