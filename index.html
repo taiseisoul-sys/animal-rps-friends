@@ -2300,6 +2300,14 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 @media(prefers-reduced-motion:reduce){.battle-slot.cassowary-raid-v201{animation:none!important}.battle-slot.cassowary-raid-v201 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-raid-v2.01-03.png")!important}}
 </style>
 <style>
+/* Cassowary Last Dance v2.02: step, flare the feathers, then threaten. */
+.battle-slot.cassowary-dance-v202{animation:cassowary-dance-body-v202 1.45s ease-in-out both!important;z-index:4}
+.battle-slot.cassowary-dance-v202 .cassowary-idle{animation:cassowary-dance-frames-v202 1.45s steps(1,end) both!important;background-repeat:no-repeat!important;background-position:center bottom!important;background-size:100% 100%!important;filter:none!important}
+@keyframes cassowary-dance-frames-v202{0%,24.99%{background-image:url("./assets/cassowary-last-dance-v2.02-01.png")}25%,65.99%{background-image:url("./assets/cassowary-last-dance-v2.02-02.png")}66%,100%{background-image:url("./assets/cassowary-last-dance-v2.02-03.png")}}
+@keyframes cassowary-dance-body-v202{0%,20%{translate:0 0;rotate:0;scale:1}34%{translate:calc(4px * var(--attack-dir)) -2px;rotate:calc(-2deg * var(--attack-dir));scale:1.02}58%{translate:calc(-3px * var(--attack-dir)) 0;rotate:calc(2deg * var(--attack-dir));scale:1.04}76%{translate:0 -2px;rotate:0;scale:1.01}100%{translate:0 0;rotate:0;scale:1}}
+@media(prefers-reduced-motion:reduce){.battle-slot.cassowary-dance-v202{animation:none!important}.battle-slot.cassowary-dance-v202 .cassowary-idle{animation:none!important;background-image:url("./assets/cassowary-last-dance-v2.02-03.png")!important}}
+</style>
+<style>
 /* Crocodile Tail v1.93: wind-up, sweep, and follow-through frames. */
 .battle-slot.croc-tail-v193 .croc-idle{width:min(100%,360px)!important;height:auto!important;flex:0 0 auto;aspect-ratio:720/300!important;background-image:url("./assets/croc-tail-v1.93-01.png");background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center bottom!important;animation:croc-tail-v193 1.4s steps(1,end) forwards!important;filter:none!important;image-rendering:auto!important;align-self:flex-end!important}
 @keyframes croc-tail-v193{0%,15.99%{background-image:url("./assets/croc-tail-v1.93-01.png")}16%,60.99%{background-image:url("./assets/croc-tail-v1.93-02.png")}61%,100%{background-image:url("./assets/croc-tail-v1.93-03.png")}}
@@ -2423,6 +2431,15 @@ function playCassowaryRaidV201(id,side,roundVersion){
  const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
  slot.classList.remove('cassowary-raid-v201');void slot.offsetWidth;slot.classList.add('cassowary-raid-v201');
  beetleAnimationTimers.set(key,setTimeout(()=>{if(slot.isConnected)slot.classList.remove('cassowary-raid-v201');},1450));
+}
+
+function playCassowaryLastDanceV202(id,side,roundVersion){
+ if(arenaVisualVersions.get(id)!==roundVersion)return;
+ const host=document.getElementById(id),slot=host?.querySelector('.battle-slot.'+side);
+ if(!slot||!slot.querySelector('.cassowary-idle'))return;
+ const key=id+side;clearTimeout(beetleAnimationTimers.get(key));
+ slot.classList.remove('cassowary-dance-v202');void slot.offsetWidth;slot.classList.add('cassowary-dance-v202');
+ beetleAnimationTimers.set(key,setTimeout(()=>{if(slot.isConnected)slot.classList.remove('cassowary-dance-v202');},1450));
 }
 
 function playBeetleHitV24(id,side,damage){
@@ -2947,6 +2964,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  const host=document.getElementById(id);if(!host)return;
  host.querySelectorAll('.battle-slot.cassowary-howl-v200').forEach(slot=>slot.classList.remove('cassowary-howl-v200'));
  host.querySelectorAll('.battle-slot.cassowary-raid-v201').forEach(slot=>slot.classList.remove('cassowary-raid-v201'));
+ host.querySelectorAll('.battle-slot.cassowary-dance-v202').forEach(slot=>slot.classList.remove('cassowary-dance-v202'));
  host.querySelectorAll('.battle-slot.croc-tail-v193').forEach(slot=>slot.classList.remove('croc-tail-v193'));
 
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
@@ -2980,6 +2998,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   if(attackerCard===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===9&&moveIndex===0)playCassowaryHowlV200(id,attackingSide,visualVersion);
   if(attackerCard===9&&moveIndex===1)playCassowaryRaidV201(id,attackingSide,visualVersion);
+  if(attackerCard===9&&moveIndex===2)playCassowaryLastDanceV202(id,attackingSide,visualVersion);
   if(attackerCard===6&&moveIndex===0)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===1)animateArena(id,attackingSide,moveIndex,false);
   if(attackerCard===6&&moveIndex===2)animateArena(id,attackingSide,moveIndex,false);
