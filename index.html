@@ -1034,36 +1034,47 @@
  .black-ant-guard-reflect-v13{opacity:0}
 }
 
-/* BLACK ANT HIT v1.4 — single non-loop recoil; calculated HP loss only. */
+/* BLACK ANT HIT v1.5 — approved five-frame art; presentation only. */
 .battle-slot.black-ant-hit-v14{
- --ant-hit-distance-v14:24px;--ant-hit-lift-v14:-5px;--ant-hit-time-v14:.78s;
+ --ant-hit-distance-v14:11px;--ant-hit-lift-v14:-2px;--ant-hit-time-v14:.78s;
  z-index:8;animation:black-ant-hit-recoil-left-v14 var(--ant-hit-time-v14) cubic-bezier(.21,.78,.31,1) 1 both;
 }
 .battle-slot.right.black-ant-hit-v14{animation-name:black-ant-hit-recoil-right-v14}
-.battle-slot.black-ant-hit-light-v14{--ant-hit-distance-v14:13px;--ant-hit-lift-v14:-2px;--ant-hit-time-v14:.62s}
-.battle-slot.black-ant-hit-medium-v14{--ant-hit-distance-v14:25px;--ant-hit-lift-v14:-5px;--ant-hit-time-v14:.78s}
-.battle-slot.black-ant-hit-heavy-v14{--ant-hit-distance-v14:38px;--ant-hit-lift-v14:-10px;--ant-hit-time-v14:.96s}
+.battle-slot.black-ant-hit-light-v14{--ant-hit-distance-v14:6px;--ant-hit-lift-v14:-1px;--ant-hit-time-v14:.62s}
+.battle-slot.black-ant-hit-medium-v14{--ant-hit-distance-v14:11px;--ant-hit-lift-v14:-2px;--ant-hit-time-v14:.78s}
+.battle-slot.black-ant-hit-heavy-v14{--ant-hit-distance-v14:17px;--ant-hit-lift-v14:-3px;--ant-hit-time-v14:.96s}
 .battle-slot.black-ant-hit-v14 .black-ant-idle{
- animation-play-state:paused;
+ aspect-ratio:2170 / 1490;
+ background-image:url("./assets/black-ant-hit-v1.png")!important;
+ background-size:500% 100%!important;background-repeat:no-repeat!important;
+ animation:black-ant-hit-frames-v15 var(--ant-hit-time-v14) steps(1,end) 1 both!important;
+ animation-play-state:running!important;
  filter:brightness(1.52) drop-shadow(0 0 6px #d8ecff88) drop-shadow(2px 5px 1px #0008);
+}
+@keyframes black-ant-hit-frames-v15{
+ 0%,14.99%{background-position:0% center}
+ 15%,31.99%{background-position:25% center}
+ 32%,52.99%{background-position:50% center}
+ 53%,74.99%{background-position:75% center}
+ 75%,100%{background-position:100% center}
 }
 @keyframes black-ant-hit-recoil-left-v14{
  0%{translate:0 0;rotate:0deg;scale:1;opacity:1}
- 12%{translate:calc(-.28 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:-4deg;scale:1.02 .97}
- 27%{translate:calc(-.85 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:-9deg;scale:1 .93;opacity:.82}
- 39%{translate:calc(-1 * var(--ant-hit-distance-v14)) 2px;rotate:-11deg;scale:1 .91;opacity:1}
- 55%{translate:calc(-.7 * var(--ant-hit-distance-v14)) 3px;rotate:5deg;scale:1.03 .94}
- 73%{translate:calc(-.33 * var(--ant-hit-distance-v14)) 0px;rotate:-3deg;scale:1}
+ 12%{translate:calc(-.28 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:-2deg;scale:1.01 .98}
+ 27%{translate:calc(-.85 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:-4deg;scale:1 .97}
+ 39%{translate:calc(-1 * var(--ant-hit-distance-v14)) 1px;rotate:-5deg;scale:1 .96;opacity:1}
+ 55%{translate:calc(-.7 * var(--ant-hit-distance-v14)) 2px;rotate:3deg;scale:1.01 .97}
+ 73%{translate:calc(-.33 * var(--ant-hit-distance-v14)) 0px;rotate:-2deg;scale:1}
  87%{translate:calc(-.1 * var(--ant-hit-distance-v14)) 0px;rotate:1deg;scale:1}
  100%{translate:0 0;rotate:0deg;scale:1;opacity:1}
 }
 @keyframes black-ant-hit-recoil-right-v14{
  0%{translate:0 0;rotate:0deg;scale:1;opacity:1}
- 12%{translate:calc(.28 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:4deg;scale:1.02 .97}
- 27%{translate:calc(.85 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:9deg;scale:1 .93;opacity:.82}
- 39%{translate:var(--ant-hit-distance-v14) 2px;rotate:11deg;scale:1 .91;opacity:1}
- 55%{translate:calc(.7 * var(--ant-hit-distance-v14)) 3px;rotate:-5deg;scale:1.03 .94}
- 73%{translate:calc(.33 * var(--ant-hit-distance-v14)) 0px;rotate:3deg;scale:1}
+ 12%{translate:calc(.28 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:2deg;scale:1.01 .98}
+ 27%{translate:calc(.85 * var(--ant-hit-distance-v14)) var(--ant-hit-lift-v14);rotate:4deg;scale:1 .97}
+ 39%{translate:var(--ant-hit-distance-v14) 1px;rotate:5deg;scale:1 .96;opacity:1}
+ 55%{translate:calc(.7 * var(--ant-hit-distance-v14)) 2px;rotate:-3deg;scale:1.01 .97}
+ 73%{translate:calc(.33 * var(--ant-hit-distance-v14)) 0px;rotate:2deg;scale:1}
  87%{translate:calc(.1 * var(--ant-hit-distance-v14)) 0px;rotate:-1deg;scale:1}
  100%{translate:0 0;rotate:0deg;scale:1;opacity:1}
 }
@@ -1091,6 +1102,7 @@
 }
 @media(prefers-reduced-motion:reduce){
  .battle-slot.black-ant-hit-v14{animation:none!important}
+ .battle-slot.black-ant-hit-v14 .black-ant-idle{animation:none!important;background-position:0% center!important}
  .battle-slot.black-ant-hit-v14::before,.battle-slot.black-ant-hit-v14::after{display:none!important}
 }
 
