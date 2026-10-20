@@ -1185,35 +1185,29 @@
  .black-ant-win-halo-v16,.black-ant-win-tag-v16{animation:none!important;opacity:1}
 }
 
-/* BLACK CARPENTER ANT DEFEAT v1.7 — KO only, non-looping final posture.
-   Animate the entire uncut idle sprite; keep black-steel art and every prior move. */
+/* BLACK CARPENTER ANT DEFEAT v1.8 — five approved poses, visual only. */
 .battle-slot.black-ant-ko-v17{
  z-index:7;transform-origin:50% 90%;
- animation:black-ant-collapse-v17 1.94s cubic-bezier(.23,.63,.28,1) 1 both!important;
+ animation:black-ant-collapse-v18 1.94s ease-out 1 both!important;
 }
 .battle-slot.black-ant-ko-v17 .black-ant-idle{
- background-size:400% 100%!important;
- animation:black-ant-last-antenna-v17 1.94s steps(1,end) 1 both!important;
- filter:brightness(.63) saturate(.71) drop-shadow(2px 6px 2px #000c)!important;
+ aspect-ratio:2172 / 1425;
+ background-image:url("./assets/black-ant-defeat-v1.png");
+ background-size:500% 100%!important;background-repeat:no-repeat;
+ animation:black-ant-defeat-frames-v18 1.94s steps(1,end) 1 both!important;
+ filter:drop-shadow(2px 5px 1px #0009)!important;
 }
-@keyframes black-ant-collapse-v17{
- 0%{translate:0 0;rotate:0deg;scale:1;opacity:1}
- 10%{translate:calc(-5px * var(--attack-dir)) -4px;rotate:calc(-4deg * var(--attack-dir));scale:1.02 .97}
- 24%{translate:calc(-16px * var(--attack-dir)) 4px;rotate:calc(-8deg * var(--attack-dir));scale:1 .92}
- 38%{translate:calc(-22px * var(--attack-dir)) 12px;rotate:calc(-18deg * var(--attack-dir));scale:1.03 .87}
- 49%{translate:calc(-24px * var(--attack-dir)) 14px;rotate:calc(-12deg * var(--attack-dir));scale:1 .82}
- 60%{translate:calc(-24px * var(--attack-dir)) 21px;rotate:calc(-43deg * var(--attack-dir));scale:.98 .84}
- 73%{translate:calc(-28px * var(--attack-dir)) 30px;rotate:calc(-74deg * var(--attack-dir));scale:.95 .91}
- 81%{translate:calc(-28px * var(--attack-dir)) 27px;rotate:calc(-66deg * var(--attack-dir));scale:.97 .88}
- 90%{translate:calc(-27px * var(--attack-dir)) 30px;rotate:calc(-70deg * var(--attack-dir));scale:.96 .87}
- 100%{translate:calc(-27px * var(--attack-dir)) 30px;rotate:calc(-70deg * var(--attack-dir));scale:.96 .87;opacity:1}
+@keyframes black-ant-collapse-v18{
+ 0%,12%{translate:0 0;rotate:0deg;scale:1;opacity:1}
+ 32%{translate:0 1px;rotate:0deg;scale:1 .99}
+ 60%,100%{translate:0 2px;rotate:0deg;scale:1 .98;opacity:1}
 }
-@keyframes black-ant-last-antenna-v17{
- 0%,26.99%{background-position:0% center}
- 27%,45.99%{background-position:33.333333% center}
- 46%,62.99%{background-position:66.666667% center}
- 63%,81.99%{background-position:100% center}
- 82%,100%{background-position:66.666667% center}
+@keyframes black-ant-defeat-frames-v18{
+ 0%,13.99%{background-position:0% center}
+ 14%,30.99%{background-position:25% center}
+ 31%,53.99%{background-position:50% center}
+ 54%,77.99%{background-position:75% center}
+ 78%,100%{background-position:100% center}
 }
 /* A shell flash and tiny dust puff, both finite. */
 .battle-slot.black-ant-ko-v17::before{
@@ -1252,8 +1246,8 @@
  100%{opacity:1;translate:0 -4px;scale:1}
 }
 @media(prefers-reduced-motion:reduce){
- .battle-slot.black-ant-ko-v17{animation:none!important;translate:calc(-27px * var(--attack-dir)) 30px;rotate:calc(-70deg * var(--attack-dir));scale:.96 .87}
- .battle-slot.black-ant-ko-v17 .black-ant-idle{animation:none!important;background-position:66.666667% center!important}
+ .battle-slot.black-ant-ko-v17{animation:none!important;translate:0 2px;rotate:0deg;scale:1 .98}
+ .battle-slot.black-ant-ko-v17 .black-ant-idle{animation:none!important;background-position:100% center!important}
  .battle-slot.black-ant-ko-v17::before,.battle-slot.black-ant-ko-v17::after{display:none!important}
  .black-ant-ko-tag-v17{animation:none!important;opacity:1}
 }
