@@ -967,8 +967,19 @@
 
 /* BLACK ANT GUARD v1.3 — ONLY presentation, no change to counter calculations. */
 .battle-slot.black-ant-guard-cast-v13{z-index:4;animation:black-ant-guard-set-v13 1s ease-in-out both}
-.battle-slot.black-ant-guard-cast-v13 .black-ant-idle{animation-play-state:paused;
- filter:brightness(1.25) drop-shadow(0 0 7px #dbeeff80) drop-shadow(2px 5px 1px #0008)}
+.battle-slot.black-ant-guard-cast-v13 .black-ant-idle{
+ aspect-ratio:217 / 140;
+ background-image:url("./assets/black-ant-guard-v1.png");
+ background-size:500% 100%;background-repeat:no-repeat;
+ animation:black-ant-guard-frames-v14 1s steps(1,end) 1 both;
+ filter:brightness(1.1) drop-shadow(0 0 5px #dbeeff66) drop-shadow(2px 5px 1px #0008)}
+@keyframes black-ant-guard-frames-v14{
+ 0%,17.99%{background-position:0% center}
+ 18%,37.99%{background-position:25% center}
+ 38%,57.99%{background-position:50% center}
+ 58%,77.99%{background-position:75% center}
+ 78%,100%{background-position:100% center}
+}
 @keyframes black-ant-guard-set-v13{
  0%,100%{translate:0 0;scale:1;rotate:0deg}
  20%{translate:calc(-10px * var(--attack-dir)) 3px;scale:1.04 .97;rotate:calc(-2deg * var(--attack-dir))}
@@ -1018,6 +1029,7 @@
 @media(prefers-reduced-motion:reduce){
  .battle-slot.black-ant-guard-cast-v13,.black-ant-guard-shield-v13,
  .black-ant-guard-reflect-v13,.black-ant-guard-reflect-tag-v13,.black-ant-guard-ready-v13{animation:none}
+ .battle-slot.black-ant-guard-cast-v13 .black-ant-idle{animation:none!important;background-position:100% center}
  .black-ant-guard-shield-v13{opacity:.7}
  .black-ant-guard-reflect-v13{opacity:0}
 }
@@ -3272,7 +3284,6 @@ function blackAntGuardVisualV13(arenaId,version,side,kind,amount=0){
   clearTimeout(beetleAnimationTimers.get(arenaId+side));
   slot.classList.remove('black-ant-guard-cast-v13');void slot.offsetWidth;
   slot.classList.add('black-ant-guard-cast-v13');
-  addShield(1380);
   beetleAnimationTimers.set(arenaId+side,setTimeout(()=>{
    if(valid())slot.classList.remove('black-ant-guard-cast-v13');
   },1030));
