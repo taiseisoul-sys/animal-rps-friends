@@ -1101,20 +1101,25 @@
  animation:black-ant-victory-stance-v16 2.05s cubic-bezier(.22,.6,.31,1) 1 both!important;
 }
 .battle-slot.black-ant-win-v16 .black-ant-idle{
- /* Exactly one complete frame at any time: no mid-sheet sprite clipping. */
- background-size:400% 100%!important;
- animation:black-ant-victory-antennae-v16 2.05s steps(1,end) 1 both!important;
- filter:brightness(1.11) drop-shadow(0 0 7px #b9d8ffb5) drop-shadow(0 0 15px #eec8779c) drop-shadow(2px 5px 1px #000a)!important;
+ aspect-ratio:217 / 125!important;
+ background-image:url("./assets/black-ant-win-v1.png")!important;
+ background-size:500% 100%!important;background-repeat:no-repeat!important;
+ animation:black-ant-victory-frames-v17 2.05s steps(1,end) 1 both!important;
+ filter:brightness(1.08) drop-shadow(0 0 7px #eec87788) drop-shadow(2px 5px 1px #000a)!important;
+}
+@keyframes black-ant-victory-frames-v17{
+ 0%,17.99%{background-position:0% center}
+ 18%,34.99%{background-position:25% center}
+ 35%,53.99%{background-position:50% center}
+ 54%,71.99%{background-position:75% center}
+ 72%,100%{background-position:100% center}
 }
 @keyframes black-ant-victory-stance-v16{
- 0%{translate:0 0;rotate:0;scale:1}
- 12%{translate:0 5px;rotate:calc(4deg * var(--attack-dir));scale:1.04 .90}
- 25%{translate:0 -7px;rotate:calc(-8deg * var(--attack-dir));scale:1.06 1.02}
- 39%{translate:0 -18px;rotate:calc(-15deg * var(--attack-dir));scale:1.11 1.12}
- 50%{translate:0 -11px;rotate:calc(-10deg * var(--attack-dir));scale:1.06 1.05}
- 63%{translate:0 -20px;rotate:calc(-17deg * var(--attack-dir));scale:1.12 1.10}
- 78%{translate:0 -13px;rotate:calc(-12deg * var(--attack-dir));scale:1.07 1.04}
- 100%{translate:0 -13px;rotate:calc(-12deg * var(--attack-dir));scale:1.07 1.04}
+ 0%,100%{translate:0 0;rotate:0deg;scale:1}
+ 16%{translate:0 3px;rotate:0deg;scale:1 .98}
+ 36%{translate:0 -3px;rotate:0deg;scale:1.02 1.02}
+ 55%{translate:0 -2px;rotate:0deg;scale:1.02 1.01}
+ 73%{translate:0 -1px;rotate:0deg;scale:1.01}
 }
 @keyframes black-ant-victory-antennae-v16{
  0%,17.99%{background-position:0% center}
@@ -1126,7 +1131,7 @@
 }
 /* Gold/silver gleam emphasizes the sturdy black exoskeleton. */
 .battle-slot.black-ant-win-v16::before{
- content:'';position:absolute;pointer-events:none;z-index:12;bottom:15px;left:9%;width:79%;height:77px;
+ content:none;position:absolute;pointer-events:none;z-index:12;bottom:15px;left:9%;width:79%;height:77px;
  border:3px solid #e9dba7ad;border-radius:50%;
  box-shadow:0 0 9px #ffe19e99,inset 0 0 9px #bacfff88,0 0 15px #8bb7e67f;
  animation:black-ant-victory-ring-v16 2.05s steps(16,end) 1 both;
@@ -1138,7 +1143,7 @@
  100%{opacity:.58;scale:1.05 1.15}
 }
 .battle-slot.black-ant-win-v16::after{
- content:'✦';position:absolute;pointer-events:none;z-index:15;top:-16%;left:66%;
+ content:none;position:absolute;pointer-events:none;z-index:15;top:-16%;left:66%;
  font-size:24px;line-height:1;color:#fff0b2;
  text-shadow:-27px 16px #b9e5ff,29px 34px #fff3cc,-61px 40px #d8c48d,0 0 12px #c8e5ff;
  animation:black-ant-victory-spark-v16 2.05s steps(13,end) 1 both;
@@ -1174,8 +1179,8 @@
  100%{opacity:1;translate:0 0;scale:1}
 }
 @media(prefers-reduced-motion:reduce){
- .battle-slot.black-ant-win-v16{animation:none!important;translate:0 -13px;rotate:calc(-12deg * var(--attack-dir));scale:1.07 1.04}
- .battle-slot.black-ant-win-v16 .black-ant-idle{animation:none!important;background-position:66.666667% center!important}
+ .battle-slot.black-ant-win-v16{animation:none!important;translate:0 0;rotate:0deg;scale:1}
+ .battle-slot.black-ant-win-v16 .black-ant-idle{animation:none!important;background-position:100% center!important}
  .battle-slot.black-ant-win-v16::before,.battle-slot.black-ant-win-v16::after{animation:none!important;opacity:.8}
  .black-ant-win-halo-v16,.black-ant-win-tag-v16{animation:none!important;opacity:1}
 }
