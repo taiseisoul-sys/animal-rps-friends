@@ -449,28 +449,27 @@
  .beetle-ko-tag-v26{animation:none!important;opacity:1}
 }
 
-/* PARAPONERA POISON STING v1.1 — visuals only; four aligned transparent frames. */
-.battle-slot.paraponera-sting-v11{
-  animation:paraponera-sting-lunge-v11 .96s cubic-bezier(.15,.73,.32,1) both;
+/* PARAPONERA POISON STING v1.2 — five approved frames, shared ground anchor. */
+.battle-slot.paraponera-sting-v12{
+  animation:paraponera-sting-lunge-v12 .96s cubic-bezier(.15,.73,.32,1) both;
   z-index:5;
 }
-.battle-slot.right.paraponera-sting-v11{animation-name:paraponera-sting-lunge-right-v11}
-.battle-slot.paraponera-sting-v11 .paraponera-idle{
-  background-image:url("./assets/sprite-002.png");
-  background-size:400% 100%;background-position:0% center;
-  animation:paraponera-sting-frames-v11 .96s steps(1,end) 1 both;
-  aspect-ratio:224 / 150;
-  /* Pixel-art frame stays in the same contained 205px-wide viewport. */
-  height:auto;
+.battle-slot.right.paraponera-sting-v12{animation-name:paraponera-sting-lunge-right-v12}
+.battle-slot.paraponera-sting-v12 .paraponera-idle{
+  background-image:url("./assets/paraponera-poison-sting-v1.png?v=1");
+  background-size:500% auto;background-position:0% center;
+  animation:paraponera-sting-frames-v12 .96s steps(1,end) 1 both;
+  aspect-ratio:2172 / 1800;height:auto;
   will-change:background-position;
 }
-@keyframes paraponera-sting-frames-v11{
+@keyframes paraponera-sting-frames-v12{
   0%,18.99%{background-position:0% center}
-  19%,43.99%{background-position:33.333333% center}
-  44%,78.99%{background-position:66.666667% center}
+  19%,38.99%{background-position:25% center}
+  39%,58.99%{background-position:50% center}
+  59%,78.99%{background-position:75% center}
   79%,100%{background-position:100% center}
 }
-@keyframes paraponera-sting-lunge-v11{
+@keyframes paraponera-sting-lunge-v12{
   0%,14%{translate:0 0;scale:1}
   24%{translate:-7px 1px;scale:1.02}
   42%{translate:24px -2px;scale:1.04}
@@ -478,7 +477,7 @@
   82%{translate:16px -1px;scale:1.01}
   100%{translate:0 0;scale:1}
 }
-@keyframes paraponera-sting-lunge-right-v11{
+@keyframes paraponera-sting-lunge-right-v12{
   0%,14%{translate:0 0;scale:1}
   24%{translate:7px 1px;scale:1.02}
   42%{translate:-24px -2px;scale:1.04}
@@ -486,24 +485,24 @@
   82%{translate:-16px -1px;scale:1.01}
   100%{translate:0 0;scale:1}
 }
-/* Compact venom burst, kept entirely within the battle scene. */
-.paraponera-sting-burst-v11{
+/* A small venom contact effect appears at the opponent, never behind the ant. */
+.paraponera-sting-burst-v12{
   position:absolute;z-index:8;left:12%;bottom:39px;
   width:49px;height:49px;pointer-events:none;
   background:radial-gradient(circle,rgba(243,255,245,1) 0 9%,rgba(135,255,74,.94) 20%,rgba(145,62,221,.68) 40%,rgba(78,240,105,0) 70%);
   border-radius:50%;filter:drop-shadow(0 0 6px #78ef69);
-  animation:paraponera-sting-burst-v11 .49s steps(5,end) both;
+  animation:paraponera-sting-burst-v12 .49s steps(5,end) both;
 }
-.paraponera-sting-burst-v11.right{left:auto;right:12%}
-@keyframes paraponera-sting-burst-v11{
+.paraponera-sting-burst-v12.right{left:auto;right:12%}
+@keyframes paraponera-sting-burst-v12{
   0%{opacity:0;scale:.3}
   30%{opacity:1;scale:.9}
   60%{opacity:1;scale:1.2}
   100%{opacity:0;scale:1.5}
 }
 @media(prefers-reduced-motion:reduce){
-  .battle-slot.paraponera-sting-v11,.battle-slot.paraponera-sting-v11 .paraponera-idle,
-  .paraponera-sting-burst-v11{animation:none!important}
+  .battle-slot.paraponera-sting-v12,.battle-slot.paraponera-sting-v12 .paraponera-idle,
+  .paraponera-sting-burst-v12{animation:none!important}
 }
 
 /* PARAPONERA VENOM END v2.4: shared ground anchor for idle and every attack frame. */
@@ -2943,7 +2942,7 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 }
 </style>
 
-</head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V2.04</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugStickyPanel"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
+</head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V2.05</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugStickyPanel"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
@@ -3132,22 +3131,22 @@ function showHpFloat(host,side,delta){
  host.append(value);
  setTimeout(()=>value.remove(),1800);
 }
-/* Paraponera poison needle: only display animation; does not alter battle rules. */
-function playParaponeraStingV11(arenaId,side,roundVersion){
+/* Paraponera poison sting v1.2: visual only; does not alter battle rules. */
+function playParaponeraStingV12(arenaId,side,roundVersion){
  const host=document.getElementById(arenaId);
  const slot=host?.querySelector('.battle-slot.'+side);
  if(!slot||!slot.querySelector('.paraponera-idle'))return;
  const timerKey=arenaId+side;
  clearTimeout(beetleAnimationTimers.get(timerKey));
- slot.classList.remove('paraponera-sting-v11');
+ slot.classList.remove('paraponera-sting-v12');
  void slot.offsetWidth;
- slot.classList.add('paraponera-sting-v11');
+ slot.classList.add('paraponera-sting-v12');
  const targetSide=side==='left'?'right':'left';
  const cleanups=[];
  const effectTimer=setTimeout(()=>{
   if(arenaVisualVersions.get(arenaId)!==roundVersion)return;
   const burst=document.createElement('div');
-  burst.className='paraponera-sting-burst-v11 '+targetSide;
+  burst.className='paraponera-sting-burst-v12 '+targetSide;
   burst.setAttribute('aria-hidden','true');
   host.append(burst);
   setTimeout(()=>burst.remove(),650);
@@ -3155,7 +3154,7 @@ function playParaponeraStingV11(arenaId,side,roundVersion){
  cleanups.push(effectTimer);
  beetleAnimationTimers.set(timerKey,setTimeout(()=>{
   // A new battle may have started. Avoid mutating a later sprite.
-  if(arenaVisualVersions.get(arenaId)===roundVersion)slot.classList.remove('paraponera-sting-v11');
+  if(arenaVisualVersions.get(arenaId)===roundVersion)slot.classList.remove('paraponera-sting-v12');
  },1040));
 }
 
@@ -3168,7 +3167,7 @@ function playParaponeraVenomV22(arenaId,side,roundVersion,success){
  clearTimeout(beetleAnimationTimers.get(timerKey));
  host.classList.remove('paraponera-venom-arena-v20','paraponera-venom-arena-v21','paraponera-venom-arena-v22');
  host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-target-v21,.paraponera-venom-target-v22,.paraponera-venom-sting-contact-v20,.paraponera-venom-sting-contact-v21,.paraponera-venom-sting-contact-v22,.paraponera-venom-jaw-contact-v22').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-target-v21','paraponera-venom-target-v22','paraponera-venom-sting-contact-v20','paraponera-venom-sting-contact-v21','paraponera-venom-sting-contact-v22','paraponera-venom-jaw-contact-v22'));
- slot.classList.remove('paraponera-venom-v12','paraponera-sting-v11');
+ slot.classList.remove('paraponera-venom-v12','paraponera-sting-v12');
  void slot.offsetWidth;
  slot.classList.add('paraponera-venom-v12');
  host.classList.add('paraponera-venom-arena-v22');
@@ -3224,7 +3223,7 @@ function playParaponeraHealV13(arenaId,side,version,effect){
  const cls=effect.mode==='heal'?'paraponera-heal-v13':'paraponera-infect-v13';
  const timerKey=arenaId+side;
  clearTimeout(beetleAnimationTimers.get(timerKey));
- slot.classList.remove('paraponera-sting-v11','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13');
+ slot.classList.remove('paraponera-sting-v12','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13');
  void slot.offsetWidth;
  slot.classList.add(cls);
  const decorate=(className,sideName,duration,text)=>{
@@ -3626,7 +3625,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   host.querySelectorAll('.battle-slot.black-ant-win-v16').forEach(slot=>slot.classList.remove('black-ant-win-v16'));
   host.querySelectorAll('.battle-slot.black-ant-hit-v14').forEach(slot=>slot.classList.remove('black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'));
  host.querySelectorAll('.black-ant-ko-tag-v17,.black-ant-win-halo-v16,.black-ant-win-tag-v16,.black-ant-guard-shield-v13,.black-ant-guard-ready-v13,.black-ant-guard-reflect-v13,.black-ant-guard-reflect-tag-v13,.black-ant-pinch-impact-v12,.black-ant-power-impact-v11,.damage-float,.tornado-vortex-v23,.tornado-groundburst-v23,.beetle-win-halo-v25,.beetle-win-tag-v25,.beetle-ko-tag-v26,.paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12,.paraponera-energy-v13,.paraponera-heal-glow-v13,.paraponera-infect-cloud-v13,.paraponera-heal-label-v13,.paraponera-win-halo-v15,.paraponera-win-tag-v15,.paraponera-ko-tag-v16').forEach(el=>el.remove());
-  host.querySelectorAll('.beetle-win-v25,.beetle-ko-v26,.paraponera-sting-v11,.paraponera-venom-v12,.paraponera-hit-v14,.paraponera-win-v15,.paraponera-ko-v16').forEach(el=>el.classList.remove('beetle-win-v25','beetle-ko-v26','paraponera-sting-v11','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13','paraponera-hit-v14','paraponera-hit-light-v14','paraponera-hit-medium-v14','paraponera-hit-heavy-v14','paraponera-win-v15','paraponera-ko-v16','black-ant-power-v11','black-ant-pinch-v12','black-ant-guard-cast-v13','black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'));
+  host.querySelectorAll('.beetle-win-v25,.beetle-ko-v26,.paraponera-sting-v12,.paraponera-venom-v12,.paraponera-hit-v14,.paraponera-win-v15,.paraponera-ko-v16').forEach(el=>el.classList.remove('beetle-win-v25','beetle-ko-v26','paraponera-sting-v12','paraponera-venom-v12','paraponera-heal-v13','paraponera-infect-v13','paraponera-hit-v14','paraponera-hit-light-v14','paraponera-hit-medium-v14','paraponera-hit-heavy-v14','paraponera-win-v15','paraponera-ko-v16','black-ant-power-v11','black-ant-pinch-v12','black-ant-guard-cast-v13','black-ant-hit-v14','black-ant-hit-light-v14','black-ant-hit-medium-v14','black-ant-hit-heavy-v14'));
  host.querySelectorAll('.swipe-launch-v22,.swipe-impact-v22,.headbutt-impact,.tornado-thrown-v23,.tornado-boost-v23').forEach(el=>el.classList.remove('swipe-launch-v22','swipe-impact-v22','headbutt-impact','tornado-thrown-v23','tornado-boost-v23','beetle-ko-v26','beetle-hit-v24','beetle-hit-light-v24','beetle-hit-medium-v24','beetle-hit-heavy-v24'));
  const name=host.querySelector('.battle-move-name');
  if(who===0||who===1){
@@ -3666,7 +3665,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   if(attackerCard===2&&moveIndex===0)playBlackAntPowerV11(id,attackingSide,visualVersion);
   if(attackerCard===2&&moveIndex===1)playBlackAntPinchV12(id,attackingSide,visualVersion);
   if(attackerCard===2&&moveIndex===2&&guardReady?.[who])blackAntGuardVisualV13(id,visualVersion,attackingSide,'cast');
-  if(attackerCard===1&&moveIndex===1)playParaponeraStingV11(id,attackingSide,visualVersion);
+  if(attackerCard===1&&moveIndex===1)playParaponeraStingV12(id,attackingSide,visualVersion);
   if(attackerCard===1&&moveIndex===0)playParaponeraVenomV22(id,attackingSide,visualVersion,venomSuccess);
   if(attackerCard===1&&moveIndex===2&&healEffect)playParaponeraHealV13(id,attackingSide,visualVersion,healEffect);
   if(attackerCard===0&&moveIndex===2){
@@ -4219,7 +4218,7 @@ function queueParaponeraVictoryV15(arenaId,leftCard,rightCard,leftHP,rightHP,rou
   // Cancel any earlier attack cleanup before leaving a persistent victory stance.
   clearTimeout(beetleAnimationTimers.get(arenaId+winningSide));
   slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory',
-   'paraponera-win-v15','paraponera-sting-v11','paraponera-venom-v12',
+   'paraponera-win-v15','paraponera-sting-v12','paraponera-venom-v12',
    'paraponera-heal-v13','paraponera-infect-v13','paraponera-hit-v14',
    'paraponera-hit-light-v14','paraponera-hit-medium-v14','paraponera-hit-heavy-v14');
   void slot.offsetWidth;
@@ -4397,7 +4396,7 @@ function queueParaponeraDefeatV16(arenaId,leftCard,rightCard,leftHP,rightHP,roun
    if(!slot||!slot.querySelector('.paraponera-idle'))continue;
    clearTimeout(beetleAnimationTimers.get(arenaId+side));
    slot.classList.remove('attack-rock','attack-scissors','attack-paper','hurt','victory',
-    'paraponera-win-v15','paraponera-sting-v11','paraponera-venom-v12','paraponera-heal-v13',
+    'paraponera-win-v15','paraponera-sting-v12','paraponera-venom-v12','paraponera-heal-v13',
     'paraponera-infect-v13','paraponera-hit-v14','paraponera-hit-light-v14',
     'paraponera-hit-medium-v14','paraponera-hit-heavy-v14','paraponera-ko-v16',
     'tornado-thrown-v23');
