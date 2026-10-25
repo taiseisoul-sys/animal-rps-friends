@@ -50,17 +50,18 @@
 
 .battle-slot.right .battle-emoji{transform:scaleX(-1)}
 
-/* Paraponera Idle v5: five transparent frames, fixed ground line and scale. */
+/* Paraponera Idle v6: five approved frames, with inset frame viewport to keep feet/jaws inside the slot. */
 .paraponera-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:2172 / 1800;
-  background-image:url("./assets/paraponera-idle-v5.png?v=5");
-  background-size:500% 100%;background-repeat:no-repeat;background-position:0% center;
-  animation:paraponera-idle-v5 1.5s steps(1,end) infinite;
+  padding:4%;background-origin:content-box;background-clip:content-box;
+  background-image:url("./assets/paraponera-idle-v6.png?v=6");
+  background-size:500% auto;background-repeat:no-repeat;background-position:0% center;
+  animation:paraponera-idle-v6 1.5s steps(1,end) infinite;
   image-rendering:auto;will-change:background-position;filter:drop-shadow(2px 5px 1px #0008)}
 /* Ant artwork looks right. Only mirror right-hand opponent to face left. */
 .battle-slot.left .paraponera-idle{transform:scaleX(1)}
 .battle-slot.right .paraponera-idle{transform:scaleX(-1)}
 .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.tornado-thrown-v23,.beetle-ko-v26,.beetle-hit-v24,.beetle-hit-light-v24,.beetle-hit-medium-v24,.beetle-hit-heavy-v24) .paraponera-idle{animation-play-state:paused}
-@keyframes paraponera-idle-v5{
+@keyframes paraponera-idle-v6{
   0%,19.99%{background-position:0% center}
   20%,39.99%{background-position:25% center}
   40%,59.99%{background-position:50% center}
@@ -513,9 +514,10 @@
 }
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
  width:min(100%,150px)!important;height:147px!important;aspect-ratio:auto!important;
- background-image:url("./assets/paraponera-venom-end-v22.png?v=22")!important;
- background-size:600% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;
- animation:paraponera-venom-frames-v22 1.65s steps(1,end) 1 both!important;
+ padding:3%!important;
+ background-image:url("./assets/paraponera-venom-end-v24.png?v=24")!important;
+ background-size:300% 200%!important;background-repeat:no-repeat!important;background-position:0% 0%;
+ animation:paraponera-venom-frames-v24 1.65s steps(1,end) 1 both!important;
  filter:drop-shadow(1px 3px 1px #0008);
 }
 .battle-arena.paraponera-venom-arena-v22{height:205px}
@@ -553,13 +555,13 @@
  77%{translate:calc(var(--paraponera-lunge-v22) * var(--attack-dir) * .48) 0;scale:1}
  90%,100%{translate:0 0;scale:1}
 }
-@keyframes paraponera-venom-frames-v22{
-  0%,15.99%{background-position:0% 50%}
-  16%,31.99%{background-position:20% 50%}
-  32%,47.99%{background-position:40% 50%}
-  48%,61.99%{background-position:60% 50%}
-  62%,77.99%{background-position:80% 50%}
-  78%,100%{background-position:100% 50%}
+@keyframes paraponera-venom-frames-v24{
+  0%,15.99%{background-position:0% 0%}
+  16%,31.99%{background-position:50% 0%}
+  32%,47.99%{background-position:100% 0%}
+  48%,61.99%{background-position:0% 100%}
+  62%,77.99%{background-position:50% 100%}
+  78%,100%{background-position:100% 100%}
 }
 .paraponera-venom-charge-v12{
  position:absolute;z-index:6;bottom:36px;left:8%;width:34%;height:98px;
@@ -626,7 +628,7 @@
 }
 @media(prefers-reduced-motion:reduce){
  .battle-slot.paraponera-venom-v12{animation:none!important}
- .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:100% 50%!important}
+ .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:100% 100%!important}
  .battle-slot.paraponera-venom-target-v22{animation:none!important;translate:0 0!important}
  .paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12{display:none!important}
 }
