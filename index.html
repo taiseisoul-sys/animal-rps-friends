@@ -506,12 +506,13 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v2.3: lower ground alignment and clean lunge frame. */
+/* PARAPONERA VENOM END v2.4: shared ground anchor for idle and every attack frame. */
 .battle-slot.paraponera-venom-v12{
  --paraponera-lunge-v22:clamp(24px,6vw,40px);
- bottom:10px!important;height:165px!important;z-index:5;
+ bottom:17px!important;height:165px!important;z-index:5;
  animation:paraponera-venom-lunge-v22 1.65s cubic-bezier(.2,.72,.25,1) both!important
 }
+.battle-slot.paraponera-grounded-v1{bottom:7px!important}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
  width:min(100%,150px)!important;height:147px!important;aspect-ratio:auto!important;
  padding:3%!important;
@@ -2994,7 +2995,7 @@ function buildArena(containerId,leftCard,rightCard){
  if(host.dataset.pair===key)return;
  host.dataset.pair=key;host.replaceChildren();
  const label=document.createElement('div');label.className='battle-move-name';label.textContent='⚔️ BATTLE';
- for(const side of ['left','right']){const floor=document.createElement('div');floor.className='battle-floor '+side;host.append(floor);const slot=document.createElement('div');slot.className='battle-slot '+side;const card=side==='left'?leftCard:rightCard;const sprite=document.createElement('div');
+ for(const side of ['left','right']){const floor=document.createElement('div');floor.className='battle-floor '+side;host.append(floor);const slot=document.createElement('div');slot.className='battle-slot '+side;const card=side==='left'?leftCard:rightCard;if(card===1)slot.classList.add('paraponera-grounded-v1');const sprite=document.createElement('div');
  if(card===0){sprite.className='battle-sprite beetle-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','カブトムシ');if(beetleIdleReady)sprite.classList.add('idle-ready');else requestBeetleIdle();}
  else if(card===1){sprite.className='battle-sprite paraponera-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','パラポネラ');}
  else if(card===2){sprite.className='battle-sprite black-ant-idle';sprite.setAttribute('role','img');sprite.setAttribute('aria-label','クロオオアリ');}
