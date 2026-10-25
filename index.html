@@ -50,21 +50,22 @@
 
 .battle-slot.right .battle-emoji{transform:scaleX(-1)}
 
-/* Paraponera Poison Idle v2: approved detailed toxic sprite, four equal frames. */
+/* Paraponera Idle v3: approved dark mahogany sprite, five calm frames. */
 .paraponera-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:192 / 104;
-  background-image:url("./assets/sprite-001.png");
-  background-size:400% 100%;background-repeat:no-repeat;background-position:0% center;
-  animation:paraponera-poison-idle-v2 1.15s steps(1,end) infinite;
+  background-image:url("./assets/paraponera-idle-v3.png?v=3");
+  background-size:500% auto;background-repeat:no-repeat;background-position:0% center;
+  animation:paraponera-idle-v3 1.35s steps(1,end) infinite;
   image-rendering:auto;will-change:background-position;filter:drop-shadow(2px 5px 1px #0008)}
 /* Ant artwork looks right. Only mirror right-hand opponent to face left. */
 .battle-slot.left .paraponera-idle{transform:scaleX(1)}
 .battle-slot.right .paraponera-idle{transform:scaleX(-1)}
 .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.tornado-thrown-v23,.beetle-ko-v26,.beetle-hit-v24,.beetle-hit-light-v24,.beetle-hit-medium-v24,.beetle-hit-heavy-v24) .paraponera-idle{animation-play-state:paused}
-@keyframes paraponera-poison-idle-v2{
-  0%,24.99%{background-position:0% center}
-  25%,49.99%{background-position:33.333333% center}
-  50%,74.99%{background-position:66.666667% center}
-  75%,100%{background-position:100% center}
+@keyframes paraponera-idle-v3{
+  0%,19.99%{background-position:0% center}
+  20%,39.99%{background-position:25% center}
+  40%,59.99%{background-position:50% center}
+  60%,79.99%{background-position:75% center}
+  80%,100%{background-position:100% center}
 }
 
 .battle-floor{position:absolute;bottom:10px;width:34%;height:9px;border-radius:50%;background:#101a1888}.battle-floor.left{left:8%}.battle-floor.right{right:8%}
@@ -503,29 +504,48 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v1.2: display-only; success comes from battle notes. */
-.battle-slot.paraponera-venom-v12{animation:paraponera-venom-lunge-v12 1.38s ease-out both;z-index:5}
-.battle-slot.right.paraponera-venom-v12{animation-name:paraponera-venom-lunge-right-v12}
+/* PARAPONERA VENOM END v1.3: six-frame sting, retract, bite, recover. */
+.battle-slot.paraponera-venom-v12{animation:paraponera-venom-lunge-v13 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
+.battle-slot.right.paraponera-venom-v12{animation-name:paraponera-venom-lunge-right-v13}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
- animation-play-state:paused;
+ width:min(100%,178px)!important;height:126px!important;aspect-ratio:auto!important;
+ background-image:url("./assets/paraponera-venom-end-v2.png?v=2")!important;
+ background-size:600% auto!important;background-repeat:no-repeat!important;background-position:0% 45%;
+ animation:paraponera-venom-frames-v13 1.8s steps(1,end) 1 both!important;
  filter:drop-shadow(0 0 5px #c668ff) drop-shadow(0 0 12px #71ff69) drop-shadow(2px 5px 1px #0008);
 }
-@keyframes paraponera-venom-lunge-v12{
- 0%,9%{translate:0 0;scale:1;rotate:0}
- 23%{translate:-13px 5px;scale:1 .94;rotate:-5deg}
- 44%{translate:-10px -4px;scale:1.07 1.05;rotate:3deg}
- 57%{translate:68px -15px;scale:1.1;rotate:8deg}
- 69%{translate:51px -8px;scale:1.04;rotate:5deg}
- 87%{translate:13px -1px;scale:1.01;rotate:0}
+@keyframes paraponera-venom-frames-v13{
+ 0%,14.99%{background-position:0% 45%}
+ 15%,31.99%{background-position:20% 45%}
+ 32%,49.99%{background-position:40% 45%}
+ 50%,63.99%{background-position:60% 45%}
+ 64%,82.99%{background-position:80% 45%}
+ 83%,100%{background-position:100% 45%}
+}
+@keyframes paraponera-venom-lunge-v13{
+  0%,12%{translate:0 0;scale:1;rotate:0}
+  21%{translate:-11px 4px;scale:1 .95;rotate:-5deg}
+  30%{translate:-2px 0;scale:1;rotate:0}
+  40%{translate:40px -5px;scale:1.08 1.04;rotate:5deg}
+  50%{translate:38px -5px;scale:1.07 1.04;rotate:4deg}
+  62%{translate:17px 0;scale:1.01;rotate:-3deg}
+  71%{translate:59px -8px;scale:1.1 1.03;rotate:7deg}
+  78%{translate:68px -6px;scale:1.1;rotate:6deg}
+  85%{translate:34px -3px;scale:1.04;rotate:3deg}
+  93%{translate:10px 0;scale:1.01;rotate:0}
  100%{translate:0 0;scale:1;rotate:0}
 }
-@keyframes paraponera-venom-lunge-right-v12{
- 0%,9%{translate:0 0;scale:1;rotate:0}
- 23%{translate:13px 5px;scale:1 .94;rotate:5deg}
- 44%{translate:10px -4px;scale:1.07 1.05;rotate:-3deg}
- 57%{translate:-68px -15px;scale:1.1;rotate:-8deg}
- 69%{translate:-51px -8px;scale:1.04;rotate:-5deg}
- 87%{translate:-13px -1px;scale:1.01;rotate:0}
+@keyframes paraponera-venom-lunge-right-v13{
+  0%,12%{translate:0 0;scale:1;rotate:0}
+  21%{translate:11px 4px;scale:1 .95;rotate:5deg}
+  30%{translate:2px 0;scale:1;rotate:0}
+  40%{translate:-40px -5px;scale:1.08 1.04;rotate:-5deg}
+  50%{translate:-38px -5px;scale:1.07 1.04;rotate:-4deg}
+  62%{translate:-17px 0;scale:1.01;rotate:3deg}
+  71%{translate:-59px -8px;scale:1.1 1.03;rotate:-7deg}
+  78%{translate:-68px -6px;scale:1.1;rotate:-6deg}
+  85%{translate:-34px -3px;scale:1.04;rotate:-3deg}
+  93%{translate:-10px 0;scale:1.01;rotate:0}
  100%{translate:0 0;scale:1;rotate:0}
 }
 .paraponera-venom-charge-v12{
@@ -593,6 +613,7 @@
 }
 @media(prefers-reduced-motion:reduce){
  .battle-slot.paraponera-venom-v12{animation:none!important}
+ .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:0% 45%!important}
  .paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12{display:none!important}
 }
 
@@ -3136,23 +3157,20 @@ function playParaponeraVenomV12(arenaId,side,roundVersion,success){
   vfx.setAttribute('aria-hidden','true');if(cls==='paraponera-venom-tag-v12')vfx.textContent='☠ VENOM END!';host.append(vfx);
   setTimeout(()=>vfx.remove(),duration);
  };
- decorate('paraponera-venom-charge-v12',side,1250);
- setTimeout(()=>{
-  if(arenaVisualVersions.get(arenaId)!==roundVersion)return;
-  if(success){
-   decorate('paraponera-venom-burst-v12',other,890);
-   // Move name is already shown at the top. Avoid duplicate overlapping text.
-   // Reflect the actual fatal attack on beetle. The existing KO animation follows.
+ decorate('paraponera-venom-charge-v12',side,1150);
+ if(success){
+  // Match the two visible contacts in the sprite: stinger first, mandibles second.
+  [640,1190].forEach((delay,index)=>setTimeout(()=>{
+   if(arenaVisualVersions.get(arenaId)!==roundVersion)return;
    const target=host.querySelector('.battle-slot.'+other);
-   if(target?.querySelector('.beetle-idle')){
-    animateArena(arenaId,other,0,true);
-    playBeetleHitV24(arenaId,other,120);
-   }
-  }else decorate('paraponera-venom-fizzle-v12',other,770);
- },650);
+   if(!target)return;
+   animateArena(arenaId,other,0,true);
+   if(index===0&&target.querySelector('.beetle-idle'))playBeetleHitV24(arenaId,other,90);
+  },delay));
+ }else decorate('paraponera-venom-fizzle-v12',other,770);
  beetleAnimationTimers.set(timerKey,setTimeout(()=>{
   if(arenaVisualVersions.get(arenaId)===roundVersion)slot.classList.remove('paraponera-venom-v12');
- },1430));
+ },1880));
 }
 
 
@@ -4156,9 +4174,9 @@ function queueParaponeraVictoryV15(arenaId,leftCard,rightCard,leftHP,rightHP,rou
  const winningIndex=winningSide==='left'?0:1;
  const attackerCard=roundWinner===0?leftCard:roundWinner===1?rightCard:null;
  const attackerHand=roundWinner===winningIndex?roundMove:null;
- // The poison explosion lasts ~1.4s; the tornado slam lasts ~1.8s.
+ // Let the two-part sting-and-bite animation finish before the victory pose.
  const delay=attackerCard===0&&roundMove===2?2450:
-             attackerCard===1&&attackerHand===0?1830:
+             attackerCard===1&&attackerHand===0?2150:
              attackerCard===1&&attackerHand===2?1830:1540;
  const version=arenaVisualVersions.get(arenaId);
  setTimeout(()=>{
@@ -4334,7 +4352,7 @@ function queueParaponeraDefeatV16(arenaId,leftCard,rightCard,leftHP,rightHP,roun
  const attackerCard=roundWinner===0?leftCard:roundWinner===1?rightCard:null;
  const delay=attackerCard===3&&roundMove===1?2240:
              attackerCard===0&&roundMove===2?2700:
-             attackerCard===1&&roundMove===0?1830:
+             attackerCard===1&&roundMove===0?2050:
              attackerCard===1&&roundMove===2?1790:
              attackerCard===0&&roundMove===0?1400:
              attackerCard===0&&roundMove===1?1450:
