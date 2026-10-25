@@ -50,21 +50,22 @@
 
 .battle-slot.right .battle-emoji{transform:scaleX(-1)}
 
-/* Paraponera Idle v4.1: four equal cells, sized directly to the sprite viewport. */
-.paraponera-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:542 / 320;
-  background-image:url("./assets/paraponera-idle-v4.png?v=4");
-  background-size:400% 100%;background-repeat:no-repeat;background-position:0% center;
-  animation:paraponera-idle-v4 1.5s steps(1,end) infinite;
+/* Paraponera Idle v5: five transparent frames, fixed ground line and scale. */
+.paraponera-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:2172 / 1800;
+  background-image:url("./assets/paraponera-idle-v5.png?v=5");
+  background-size:500% 100%;background-repeat:no-repeat;background-position:0% center;
+  animation:paraponera-idle-v5 1.5s steps(1,end) infinite;
   image-rendering:auto;will-change:background-position;filter:drop-shadow(2px 5px 1px #0008)}
 /* Ant artwork looks right. Only mirror right-hand opponent to face left. */
 .battle-slot.left .paraponera-idle{transform:scaleX(1)}
 .battle-slot.right .paraponera-idle{transform:scaleX(-1)}
 .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.tornado-thrown-v23,.beetle-ko-v26,.beetle-hit-v24,.beetle-hit-light-v24,.beetle-hit-medium-v24,.beetle-hit-heavy-v24) .paraponera-idle{animation-play-state:paused}
-@keyframes paraponera-idle-v4{
-  0%,24.99%{background-position:0% center}
-  25%,49.99%{background-position:33.333333% center}
-  50%,74.99%{background-position:66.666667% center}
-  75%,100%{background-position:100% center}
+@keyframes paraponera-idle-v5{
+  0%,19.99%{background-position:0% center}
+  20%,39.99%{background-position:25% center}
+  40%,59.99%{background-position:50% center}
+  60%,79.99%{background-position:75% center}
+  80%,100%{background-position:100% center}
 }
 @media(prefers-reduced-motion:reduce){.paraponera-idle{animation:none!important}}
 
@@ -515,7 +516,10 @@
 }
 /* Give the raised stinger room above the arena while the move is playing. */
 .battle-arena.paraponera-venom-arena-v20{height:205px}
-.battle-slot.paraponera-venom-target-v20{z-index:4;animation:paraponera-venom-target-v20 1.8s cubic-bezier(.18,.72,.25,1) both}
+.battle-slot.paraponera-venom-target-v20{
+ --paraponera-grab-range-v20:clamp(24px,calc((100vw - 360px) * .45),150px);
+ z-index:4;animation:paraponera-venom-target-v20 1.8s cubic-bezier(.18,.72,.25,1) both
+}
 .battle-slot.paraponera-venom-target-v20 .battle-sprite,
 .battle-slot.paraponera-venom-target-v20 .battle-emoji{animation-play-state:paused;filter:brightness(1.22) drop-shadow(2px 5px 1px #0008)}
 .battle-slot.paraponera-venom-sting-contact-v20 .battle-sprite,
@@ -527,11 +531,11 @@
 }
 @keyframes paraponera-venom-target-v20{
  0%,9%{translate:0 0;rotate:0deg;scale:1}
- 18%{translate:calc(12px * var(--attack-dir)) -8px;rotate:0deg;scale:1}
- 30%,51%{translate:calc(27px * var(--attack-dir)) -64px;rotate:0deg;scale:.97}
- 53%,64%{translate:calc(27px * var(--attack-dir)) -64px;rotate:2deg;scale:.97}
- 72%{translate:calc(30px * var(--attack-dir)) -40px;rotate:-9deg;scale:1.02}
- 84%{translate:calc(12px * var(--attack-dir)) -3px;rotate:8deg;scale:1}
+ 18%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir) * .45) -6px;rotate:0deg;scale:1}
+ 30%,51%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir)) -48px;rotate:0deg;scale:.97}
+ 53%,64%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir)) -48px;rotate:2deg;scale:.97}
+ 72%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir) * .72) -30px;rotate:-9deg;scale:1.02}
+ 84%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir) * .25) -3px;rotate:8deg;scale:1}
  100%{translate:0 0;rotate:0deg;scale:1}
 }
 @keyframes paraponera-venom-frames-v20{
