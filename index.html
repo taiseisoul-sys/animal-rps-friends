@@ -518,7 +518,7 @@
  padding:3%!important;
  background-image:url("./assets/paraponera-venom-end-v25.png?v=25")!important;
  background-size:300% 200%!important;background-repeat:no-repeat!important;background-position:0% 0%;
- animation:paraponera-venom-frames-v24 1.65s steps(1,end) 1 both!important;
+ animation:paraponera-venom-frames-v25 1.65s steps(1,end) 1 both!important;
  filter:drop-shadow(1px 3px 1px #0008);
 }
 .battle-arena.paraponera-venom-arena-v22{height:205px}
@@ -556,13 +556,13 @@
  77%{translate:calc(var(--paraponera-lunge-v22) * var(--attack-dir) * .48) 0;scale:1}
  90%,100%{translate:0 0;scale:1}
 }
-@keyframes paraponera-venom-frames-v24{
-  0%,15.99%{background-position:0% 0%}
-  16%,31.99%{background-position:50% 0%}
-  32%,47.99%{background-position:100% 0%}
-  48%,61.99%{background-position:0% 100%}
-  62%,77.99%{background-position:50% 100%}
-  78%,100%{background-position:100% 100%}
+@keyframes paraponera-venom-frames-v25{
+  0%,15.99%{background-position:0% 0%;translate:0 0}
+  16%,31.99%{background-position:50% 0%;translate:0 6px}
+  32%,47.99%{background-position:100% 0%;translate:0 6px}
+  48%,61.99%{background-position:0% 100%;translate:0 16px}
+  62%,77.99%{background-position:50% 100%;translate:0 19px}
+  78%,100%{background-position:100% 100%;translate:0 18px}
 }
 .paraponera-venom-charge-v12{
  position:absolute;z-index:6;bottom:36px;left:8%;width:34%;height:98px;
