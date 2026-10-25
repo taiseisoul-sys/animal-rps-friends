@@ -505,59 +505,45 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v1.9: planted sting, then one jaw close aligned to impact. */
-.battle-slot.paraponera-venom-v12{animation:paraponera-venom-body-v19 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
+/* PARAPONERA VENOM END v2.1: eight-frame sting, then one distinct jaw snap. */
+.battle-slot.paraponera-venom-v12{animation:none!important;height:180px!important;z-index:5}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
- width:min(100%,160px)!important;height:188px!important;aspect-ratio:auto!important;
- background-image:url("./assets/paraponera-venom-end-v20.png?v=20")!important;
+ width:min(100%,150px)!important;height:196px!important;aspect-ratio:auto!important;
+ background-image:url("./assets/paraponera-venom-end-v21.png?v=21")!important;
  background-size:800% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%;
- animation:paraponera-venom-frames-v20 1.8s steps(1,end) 1 both!important;
+ animation:paraponera-venom-frames-v21 1.8s steps(1,end) 1 both!important;
  filter:drop-shadow(1px 3px 1px #0008);
 }
-/* Give the raised stinger room above the arena while the move is playing. */
-.battle-arena.paraponera-venom-arena-v20{height:205px}
-.battle-slot.paraponera-venom-target-v20{
- --paraponera-grab-range-v20:clamp(24px,calc((100vw - 360px) * .45),150px);
- z-index:4;animation:paraponera-venom-target-v20 1.8s cubic-bezier(.18,.72,.25,1) both
+.battle-arena.paraponera-venom-arena-v21{height:230px}
+.battle-slot.paraponera-venom-target-v21{
+ z-index:4;animation:paraponera-venom-target-v21 1.8s ease-out both
 }
-.battle-slot.paraponera-venom-target-v20 .battle-sprite,
-.battle-slot.paraponera-venom-target-v20 .battle-emoji{animation-play-state:paused;filter:brightness(1.22) drop-shadow(2px 5px 1px #0008)}
-.battle-slot.paraponera-venom-sting-contact-v20 .battle-sprite,
-.battle-slot.paraponera-venom-sting-contact-v20 .battle-emoji{animation:paraponera-venom-contact-v20 .26s ease-out both}
-@keyframes paraponera-venom-contact-v20{
+.battle-slot.paraponera-venom-target-v21 .battle-sprite,
+.battle-slot.paraponera-venom-target-v21 .battle-emoji{animation-play-state:paused;filter:brightness(1.12) drop-shadow(2px 5px 1px #0008)}
+.battle-slot.paraponera-venom-sting-contact-v21 .battle-sprite,
+.battle-slot.paraponera-venom-sting-contact-v21 .battle-emoji{animation:paraponera-venom-contact-v21 .26s ease-out both}
+@keyframes paraponera-venom-contact-v21{
  0%{filter:brightness(1.2) drop-shadow(2px 5px 1px #0008)}
- 25%{filter:brightness(2.1) drop-shadow(0 0 13px #dcff9b)}
+ 25%{filter:brightness(2.1) drop-shadow(0 0 13px #ff7777)}
  100%{filter:brightness(1.22) drop-shadow(2px 5px 1px #0008)}
 }
-@keyframes paraponera-venom-target-v20{
- 0%,9%{translate:0 0;rotate:0deg;scale:1}
- 18%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir) * .45) -6px;rotate:0deg;scale:1}
- 30%,51%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir)) -48px;rotate:0deg;scale:.97}
- 53%,64%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir)) -48px;rotate:2deg;scale:.97}
- 72%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir) * .72) -30px;rotate:-9deg;scale:1.02}
- 84%{translate:calc(var(--paraponera-grab-range-v20) * var(--attack-dir) * .25) -3px;rotate:8deg;scale:1}
+@keyframes paraponera-venom-target-v21{
+  0%,38%{translate:0 0;rotate:0deg;scale:1}
+  45%,60%{translate:calc(14px * var(--attack-dir)) -2px;rotate:0deg;scale:.99}
+  68%{translate:calc(14px * var(--attack-dir)) 0;rotate:0deg;scale:.99}
+  76%{translate:calc(-8px * var(--attack-dir)) -3px;rotate:calc(-4deg * var(--attack-dir));scale:1.01}
+  88%{translate:calc(-4px * var(--attack-dir)) 0;rotate:calc(2deg * var(--attack-dir));scale:1}
  100%{translate:0 0;rotate:0deg;scale:1}
 }
-@keyframes paraponera-venom-frames-v20{
- 0%,9.99%{background-position:0% 50%}
- 10%,19.99%{background-position:14.2857% 50%}
- 20%,29.99%{background-position:28.5714% 50%}
- 30%,40.99%{background-position:42.8571% 50%}
- 41%,51.99%{background-position:57.1429% 50%}
- 52%,64.99%{background-position:71.4286% 50%}
- 65%,81.99%{background-position:85.7143% 50%}
- 82%,100%{background-position:100% 50%}
-}
-@keyframes paraponera-venom-body-v19{
-  /* The stinger sequence is shown by the sprite frames; keep the body planted. */
-  0%,10%{translate:0 0;scale:1;rotate:0}
-  18%{translate:calc(-3px * var(--attack-dir)) 2px;scale:1.01 .98;rotate:calc(-1deg * var(--attack-dir))}
-  30%,45%{translate:0 0;scale:1;rotate:0}
-  /* One restrained forward snap for the mandible bite near frame 7. */
-  70%{translate:0 0;scale:1;rotate:0}
-  82%,87%{translate:calc(12px * var(--attack-dir)) -1px;scale:1.025 1.01;rotate:calc(1deg * var(--attack-dir))}
-  94%{translate:calc(4px * var(--attack-dir)) 0;scale:1;rotate:0}
-  100%{translate:0 0;scale:1;rotate:0}
+@keyframes paraponera-venom-frames-v21{
+  0%,9.99%{background-position:0% 50%}
+  10%,19.99%{background-position:14.2857% 50%}
+  20%,29.99%{background-position:28.5714% 50%}
+  30%,39.99%{background-position:42.8571% 50%}
+  40%,59.99%{background-position:57.1429% 50%}
+  60%,69.99%{background-position:71.4286% 50%}
+  70%,79.99%{background-position:85.7143% 50%}
+  80%,100%{background-position:100% 50%}
 }
 .paraponera-venom-charge-v12{
  position:absolute;z-index:6;bottom:36px;left:8%;width:34%;height:98px;
@@ -625,8 +611,7 @@
 @media(prefers-reduced-motion:reduce){
  .battle-slot.paraponera-venom-v12{animation:none!important}
  .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:100% 50%!important}
- .battle-slot.paraponera-venom-target-v20{animation:none!important;translate:0 0!important}
- .battle-arena.paraponera-venom-arena-v20{height:170px}
+ .battle-slot.paraponera-venom-target-v21{animation:none!important;translate:0 0!important}
  .paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12{display:none!important}
 }
 
@@ -2958,8 +2943,8 @@ const arenaVisualVersions=new Map();
 function resetArenaVisual(id){
  arenaVisualVersions.set(id,(arenaVisualVersions.get(id)||0)+1);
  const host=document.getElementById(id);if(!host)return;
- host.classList.remove('paraponera-venom-arena-v20');
- host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-sting-contact-v20').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-sting-contact-v20'));
+ host.classList.remove('paraponera-venom-arena-v20','paraponera-venom-arena-v21');
+ host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-target-v21,.paraponera-venom-sting-contact-v20,.paraponera-venom-sting-contact-v21').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-target-v21','paraponera-venom-sting-contact-v20','paraponera-venom-sting-contact-v21'));
  host.dataset.pair='';host.dataset.round='';
  host.querySelectorAll('.beetle-special-cutin-v189').forEach(el=>el.remove());
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
@@ -3156,17 +3141,18 @@ function playParaponeraStingV11(arenaId,side,roundVersion){
 }
 
 /* Venom End animation: the game engine decides success; visuals observe the notes. */
-function playParaponeraVenomV12(arenaId,side,roundVersion,success){
+function playParaponeraVenomV21(arenaId,side,roundVersion,success){
  const host=document.getElementById(arenaId);
  const slot=host?.querySelector('.battle-slot.'+side);
  if(!slot||!slot.querySelector('.paraponera-idle'))return;
  const timerKey=arenaId+side;
  clearTimeout(beetleAnimationTimers.get(timerKey));
- host.classList.remove('paraponera-venom-arena-v20');
- host.querySelectorAll('.paraponera-venom-target-v20').forEach(el=>el.classList.remove('paraponera-venom-target-v20'));
+ host.classList.remove('paraponera-venom-arena-v20','paraponera-venom-arena-v21');
+ host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-target-v21,.paraponera-venom-sting-contact-v20,.paraponera-venom-sting-contact-v21').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-target-v21','paraponera-venom-sting-contact-v20','paraponera-venom-sting-contact-v21'));
  slot.classList.remove('paraponera-venom-v12','paraponera-sting-v11');
  void slot.offsetWidth;
  slot.classList.add('paraponera-venom-v12');
+ host.classList.add('paraponera-venom-arena-v21');
  const other=side==='left'?'right':'left';
  const target=host.querySelector('.battle-slot.'+other);
  const decorate=(cls,targetSide,duration)=>{
@@ -3177,20 +3163,19 @@ function playParaponeraVenomV12(arenaId,side,roundVersion,success){
  };
  // The sprite sheet carries compact contact sparks; avoid the former oversized aura.
  if(success){
-  /* Lift the opponent into the raised stinger's path, then drop them on the jaw finish. */
-  host.classList.add('paraponera-venom-arena-v20');
-  if(target){target.classList.remove('paraponera-venom-target-v20');void target.offsetWidth;target.classList.add('paraponera-venom-target-v20');}
+  /* A small approach and recoil keeps the defender close to the sting contact point. */
+  if(target){target.classList.remove('paraponera-venom-target-v21','paraponera-venom-sting-contact-v21');void target.offsetWidth;target.classList.add('paraponera-venom-target-v21');}
   setTimeout(()=>{
    if(arenaVisualVersions.get(arenaId)!==roundVersion||!target)return;
-   target.classList.add('paraponera-venom-sting-contact-v20');
-   setTimeout(()=>target.classList.remove('paraponera-venom-sting-contact-v20'),260);
-  },960);
+   target.classList.add('paraponera-venom-sting-contact-v21');
+   setTimeout(()=>target.classList.remove('paraponera-venom-sting-contact-v21'),260);
+  },860);
  }else decorate('paraponera-venom-fizzle-v12',other,770);
  beetleAnimationTimers.set(timerKey,setTimeout(()=>{
   if(arenaVisualVersions.get(arenaId)===roundVersion){
    slot.classList.remove('paraponera-venom-v12');
-   host.classList.remove('paraponera-venom-arena-v20');
-   if(target)target.classList.remove('paraponera-venom-target-v20','paraponera-venom-sting-contact-v20');
+   host.classList.remove('paraponera-venom-arena-v21');
+   if(target)target.classList.remove('paraponera-venom-target-v21','paraponera-venom-sting-contact-v21');
   }
  },1880));
 }
@@ -3592,8 +3577,8 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  arenaVisualVersions.set(id,visualVersion);
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
- host.classList.remove('paraponera-venom-arena-v20');
- host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-sting-contact-v20').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-sting-contact-v20'));
+ host.classList.remove('paraponera-venom-arena-v20','paraponera-venom-arena-v21');
+ host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-target-v21,.paraponera-venom-sting-contact-v20,.paraponera-venom-sting-contact-v21').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-target-v21','paraponera-venom-sting-contact-v20','paraponera-venom-sting-contact-v21'));
  host.querySelectorAll('.battle-slot.cassowary-howl-v201').forEach(slot=>slot.classList.remove('cassowary-howl-v201'));
  host.querySelectorAll('.battle-slot.cassowary-raid-v201').forEach(slot=>slot.classList.remove('cassowary-raid-v201'));
  host.querySelectorAll('.battle-slot.cassowary-dance-v202').forEach(slot=>slot.classList.remove('cassowary-dance-v202'));
@@ -3661,7 +3646,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
   if(attackerCard===2&&moveIndex===1)playBlackAntPinchV12(id,attackingSide,visualVersion);
   if(attackerCard===2&&moveIndex===2&&guardReady?.[who])blackAntGuardVisualV13(id,visualVersion,attackingSide,'cast');
   if(attackerCard===1&&moveIndex===1)playParaponeraStingV11(id,attackingSide,visualVersion);
-  if(attackerCard===1&&moveIndex===0)playParaponeraVenomV12(id,attackingSide,visualVersion,venomSuccess);
+  if(attackerCard===1&&moveIndex===0)playParaponeraVenomV21(id,attackingSide,visualVersion,venomSuccess);
   if(attackerCard===1&&moveIndex===2&&healEffect)playParaponeraHealV13(id,attackingSide,visualVersion,healEffect);
   if(attackerCard===0&&moveIndex===2){
    const targetSlot=host.querySelector('.battle-slot.'+defendingSide);
