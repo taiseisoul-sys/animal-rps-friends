@@ -50,23 +50,23 @@
 
 .battle-slot.right .battle-emoji{transform:scaleX(-1)}
 
-/* Paraponera Idle v3: approved dark mahogany sprite, five calm frames. */
-.paraponera-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:192 / 104;
-  background-image:url("./assets/paraponera-idle-v3.png?v=3");
-  background-size:500% auto;background-repeat:no-repeat;background-position:0% center;
-  animation:paraponera-idle-v3 1.35s steps(1,end) infinite;
+/* Paraponera Idle v4: approved four-frame grounded breathing loop. */
+.paraponera-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:542 / 320;
+  background-image:url("./assets/paraponera-idle-v4.png?v=4");
+  background-size:400% auto;background-repeat:no-repeat;background-position:0% center;
+  animation:paraponera-idle-v4 1.5s steps(1,end) infinite;
   image-rendering:auto;will-change:background-position;filter:drop-shadow(2px 5px 1px #0008)}
 /* Ant artwork looks right. Only mirror right-hand opponent to face left. */
 .battle-slot.left .paraponera-idle{transform:scaleX(1)}
 .battle-slot.right .paraponera-idle{transform:scaleX(-1)}
 .battle-slot:is(.attack-rock,.attack-scissors,.attack-paper,.hurt,.victory,.tornado-thrown-v23,.beetle-ko-v26,.beetle-hit-v24,.beetle-hit-light-v24,.beetle-hit-medium-v24,.beetle-hit-heavy-v24) .paraponera-idle{animation-play-state:paused}
-@keyframes paraponera-idle-v3{
-  0%,19.99%{background-position:0% center}
-  20%,39.99%{background-position:25% center}
-  40%,59.99%{background-position:50% center}
-  60%,79.99%{background-position:75% center}
-  80%,100%{background-position:100% center}
+@keyframes paraponera-idle-v4{
+  0%,24.99%{background-position:0% center}
+  25%,49.99%{background-position:33.333333% center}
+  50%,74.99%{background-position:66.666667% center}
+  75%,100%{background-position:100% center}
 }
+@media(prefers-reduced-motion:reduce){.paraponera-idle{animation:none!important}}
 
 .battle-floor{position:absolute;bottom:10px;width:34%;height:9px;border-radius:50%;background:#101a1888}.battle-floor.left{left:8%}.battle-floor.right{right:8%}
 .battle-move-name{position:absolute;left:10px;right:10px;top:8px;text-align:center;font-weight:900;color:#ffe28e;text-shadow:1px 2px #000;pointer-events:none}
