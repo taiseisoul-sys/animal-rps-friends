@@ -504,9 +504,8 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v1.7: compact 8-frame sting, recoil, bite sequence. */
-.battle-slot.paraponera-venom-v12{animation:paraponera-venom-lunge-v13 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
-.battle-slot.right.paraponera-venom-v12{animation-name:paraponera-venom-lunge-right-v13}
+/* PARAPONERA VENOM END v1.8: tail sting in place, one clear mandible bite. */
+.battle-slot.paraponera-venom-v12{animation:paraponera-venom-body-v18 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
  width:min(100%,160px)!important;height:126px!important;aspect-ratio:auto!important;
  background-image:url("./assets/paraponera-venom-end-v6.png?v=6")!important;
@@ -524,31 +523,16 @@
  65%,88.99%{background-position:85.7143% 50%}
  89%,100%{background-position:100% 50%}
 }
-@keyframes paraponera-venom-lunge-v13{
-  0%,8%{translate:0 0;scale:1;rotate:0}
-  15%{translate:-4px 0;scale:1;rotate:-1deg}
-  25%{translate:3px 0;scale:1;rotate:0}
-  35%,40%{translate:18px 0;scale:1;rotate:1deg}
-  47%{translate:7px 0;scale:1;rotate:0}
-  55%,60%{translate:0 0;scale:1;rotate:0}
-  69%{translate:-4px 0;scale:1;rotate:-1deg}
-  78%{translate:4px 0;scale:1;rotate:0}
-  84%,88%{translate:18px 0;scale:1;rotate:1deg}
-  94%{translate:6px 0;scale:1;rotate:0}
- 100%{translate:0 0;scale:1;rotate:0}
-}
-@keyframes paraponera-venom-lunge-right-v13{
-  0%,8%{translate:0 0;scale:1;rotate:0}
-  15%{translate:4px 0;scale:1;rotate:1deg}
-  25%{translate:-3px 0;scale:1;rotate:0}
-  35%,40%{translate:-18px 0;scale:1;rotate:-1deg}
-  47%{translate:-7px 0;scale:1;rotate:0}
-  55%,60%{translate:0 0;scale:1;rotate:0}
-  69%{translate:4px 0;scale:1;rotate:1deg}
-  78%{translate:-4px 0;scale:1;rotate:0}
-  84%,88%{translate:-18px 0;scale:1;rotate:-1deg}
-  94%{translate:-6px 0;scale:1;rotate:0}
- 100%{translate:0 0;scale:1;rotate:0}
+@keyframes paraponera-venom-body-v18{
+  /* The stinger sequence is shown by the sprite frames; keep the body planted. */
+  0%,10%{translate:0 0;scale:1;rotate:0}
+  18%{translate:calc(-3px * var(--attack-dir)) 2px;scale:1.01 .98;rotate:calc(-1deg * var(--attack-dir))}
+  30%,45%{translate:0 0;scale:1;rotate:0}
+  /* One restrained forward snap for the mandible bite near frame 7. */
+  70%{translate:0 0;scale:1;rotate:0}
+  82%,87%{translate:calc(12px * var(--attack-dir)) -1px;scale:1.025 1.01;rotate:calc(1deg * var(--attack-dir))}
+  94%{translate:calc(4px * var(--attack-dir)) 0;scale:1;rotate:0}
+  100%{translate:0 0;scale:1;rotate:0}
 }
 .paraponera-venom-charge-v12{
  position:absolute;z-index:6;bottom:36px;left:8%;width:34%;height:98px;
