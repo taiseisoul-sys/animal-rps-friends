@@ -504,12 +504,12 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v1.3: six-frame sting, retract, bite, recover. */
+/* PARAPONERA VENOM END v1.4: current dark-jawed design, sting then crushing bite. */
 .battle-slot.paraponera-venom-v12{animation:paraponera-venom-lunge-v13 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
 .battle-slot.right.paraponera-venom-v12{animation-name:paraponera-venom-lunge-right-v13}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
  width:min(100%,178px)!important;height:126px!important;aspect-ratio:auto!important;
- background-image:url("./assets/paraponera-venom-end-v2.png?v=2")!important;
+ background-image:url("./assets/paraponera-venom-end-v3.png?v=3")!important;
  background-size:600% auto!important;background-repeat:no-repeat!important;background-position:0% 45%;
  animation:paraponera-venom-frames-v13 1.8s steps(1,end) 1 both!important;
  filter:drop-shadow(0 0 5px #c668ff) drop-shadow(0 0 12px #71ff69) drop-shadow(2px 5px 1px #0008);
@@ -3160,7 +3160,7 @@ function playParaponeraVenomV12(arenaId,side,roundVersion,success){
  decorate('paraponera-venom-charge-v12',side,1150);
  if(success){
   // Match the two visible contacts in the sprite: stinger first, mandibles second.
-  [640,1190].forEach((delay,index)=>setTimeout(()=>{
+  [640,1530].forEach((delay,index)=>setTimeout(()=>{
    if(arenaVisualVersions.get(arenaId)!==roundVersion)return;
    const target=host.querySelector('.battle-slot.'+other);
    if(!target)return;
@@ -3733,7 +3733,7 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  if(hpDelta){
   for(let i=0;i<2;i++)if(hpDelta[i]){
    const side=i===0?'left':'right';
-   setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)showHpFloat(host,side,hpDelta[i]);},who===-1?120:((who===0?lcard:rcard)===4&&(who===0?lh:rh)===1)?1030:((who===0?lcard:rcard)===3&&(who===0?lh:rh)===1)?1100:(((who===0?lcard:rcard)===2&&(who===0?lh:rh)===0)?685:(((who===0?lcard:rcard)===0&&((who===0?lh:rh)===0))?350:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===1))?420:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===2))?1300:(((who===0?lcard:rcard)===1&&(who===0?lh:rh)===0&&venomSuccess)?710:(((who===0?lcard:rcard)===1&&(who===0?lh:rh)===2&&healEffect)?850:470)))));
+   setTimeout(()=>{if(arenaVisualVersions.get(id)===visualVersion)showHpFloat(host,side,hpDelta[i]);},who===-1?120:((who===0?lcard:rcard)===4&&(who===0?lh:rh)===1)?1030:((who===0?lcard:rcard)===3&&(who===0?lh:rh)===1)?1100:(((who===0?lcard:rcard)===2&&(who===0?lh:rh)===0)?685:(((who===0?lcard:rcard)===0&&((who===0?lh:rh)===0))?350:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===1))?420:((who===0?lcard:rcard)===0&&((who===0?lh:rh)===2))?1300:(((who===0?lcard:rcard)===1&&(who===0?lh:rh)===0&&venomSuccess)?1530:(((who===0?lcard:rcard)===1&&(who===0?lh:rh)===2&&healEffect)?850:470)))));
   }
  }
 
