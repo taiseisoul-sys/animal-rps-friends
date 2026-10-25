@@ -50,10 +50,10 @@
 
 .battle-slot.right .battle-emoji{transform:scaleX(-1)}
 
-/* Paraponera Idle v4: approved four-frame grounded breathing loop. */
+/* Paraponera Idle v4.1: four equal cells, sized directly to the sprite viewport. */
 .paraponera-idle{width:min(100%,225px);height:auto;min-height:0;aspect-ratio:542 / 320;
   background-image:url("./assets/paraponera-idle-v4.png?v=4");
-  background-size:400% auto;background-repeat:no-repeat;background-position:0% center;
+  background-size:400% 100%;background-repeat:no-repeat;background-position:0% center;
   animation:paraponera-idle-v4 1.5s steps(1,end) infinite;
   image-rendering:auto;will-change:background-position;filter:drop-shadow(2px 5px 1px #0008)}
 /* Ant artwork looks right. Only mirror right-hand opponent to face left. */
@@ -504,25 +504,25 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v1.6: compact 8-frame sting, recoil, bite sequence. */
+/* PARAPONERA VENOM END v1.7: compact 8-frame sting, recoil, bite sequence. */
 .battle-slot.paraponera-venom-v12{animation:paraponera-venom-lunge-v13 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
 .battle-slot.right.paraponera-venom-v12{animation-name:paraponera-venom-lunge-right-v13}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
  width:min(100%,160px)!important;height:126px!important;aspect-ratio:auto!important;
- background-image:url("./assets/paraponera-venom-end-v5.png?v=5")!important;
- background-size:800% auto!important;background-repeat:no-repeat!important;background-position:0% 100%!important;
- animation:paraponera-venom-frames-v15 1.8s steps(1,end) 1 both!important;
+ background-image:url("./assets/paraponera-venom-end-v6.png?v=6")!important;
+ background-size:800% auto!important;background-repeat:no-repeat!important;background-position:0% 50%!important;
+ animation:paraponera-venom-frames-v16 1.8s steps(1,end) 1 both!important;
  filter:drop-shadow(1px 3px 1px #0008);
 }
-@keyframes paraponera-venom-frames-v15{
- 0%,9.99%{background-position:0% 100%}
- 10%,19.99%{background-position:14.2857% 100%}
- 20%,29.99%{background-position:28.5714% 100%}
- 30%,40.99%{background-position:42.8571% 100%}
- 41%,51.99%{background-position:57.1429% 100%}
- 52%,64.99%{background-position:71.4286% 100%}
- 65%,88.99%{background-position:85.7143% 100%}
- 89%,100%{background-position:100% 100%}
+@keyframes paraponera-venom-frames-v16{
+ 0%,9.99%{background-position:0% 50%}
+ 10%,19.99%{background-position:14.2857% 50%}
+ 20%,29.99%{background-position:28.5714% 50%}
+ 30%,40.99%{background-position:42.8571% 50%}
+ 41%,51.99%{background-position:57.1429% 50%}
+ 52%,64.99%{background-position:71.4286% 50%}
+ 65%,88.99%{background-position:85.7143% 50%}
+ 89%,100%{background-position:100% 50%}
 }
 @keyframes paraponera-venom-lunge-v13{
   0%,8%{translate:0 0;scale:1;rotate:0}
@@ -615,7 +615,7 @@
 }
 @media(prefers-reduced-motion:reduce){
  .battle-slot.paraponera-venom-v12{animation:none!important}
- .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:100% 100%!important}
+ .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:100% 50%!important}
  .paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12{display:none!important}
 }
 
