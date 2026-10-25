@@ -504,26 +504,47 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v1.8: tail sting in place, one clear mandible bite. */
-.battle-slot.paraponera-venom-v12{animation:paraponera-venom-body-v18 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
+/* PARAPONERA VENOM END v1.9: planted sting, then one jaw close aligned to impact. */
+.battle-slot.paraponera-venom-v12{animation:paraponera-venom-body-v19 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
- width:min(100%,160px)!important;height:126px!important;aspect-ratio:auto!important;
- background-image:url("./assets/paraponera-venom-end-v6.png?v=6")!important;
- background-size:800% auto!important;background-repeat:no-repeat!important;background-position:0% 50%!important;
- animation:paraponera-venom-frames-v16 1.8s steps(1,end) 1 both!important;
+ width:min(100%,160px)!important;height:188px!important;aspect-ratio:auto!important;
+ background-image:url("./assets/paraponera-venom-end-v20.png?v=20")!important;
+ background-size:800% 100%!important;background-repeat:no-repeat!important;background-position:0% 50%!important;
+ animation:paraponera-venom-frames-v20 1.8s steps(1,end) 1 both!important;
  filter:drop-shadow(1px 3px 1px #0008);
 }
-@keyframes paraponera-venom-frames-v16{
+/* Give the raised stinger room above the arena while the move is playing. */
+.battle-arena.paraponera-venom-arena-v20{height:205px}
+.battle-slot.paraponera-venom-target-v20{z-index:4;animation:paraponera-venom-target-v20 1.8s cubic-bezier(.18,.72,.25,1) both}
+.battle-slot.paraponera-venom-target-v20 .battle-sprite,
+.battle-slot.paraponera-venom-target-v20 .battle-emoji{animation-play-state:paused;filter:brightness(1.22) drop-shadow(2px 5px 1px #0008)}
+.battle-slot.paraponera-venom-sting-contact-v20 .battle-sprite,
+.battle-slot.paraponera-venom-sting-contact-v20 .battle-emoji{animation:paraponera-venom-contact-v20 .26s ease-out both}
+@keyframes paraponera-venom-contact-v20{
+ 0%{filter:brightness(1.2) drop-shadow(2px 5px 1px #0008)}
+ 25%{filter:brightness(2.1) drop-shadow(0 0 13px #dcff9b)}
+ 100%{filter:brightness(1.22) drop-shadow(2px 5px 1px #0008)}
+}
+@keyframes paraponera-venom-target-v20{
+ 0%,9%{translate:0 0;rotate:0deg;scale:1}
+ 18%{translate:calc(12px * var(--attack-dir)) -8px;rotate:0deg;scale:1}
+ 30%,51%{translate:calc(27px * var(--attack-dir)) -64px;rotate:0deg;scale:.97}
+ 53%,64%{translate:calc(27px * var(--attack-dir)) -64px;rotate:2deg;scale:.97}
+ 72%{translate:calc(30px * var(--attack-dir)) -40px;rotate:-9deg;scale:1.02}
+ 84%{translate:calc(12px * var(--attack-dir)) -3px;rotate:8deg;scale:1}
+ 100%{translate:0 0;rotate:0deg;scale:1}
+}
+@keyframes paraponera-venom-frames-v20{
  0%,9.99%{background-position:0% 50%}
  10%,19.99%{background-position:14.2857% 50%}
  20%,29.99%{background-position:28.5714% 50%}
  30%,40.99%{background-position:42.8571% 50%}
  41%,51.99%{background-position:57.1429% 50%}
  52%,64.99%{background-position:71.4286% 50%}
- 65%,88.99%{background-position:85.7143% 50%}
- 89%,100%{background-position:100% 50%}
+ 65%,81.99%{background-position:85.7143% 50%}
+ 82%,100%{background-position:100% 50%}
 }
-@keyframes paraponera-venom-body-v18{
+@keyframes paraponera-venom-body-v19{
   /* The stinger sequence is shown by the sprite frames; keep the body planted. */
   0%,10%{translate:0 0;scale:1;rotate:0}
   18%{translate:calc(-3px * var(--attack-dir)) 2px;scale:1.01 .98;rotate:calc(-1deg * var(--attack-dir))}
@@ -600,6 +621,8 @@
 @media(prefers-reduced-motion:reduce){
  .battle-slot.paraponera-venom-v12{animation:none!important}
  .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:100% 50%!important}
+ .battle-slot.paraponera-venom-target-v20{animation:none!important;translate:0 0!important}
+ .battle-arena.paraponera-venom-arena-v20{height:170px}
  .paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12{display:none!important}
 }
 
@@ -2931,6 +2954,8 @@ const arenaVisualVersions=new Map();
 function resetArenaVisual(id){
  arenaVisualVersions.set(id,(arenaVisualVersions.get(id)||0)+1);
  const host=document.getElementById(id);if(!host)return;
+ host.classList.remove('paraponera-venom-arena-v20');
+ host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-sting-contact-v20').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-sting-contact-v20'));
  host.dataset.pair='';host.dataset.round='';
  host.querySelectorAll('.beetle-special-cutin-v189').forEach(el=>el.remove());
  host.querySelectorAll('.battle-slot.calico-impact-v11').forEach(slot=>slot.classList.remove('calico-impact-v11'));
@@ -3133,10 +3158,13 @@ function playParaponeraVenomV12(arenaId,side,roundVersion,success){
  if(!slot||!slot.querySelector('.paraponera-idle'))return;
  const timerKey=arenaId+side;
  clearTimeout(beetleAnimationTimers.get(timerKey));
+ host.classList.remove('paraponera-venom-arena-v20');
+ host.querySelectorAll('.paraponera-venom-target-v20').forEach(el=>el.classList.remove('paraponera-venom-target-v20'));
  slot.classList.remove('paraponera-venom-v12','paraponera-sting-v11');
  void slot.offsetWidth;
  slot.classList.add('paraponera-venom-v12');
  const other=side==='left'?'right':'left';
+ const target=host.querySelector('.battle-slot.'+other);
  const decorate=(cls,targetSide,duration)=>{
   if(arenaVisualVersions.get(arenaId)!==roundVersion)return;
   const vfx=document.createElement('div');vfx.className=cls+' '+targetSide;
@@ -3145,17 +3173,21 @@ function playParaponeraVenomV12(arenaId,side,roundVersion,success){
  };
  // The sprite sheet carries compact contact sparks; avoid the former oversized aura.
  if(success){
-  // Match the two visible contacts in the sprite: stinger first, mandibles second.
-  [640,1530].forEach((delay,index)=>setTimeout(()=>{
-   if(arenaVisualVersions.get(arenaId)!==roundVersion)return;
-   const target=host.querySelector('.battle-slot.'+other);
-   if(!target)return;
-   animateArena(arenaId,other,0,true);
-   if(index===0&&target.querySelector('.beetle-idle'))playBeetleHitV24(arenaId,other,90);
-  },delay));
+  /* Lift the opponent into the raised stinger's path, then drop them on the jaw finish. */
+  host.classList.add('paraponera-venom-arena-v20');
+  if(target){target.classList.remove('paraponera-venom-target-v20');void target.offsetWidth;target.classList.add('paraponera-venom-target-v20');}
+  setTimeout(()=>{
+   if(arenaVisualVersions.get(arenaId)!==roundVersion||!target)return;
+   target.classList.add('paraponera-venom-sting-contact-v20');
+   setTimeout(()=>target.classList.remove('paraponera-venom-sting-contact-v20'),260);
+  },960);
  }else decorate('paraponera-venom-fizzle-v12',other,770);
  beetleAnimationTimers.set(timerKey,setTimeout(()=>{
-  if(arenaVisualVersions.get(arenaId)===roundVersion)slot.classList.remove('paraponera-venom-v12');
+  if(arenaVisualVersions.get(arenaId)===roundVersion){
+   slot.classList.remove('paraponera-venom-v12');
+   host.classList.remove('paraponera-venom-arena-v20');
+   if(target)target.classList.remove('paraponera-venom-target-v20','paraponera-venom-sting-contact-v20');
+  }
  },1880));
 }
 
@@ -3556,6 +3588,8 @@ function visualRound(id,lcard,rcard,lh,rh,who,hpDelta=null,venomSuccess=false,he
  arenaVisualVersions.set(id,visualVersion);
  buildArena(id,lcard,rcard);
  const host=document.getElementById(id);if(!host)return;
+ host.classList.remove('paraponera-venom-arena-v20');
+ host.querySelectorAll('.paraponera-venom-target-v20,.paraponera-venom-sting-contact-v20').forEach(el=>el.classList.remove('paraponera-venom-target-v20','paraponera-venom-sting-contact-v20'));
  host.querySelectorAll('.battle-slot.cassowary-howl-v201').forEach(slot=>slot.classList.remove('cassowary-howl-v201'));
  host.querySelectorAll('.battle-slot.cassowary-raid-v201').forEach(slot=>slot.classList.remove('cassowary-raid-v201'));
  host.querySelectorAll('.battle-slot.cassowary-dance-v202').forEach(slot=>slot.classList.remove('cassowary-dance-v202'));
