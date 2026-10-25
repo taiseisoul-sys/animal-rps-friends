@@ -504,47 +504,50 @@
   .paraponera-sting-burst-v11{animation:none!important}
 }
 
-/* PARAPONERA VENOM END v1.4: current dark-jawed design, sting then crushing bite. */
+/* PARAPONERA VENOM END v1.5: compact 8-frame sting, recoil, bite sequence. */
 .battle-slot.paraponera-venom-v12{animation:paraponera-venom-lunge-v13 1.8s cubic-bezier(.16,.75,.25,1) both;z-index:5}
 .battle-slot.right.paraponera-venom-v12{animation-name:paraponera-venom-lunge-right-v13}
 .battle-slot.paraponera-venom-v12 .paraponera-idle{
  width:min(100%,160px)!important;height:126px!important;aspect-ratio:auto!important;
- background-image:url("./assets/paraponera-venom-end-v3.png?v=3")!important;
- background-size:600% auto!important;background-repeat:no-repeat!important;background-position:0% 61%;
- animation:paraponera-venom-frames-v14 1.8s steps(1,end) 1 both!important;
- filter:drop-shadow(0 0 3px #c668ff) drop-shadow(0 0 6px #71ff69) drop-shadow(1px 3px 1px #0008);
+ background-image:url("./assets/paraponera-venom-end-v4.png?v=4")!important;
+ background-size:800% auto!important;background-repeat:no-repeat!important;background-position:0% 61%;
+ animation:paraponera-venom-frames-v15 1.8s steps(1,end) 1 both!important;
+ filter:drop-shadow(1px 3px 1px #0008);
 }
-@keyframes paraponera-venom-frames-v14{
- 0%,14.99%{background-position:0% 61%}
- 15%,31.99%{background-position:20% 61%}
- 32%,44.99%{background-position:40% 61%}
- 45%,78.99%{background-position:80% 61%}
- 79%,100%{background-position:100% 61%}
+@keyframes paraponera-venom-frames-v15{
+ 0%,9.99%{background-position:0% 61%}
+ 10%,19.99%{background-position:14.2857% 61%}
+ 20%,29.99%{background-position:28.5714% 61%}
+ 30%,40.99%{background-position:42.8571% 61%}
+ 41%,51.99%{background-position:57.1429% 61%}
+ 52%,64.99%{background-position:71.4286% 61%}
+ 65%,88.99%{background-position:85.7143% 61%}
+ 89%,100%{background-position:100% 61%}
 }
 @keyframes paraponera-venom-lunge-v13{
-  0%,12%{translate:0 0;scale:1;rotate:0}
-  20%{translate:-7px 2px;scale:1 .98;rotate:-2deg}
-  28%{translate:8px 0;scale:1.01;rotate:1deg}
-  35%,39%{translate:24px -2px;scale:1.03 1.01;rotate:2deg}
-  47%{translate:8px 0;scale:1;rotate:0}
-  56%{translate:0 0;scale:1;rotate:0}
-  68%{translate:-5px 2px;scale:1 .98;rotate:-1deg}
-  78%{translate:8px 0;scale:1.01;rotate:1deg}
-  84%,88%{translate:28px -2px;scale:1.03 1.01;rotate:2deg}
-  94%{translate:9px 0;scale:1;rotate:0}
+  0%,8%{translate:0 0;scale:1;rotate:0}
+  15%{translate:-4px 0;scale:1;rotate:-1deg}
+  25%{translate:3px 0;scale:1;rotate:0}
+  35%,40%{translate:18px 0;scale:1;rotate:1deg}
+  47%{translate:7px 0;scale:1;rotate:0}
+  55%,60%{translate:0 0;scale:1;rotate:0}
+  69%{translate:-4px 0;scale:1;rotate:-1deg}
+  78%{translate:4px 0;scale:1;rotate:0}
+  84%,88%{translate:18px 0;scale:1;rotate:1deg}
+  94%{translate:6px 0;scale:1;rotate:0}
  100%{translate:0 0;scale:1;rotate:0}
 }
 @keyframes paraponera-venom-lunge-right-v13{
-  0%,12%{translate:0 0;scale:1;rotate:0}
-  20%{translate:7px 2px;scale:1 .98;rotate:2deg}
-  28%{translate:-8px 0;scale:1.01;rotate:-1deg}
-  35%,39%{translate:-24px -2px;scale:1.03 1.01;rotate:-2deg}
-  47%{translate:-8px 0;scale:1;rotate:0}
-  56%{translate:0 0;scale:1;rotate:0}
-  68%{translate:5px 2px;scale:1 .98;rotate:1deg}
-  78%{translate:-8px 0;scale:1.01;rotate:-1deg}
-  84%,88%{translate:-28px -2px;scale:1.03 1.01;rotate:-2deg}
-  94%{translate:-9px 0;scale:1;rotate:0}
+  0%,8%{translate:0 0;scale:1;rotate:0}
+  15%{translate:4px 0;scale:1;rotate:1deg}
+  25%{translate:-3px 0;scale:1;rotate:0}
+  35%,40%{translate:-18px 0;scale:1;rotate:-1deg}
+  47%{translate:-7px 0;scale:1;rotate:0}
+  55%,60%{translate:0 0;scale:1;rotate:0}
+  69%{translate:4px 0;scale:1;rotate:1deg}
+  78%{translate:-4px 0;scale:1;rotate:0}
+  84%,88%{translate:-18px 0;scale:1;rotate:-1deg}
+  94%{translate:-6px 0;scale:1;rotate:0}
  100%{translate:0 0;scale:1;rotate:0}
 }
 .paraponera-venom-charge-v12{
@@ -612,7 +615,7 @@
 }
 @media(prefers-reduced-motion:reduce){
  .battle-slot.paraponera-venom-v12{animation:none!important}
-  .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:80% 61%!important}
+ .battle-slot.paraponera-venom-v12 .paraponera-idle{animation:none!important;background-position:100% 61%!important}
  .paraponera-venom-charge-v12,.paraponera-venom-burst-v12,.paraponera-venom-fizzle-v12,.paraponera-venom-tag-v12{display:none!important}
 }
 
@@ -3156,7 +3159,7 @@ function playParaponeraVenomV12(arenaId,side,roundVersion,success){
   vfx.setAttribute('aria-hidden','true');if(cls==='paraponera-venom-tag-v12')vfx.textContent='☠ VENOM END!';host.append(vfx);
   setTimeout(()=>vfx.remove(),duration);
  };
- decorate('paraponera-venom-charge-v12',side,1150);
+ // The sprite sheet carries compact contact sparks; avoid the former oversized aura.
  if(success){
   // Match the two visible contacts in the sprite: stinger first, mandibles second.
   [640,1530].forEach((delay,index)=>setTimeout(()=>{
