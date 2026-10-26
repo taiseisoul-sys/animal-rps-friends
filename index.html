@@ -771,25 +771,23 @@
 }
 
 
-/* PARAPONERA VICTORY v1.5 — display only; never changes HP or battle outcomes. */
+/* PARAPONERA VICTORY v1.7 — approved five-frame art; grounded sprite-only motion. */
 .battle-slot.paraponera-win-v15{
- z-index:15;transform-origin:53% 85%;
- animation:paraponera-victory-pose-v15 2.25s steps(22,end) both;
+ z-index:15;transform-origin:53% 85%;animation:none!important;
 }
 .battle-slot.paraponera-win-v15 .paraponera-idle{
- animation-play-state:paused!important;
- /* Keep one complete sprite frame visible: no position tween or split frames. */
- filter:drop-shadow(0 0 6px #9cfb62) drop-shadow(0 0 12px #a354d9) drop-shadow(2px 5px 1px #000a);
+ background-image:url("./assets/paraponera-win-v1.png?v=1")!important;
+ background-size:500% auto!important;background-repeat:no-repeat!important;
+ animation:paraponera-win-frames-v17 2.25s steps(1,end) both!important;
+ filter:drop-shadow(0 0 5px #ffd45d) drop-shadow(2px 5px 1px #000a);
 }
-@keyframes paraponera-victory-pose-v15{
- 0%{translate:0 0;rotate:0deg;scale:1}
- 12%{translate:0 3px;rotate:0deg;scale:1.02 .93}
- 27%{translate:0 -10px;rotate:calc(-9deg * var(--attack-dir));scale:1.07 1.06}
- 42%{translate:0 -16px;rotate:calc(-15deg * var(--attack-dir));scale:1.1 1.05}
- 52%{translate:0 -9px;rotate:calc(-11deg * var(--attack-dir));scale:1.04 1}
- 67%{translate:0 -17px;rotate:calc(-16deg * var(--attack-dir));scale:1.1 1.08}
- 82%{translate:0 -12px;rotate:calc(-12deg * var(--attack-dir));scale:1.05 1.03}
- 100%{translate:0 -12px;rotate:calc(-12deg * var(--attack-dir));scale:1.05 1.03}
+@keyframes paraponera-win-frames-v17{
+ 0%,9.99%{background-position:0% center}
+ 10%,24.99%{background-position:25% center}
+ 25%,42.99%{background-position:50% center}
+ 43%,64.99%{background-position:75% center}
+ 65%,75.99%{background-position:100% center}
+ 76%,100%{background-position:75% center}
 }
 /* An antenna/front-leg victory flick, kept within the ant's side of the arena. */
 .battle-slot.paraponera-win-v15::after{
@@ -855,57 +853,54 @@
 }
 @media(prefers-reduced-motion:reduce){
  .battle-slot.paraponera-win-v15,.paraponera-win-halo-v15,.paraponera-win-tag-v15{animation:none!important;opacity:1}
+ .battle-slot.paraponera-win-v15 .paraponera-idle{animation:none!important;background-position:75% center!important}
  .battle-slot.paraponera-win-v15::before,.battle-slot.paraponera-win-v15::after{display:none}
 }
 
 
-/* PARAPONERA DEFEAT v1.6 — whole-body fall, no sprite-frame splitting.
-   Visual only: game HP, poison and win/loss calculations are untouched. */
+/* PARAPONERA DEFEAT v1.7 — approved five-frame sprite; grounded visual only. */
 .battle-slot.paraponera-ko-v16{
- z-index:8;transform-origin:50% 82%;
- animation:paraponera-ko-fall-v16 1.75s steps(22,end) both!important;
+ z-index:8;transform-origin:50% 82%;animation:none!important;
 }
-/* Lock to ONE entire idle frame. This prevents mid-frame clipping and 'split ants'. */
 .battle-slot.paraponera-ko-v16 .paraponera-idle{
- animation:none!important;background-position:0% center!important;
- animation-name:none!important;
- filter:grayscale(.68) brightness(.64) drop-shadow(2px 5px 1px #000b);
+ background-image:url("./assets/paraponera-defeat-v1.png?v=1")!important;
+ background-size:500% auto!important;background-repeat:no-repeat!important;
+ animation:paraponera-ko-frames-v17 1.75s steps(1,end) both!important,
+           paraponera-ko-filter-v17 1.75s linear both!important;
 }
-/* Staggered loss of the green venom glow as the ant loses its balance. */
+@keyframes paraponera-ko-frames-v17{
+ 0%,17.99%{background-position:0% center}
+ 18%,35.99%{background-position:25% center}
+ 36%,55.99%{background-position:50% center}
+ 56%,77.99%{background-position:75% center}
+ 78%,100%{background-position:100% center}
+}
+@keyframes paraponera-ko-filter-v17{
+ 0%,45%{filter:drop-shadow(2px 5px 1px #0008)}
+ 72%{filter:grayscale(.22) brightness(.88) drop-shadow(2px 5px 1px #0009)}
+ 100%{filter:grayscale(.42) brightness(.76) drop-shadow(2px 5px 1px #000b)}
+}
+/* Subtle floor dust and fading venom light follow the collapse. */
 .battle-slot.paraponera-ko-v16::after{
  content:'';position:absolute;bottom:26px;left:15%;z-index:12;width:64%;height:63px;
- background:radial-gradient(ellipse at 48% 50%,#dcff8faa 0%,#7bff5a8c 25%,#a243e86e 47%,transparent 74%);
- pointer-events:none;mix-blend-mode:screen;
- animation:paraponera-ko-poison-fade-v16 1.75s steps(16,end) both;
+ background:radial-gradient(ellipse at 48% 50%,#dcff8f88 0%,#7bff5a70 25%,#a243e84c 47%,transparent 74%);
+ pointer-events:none;mix-blend-mode:screen;animation:paraponera-ko-poison-fade-v17 1.75s ease-out both;
 }
 .battle-slot.paraponera-ko-v16::before{
  content:'';position:absolute;z-index:13;bottom:-1px;left:36%;width:8px;height:7px;
  box-shadow:-19px 2px #b19876,12px -4px #9b8768,27px 0 #7b644f,-31px -2px #c7b087;
- background:#d6be9a;pointer-events:none;
- animation:paraponera-ko-dust-v16 1.75s steps(12,end) both;
+ background:#d6be9a;pointer-events:none;animation:paraponera-ko-dust-v17 1.75s ease-out both;
 }
-@keyframes paraponera-ko-fall-v16{
- 0%{translate:0 0;rotate:0deg;scale:1;opacity:1}
- 12%{translate:calc(5px * var(--attack-dir)) -5px;rotate:calc(-8deg * var(--attack-dir));scale:1.03 .96}
- 24%{translate:calc(-5px * var(--attack-dir)) -2px;rotate:calc(8deg * var(--attack-dir));scale:1 .96}
- 38%{translate:calc(-11px * var(--attack-dir)) 5px;rotate:calc(28deg * var(--attack-dir));scale:1 .94}
- 56%{translate:calc(-17px * var(--attack-dir)) 16px;rotate:calc(64deg * var(--attack-dir));scale:.96 .89}
- 72%{translate:calc(-18px * var(--attack-dir)) 11px;rotate:calc(56deg * var(--attack-dir));scale:.94 .9}
- 87%{translate:calc(-18px * var(--attack-dir)) 20px;rotate:calc(77deg * var(--attack-dir));scale:.93 .87}
- 100%{translate:calc(-18px * var(--attack-dir)) 20px;rotate:calc(77deg * var(--attack-dir));scale:.93 .87;opacity:1}
+@keyframes paraponera-ko-poison-fade-v17{
+ 0%,30%{opacity:.6;scale:1}
+ 62%{opacity:.34;scale:.9}
+ 100%{opacity:0;scale:.68}
 }
-@keyframes paraponera-ko-poison-fade-v16{
- 0%,13%{opacity:.85;scale:1}
- 36%{opacity:.75;scale:1.2}
- 58%{opacity:.48;scale:.88}
- 80%{opacity:.12;scale:.67}
- 100%{opacity:0;scale:.45}
-}
-@keyframes paraponera-ko-dust-v16{
- 0%,35%{opacity:0;scale:.4}
- 58%{opacity:.8;scale:.8;translate:0 1px}
- 73%{opacity:.87;scale:1.25;translate:0 -6px}
- 100%{opacity:0;scale:1.85;translate:0 -14px}
+@keyframes paraponera-ko-dust-v17{
+ 0%,46%{opacity:0;scale:.4}
+ 64%{opacity:.72;scale:.8;translate:0 1px}
+ 78%{opacity:.75;scale:1.15;translate:0 -4px}
+ 100%{opacity:0;scale:1.65;translate:0 -10px}
 }
 .paraponera-ko-tag-v16{
  position:absolute;z-index:20;top:32px;pointer-events:none;
@@ -920,7 +915,8 @@
  100%{opacity:1;translate:0 -3px;scale:1}
 }
 @media(prefers-reduced-motion:reduce){
- .battle-slot.paraponera-ko-v16{animation:none!important;translate:0 18px;rotate:calc(77deg * var(--attack-dir));scale:.93 .87}
+ .battle-slot.paraponera-ko-v16{animation:none!important}
+ .battle-slot.paraponera-ko-v16 .paraponera-idle{animation:none!important;background-position:100% center!important;filter:grayscale(.42) brightness(.76) drop-shadow(2px 5px 1px #000b)}
  .battle-slot.paraponera-ko-v16::before,.battle-slot.paraponera-ko-v16::after{display:none!important}
  .paraponera-ko-tag-v16{animation:none!important;opacity:1}
 }
@@ -2970,7 +2966,7 @@ animation:calico-charm-v123 1.6s steps(1,end) 1 both!important;
 }
 </style>
 
-</head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V2.07</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugStickyPanel"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
+</head><body><div class="wrap"><header class="hero"><div class="muted">ANIMAL RPS BATTLE</div><h1>⚡ 生き物じゃんけん ⚡</h1><div class="badge">ARCADE × ONLINE · V2.09</div></header><div id="menu" class="box"><h2>🎮 ゲームモード</h2><div class="grid"><button class="gold" onclick="show('select')">🏆 アーケード<br><small>CPU 5連戦</small></button><button class="purple" onclick="show('online')">🌐 ルームマッチ<br><small>友達と対戦</small></button></div><button style="width:100%;margin-top:12px" onclick="openDebug()">🛠️ 開発者用テストバトル</button><p class="muted">10種類の生き物から選択。オンライン対戦は2人同時参加が必要です。</p></div><div id="select" class="hidden"><h2>🃏 キャラクター選択</h2><div id="cards" class="grid"></div><div class="box" id="description"></div><button class="gold" style="width:100%" onclick="startArcade()">▶ アーケードに出撃</button><button onclick="show('menu')">戻る</button></div><div id="online" class="hidden"><div class="box"><h2>🌐 オンラインルーム</h2><label>プレイヤー名<input id="playerName" maxlength="20" value="PLAYER"></label><p>使用するカード</p><select id="onlineCard"></select><div class="grid" style="margin-top:12px"><button class="gold" onclick="createRoom()">ルームを作成</button><button onclick="joinRoom()">番号で参加</button></div><p><input id="roomInput" inputmode="numeric" maxlength="6" placeholder="6桁のルーム番号"></p><p id="onlineError" class="muted"></p></div><button onclick="show('menu')">戻る</button></div><div id="match" class="hidden"><div class="box"><h2>🔗 ルーム <span id="roomCode"></span></h2><button onclick="copyRoom()">招待リンクをコピー</button><p id="roomStatus" class="muted"></p></div><div id="matchBattle" class="hidden"><div id="onlineArena" class="battle-arena"></div><div class="grid"><div class="box card"><div id="mpic" class="big"></div><b id="mname"></b><div id="mhp"></div><div class="bar"><div id="mbar"></div></div><div id="mstatus" class="status"></div></div><div class="box card"><div id="opic" class="big"></div><b id="oname"></b><div id="ohp"></div><div class="bar red"><div id="obar"></div></div><div id="ostatus" class="status"></div></div></div><div id="matchNotice" class="box"></div><div id="matchMoves" class="grid three moves"></div><div class="box log" id="matchLog"></div></div><button onclick="leaveRoom()">ルームを退出</button></div><div id="debug" class="hidden"><div class="box"><h2>🛠️ 開発者用テストバトル</h2><p class="muted">両方の生き物と技を指定して1ターンずつ検証できます。オンライン対戦には影響しません。</p><div class="grid"><label>左の生き物<select id="debugLeft"></select></label><label>右の生き物<select id="debugRight"></select></label></div><button class="gold" style="width:100%;margin-top:12px" onclick="startDebug()">対戦を開始・リセット</button></div><div id="debugBattle" class="hidden"><div id="debugStickyPanel"><div id="debugArena" class="battle-arena"></div><div class="box"><div id="debugStage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="debugApic" class="big"></div><b id="debugAname"></b><div id="debugAhp"></div><div class="bar"><div id="debugAbar"></div></div><div id="debugAstatus" class="muted"></div></div><div class="card"><div id="debugEpic" class="big"></div><b id="debugEname"></b><div id="debugEhp"></div><div class="bar red"><div id="debugEbar"></div></div><div id="debugEstatus" class="muted"></div></div></div></div></div><div class="box"><div class="grid"><label>左のHP<input id="debugLeftHp" type="number" min="0" onchange="setDebugHp()"></label><label>右のHP<input id="debugRightHp" type="number" min="0" onchange="setDebugHp()"></label></div><p class="muted">HPを変更すると捕食者や底力の条件をすぐ試せます。</p><div class="grid"><div><b>左の技</b><div id="debugLeftMoves" class="moves"></div></div><div><b>右の技</b><div id="debugRightMoves" class="moves"></div></div></div><button class="gold" style="width:100%;margin-top:12px" onclick="debugPlay()">▶ この組み合わせで1ターン実行</button><p id="debugNotice" class="muted"></p></div><div class="box log" id="debugLog"></div></div><button onclick="show('menu')">タイトルに戻る</button></div><div id="arcade" class="hidden"><div id="arcadeArena" class="battle-arena"></div><div class="box"><div id="stage" style="text-align:center;color:#ffdc6a;font-weight:bold"></div><div class="grid"><div class="card"><div id="apic" class="big"></div><b id="aname"></b><div id="ahp"></div><div class="bar"><div id="abar"></div></div><div id="astatus" class="status"></div></div><div class="card"><div id="epic" class="big"></div><b id="ename"></b><div id="ehp"></div><div class="bar red"><div id="ebar"></div></div><div id="estatus" class="status"></div></div></div></div><div id="notice" class="box"></div><div id="arcMoves" class="grid three moves"></div><div class="box log" id="arcLog"></div><div id="nextPanel" class="box hidden"><h2 id="nextTitle"></h2><p id="nextDesc"></p><button class="gold" id="nextButton">次へ</button></div><button onclick="show('menu')">タイトルに戻る</button></div><p class="footer">試作版：ルームはサーバー再起動で消えます。カブトムシ・パラポネラ・クロオオアリ全モーション完成。オオカマキリ全7モーション完成。 ネコ：待機・キャットインパクト・ネコひっかき・甘える実装済み。 ゴリラ：待機モーションを新規作成。</p></div><script>
 
 /* Beetle visual layer: hooks into existing renders, never changes battle results. */
 let beetleIdleReady=false,beetleIdleRequested=false;
